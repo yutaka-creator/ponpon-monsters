@@ -40,3 +40,5 @@ Ver.0.9.10.0: ゴルフ練習3コース。報酬・固有能力・記録保存�
 Ver.0.9.11: 博物館、100展示品、4記念品。既存のお土産保存を利用。
 
 Ver.0.9.12: grouped navigation, home shortcuts, photo hero, separate css/world.css. No save schema changes.
+
+Ver.0.9.15: 初心者ガイド、共有ボタン、SNS用画像、プライバシー確認版、公開チェックリスト。SQL変更なし。

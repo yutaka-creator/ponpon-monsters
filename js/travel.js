@@ -7,7 +7,9 @@ import {pairs} from './pair-data.js';
 import {profiles} from './profiles.js';
 const key='ponpon-catcher.travel.v1', $=id=>document.getElementById(id);
 let selected=[];
-function load(){try{const d=JSON.parse(read(key));return {trip:d?.trip||null,album:Array.isArray(d?.album)?d.album:[], gifts:Array.isArray(d?.gifts)?d.gifts:[]};}catch{return {trip:null,album:[],gifts:[]};}}
+const validIds=a=>Array.isArray(a)&&a.length>=1&&a.length<=2&&a.every(i=>Number.isInteger(i)&&i>=0&&i<10);
+const validPlace=i=>Number.isInteger(i)&&!!destinations[i];
+function load(){try{const d=JSON.parse(read(key));return {trip:d?.trip&&validPlace(d.trip.place)&&validIds(d.trip.ids)&&Number.isFinite(d.trip.end)?d.trip:null,album:Array.isArray(d?.album)?d.album.filter(a=>a&&validPlace(a.place)&&validIds(a.ids)&&typeof a.gift==='string').slice(-100):[], gifts:Array.isArray(d?.gifts)?d.gifts.filter(g=>typeof g==='string'):[]};}catch{return {trip:null,album:[],gifts:[]};}}
 function save(d){try{write(key,JSON.stringify(d));return true;}catch{$('travel-status').textContent='保存できませんでした。';return false;}}
 function pickers(){const root=$('travel-pickers');root.replaceChildren();const counts=getCounts();selected=selected.filter(i=>counts[i]);for(let i=0;i<10;i++){if(!counts[i])continue;const b=document.createElement('button');b.type='button';b.className='travel-monster';b.append(photo(i),document.createTextNode(profiles[i][0]));b.setAttribute('aria-pressed',String(selected.includes(i)));b.onclick=()=>{if(selected.includes(i))selected=selected.filter(x=>x!==i);else if(selected.length<2)selected.push(i);pickers();};root.append(b);}if(!counts.slice(0,10).some(Boolean))root.textContent='まず仲間を獲得しよう。';}
 function render(){const d=load(),t=d.trip;const remaining=t?Math.max(0,Math.ceil((t.end-Date.now())/1000)):0;$('travel-start').disabled=!!t||!selected.length;$('travel-claim').hidden=!t||remaining>0;$('travel-place').disabled=!!t;$('travel-status').textContent=t?`${destinations[t.place][0]}へお出かけ中：${remaining?Math.floor(remaining/60)+'分 '+remaining%60+'秒':'帰ってきたよ！'}`:'仲間を選んで出発しよう。';}

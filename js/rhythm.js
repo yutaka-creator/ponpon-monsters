@@ -1,5 +1,5 @@
 // Three timed beats; all timings are editable here.
-export const settings={interval:850,perfect:95,good:210,lead:1000};
+export const settings={interval:850,perfect:125,good:260,lead:1000};
 export function createRhythm(onFinish){
  const panel=document.querySelector('#rhythm'), marker=document.querySelector('#beat-marker'), result=document.querySelector('#beat-result'), slots=[...document.querySelectorAll('.beat-slot')];
  let active=false, index=0, start=0, scores=[], raf=0, audio;
