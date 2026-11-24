@@ -47,3 +47,8 @@
 #museum-meter{width:100%;accent-color:#759b71}#museum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}#museum-grid article{background:#fff8e9;color:#514331;border:1px solid #dbc9a9;border-radius:12px;padding:12px;text-align:center}#museum-grid img{width:72px;height:72px;display:block;margin:0 auto 8px}#museum-grid p{font-size:.85rem;line-height:1.5}#museum label{display:inline-block;margin:8px}
 
 #episode-reader,#episode-list{scroll-margin-top:16px}#episode-reader{margin-top:16px}#episode-reader[hidden]{display:none}#episode-title{text-align:center}
+
+/* Room speech bubbles */
+#room-scene .room-actor:has(.speech-bubble){z-index:20;overflow:visible}
+#room-scene .speech-bubble{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(calc(-50% + var(--bubble-shift,0px)));width:max-content;max-width:min(180px,45vw);padding:7px 10px;background:#fffaf0;color:#403b32;border:1px solid #b8ad96;border-radius:12px;font-size:12px;line-height:1.45;white-space:normal;overflow-wrap:anywhere;box-shadow:0 2px 6px #0002;pointer-events:none;text-align:left}
+#room-scene .speech-bubble:after{content:'';position:absolute;top:100%;left:clamp(10px,calc(50% - var(--bubble-shift,0px)),calc(100% - 10px));border:6px solid transparent;border-top-color:#fffaf0}

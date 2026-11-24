@@ -13,3 +13,9 @@ import('./travel.js').then(m=>m.initTravel()).catch(console.error);
 import("./golf.js").then(m=>m.initGolf()).catch(console.error);
 
 import('./museum.js').then(m=>m.initMuseum()).catch(console.error);
+
+let golf3d=null, opening3d=false;
+const g3=id=>document.getElementById(id);
+g3('g3-open').onclick=async()=>{if(opening3d)return;opening3d=true;g3('g3-panel').hidden=false;g3('g3-old').hidden=true;g3('g3-open').hidden=true;try{if(!golf3d)golf3d=(await import('./golf3d.js')).initGolf3D();if(!g3('g3-panel').hidden&&!g3('golf').hidden){golf3d.show();g3('g3-panel').scrollIntoView({block:'start'});}else golf3d.hide();}catch(e){g3('g3-status').textContent='3Dを起動できませんでした。2D版に戻れます。';console.error(e);}finally{opening3d=false;}};
+g3('g3-close').onclick=()=>{golf3d?.hide();g3('g3-panel').hidden=true;g3('g3-old').hidden=false;g3('g3-open').hidden=false;};
+document.addEventListener('ponpon:tab',e=>{if(e.detail==='golf'&&!g3('g3-panel').hidden)golf3d?.show();else golf3d?.hide();});

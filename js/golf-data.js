@@ -2,7 +2,7 @@
 const original=[
  {name:'森の練習場',par:2,start:[75,220],hole:[565,220],walls:[],water:[],sand:[[300,310,100,75]]},
  {name:'キノコの小道',par:3,start:[75,350],hole:[565,85],walls:[[290,125,28,230]],water:[[390,255,120,100]],sand:[[100,80,110,90]]},
- {name:'秘密の湖',par:4,start:[75,350],hole:[565,75],walls:[[240,0,25,170],[390,270,25,170]],water:[[270,175,115,95]],sand:[[440,100,100,100]]}
+ {name:'秘密の湖',par:4,start:[75,350],hole:[565,75],walls:[[240,0,25,130],[390,310,25,130]],water:[[290,185,75,65]],sand:[[440,100,100,100]]}
 ];
 
 const tour=[
@@ -1452,4 +1452,4 @@ const tour=[
   ]
  }
 ];
-export const courses=tour.map((c,i)=>i<3?{...c,...original[i]}:c);
+export const courses=tour.map((c,i)=>i<3?{...c,...original[i]}:{...c,walls:c.walls.map(([x,y,w,h])=>[x,y===0?0:y+25,w,Math.max(25,h-25)]),water:c.water.map(([x,y,w,h])=>[x+8,y+8,w-16,h-16])});

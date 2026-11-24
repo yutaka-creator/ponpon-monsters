@@ -1,0 +1,5 @@
+#g3-panel[hidden],#g3-old[hidden]{display:none!important}#g3-view{height:clamp(230px,43dvh,480px);width:100%;overflow:hidden;border-radius:12px;background:#dcebdc}#g3-view canvas{display:block;width:100%;height:100%;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}#g3-panel h2,#g3-panel p{margin:5px 0}#g3-panel button{min-height:44px} .g3-row{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:5px 0}.g3-row label{flex:1;min-width:110px}.g3-row select,.g3-row input{max-width:100%;width:100%}#g3-open{margin-bottom:8px}
+
+.g3-ability{font-size:.85rem;background:#edf3e5;border-radius:8px;padding:7px;color:#365741}
+
+#g3-values{font-size:.8rem} @media(max-width:600px){#g3-view{height:clamp(210px,36dvh,330px)} .g3-row label{min-width:0} #g3-panel input[type=range]{min-height:32px} #g3-shot{flex:1;min-width:100px}}
