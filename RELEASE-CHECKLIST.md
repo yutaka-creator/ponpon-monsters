@@ -9,3 +9,5 @@
 - [ ] Three.js / Rapier / Supabase SDK の配布形態とライセンス表示を確認
 - [ ] 正式公開承認後にバージョン1.0へ
 SQL変更なし。公開前確認版であり、公開承認や実機検証を代替しない。
+
+- [ ] iPhone: confirm course and controls fit in portrait, home and classic navigation work.

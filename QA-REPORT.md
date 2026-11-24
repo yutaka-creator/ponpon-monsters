@@ -13,3 +13,12 @@ node --experimental-default-type=module tests/regression.mjs
 独り言6300件（話題と反応の組み合わせ）、寝言、仲間の反応、表示切替。実機未検証。
 
 Ver.0.9.19.2: 下部ナビのイベント委譲、ゴルフ3D標準起動。実機未検証。
+
+## 0.9.20.1
+Camera transitions, aim at cup, follow toggle. Syntax and DOM references checked; regression and save tests run. Browser/iPhone rendering not tested.
+
+## 0.9.20.1.1
+- Fixed viewport layout, isolated canvas dimensions, added loading/error overlay and home button.
+- iPhone/WebGL rendering not verified on device.
+
+Ver.0.9.20.1.2: マイルームの固定表示・選択タブ追加。構文、既存回帰テスト、HTML ID確認。iPhone実機未確認。
