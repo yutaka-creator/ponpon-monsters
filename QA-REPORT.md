@@ -22,3 +22,15 @@ Camera transitions, aim at cup, follow toggle. Syntax and DOM references checked
 - iPhone/WebGL rendering not verified on device.
 
 Ver.0.9.20.1.2: マイルームの固定表示・選択タブ追加。構文、既存回帰テスト、HTML ID確認。iPhone実機未確認。
+
+## Ver.0.9.20.2
+Three-press timing meter, automatic endpoint selection, impact angle error, reset on exit. Fixed loading overlay hidden CSS. Syntax and existing regression/save tests passed; browser and iPhone not tested.
+
+## 0.9.20.3
+風・地形・パター・飛距離表示を追加。構文、既存回帰、保存、4地形の停止計算を確認。実機未確認。
+
+## 0.9.20.4
+樹木・花・岩をインスタンス描画、芝色の微細変化、旗の揺れを追加。物理変更なし。変更JS構文・保存・回帰テスト合格。WebGL/iPhone実機未検証。
+
+## 0.9.20.5
+Quality presets, render throttling, minimap and landscape layout added. Syntax, quality preset, regression and save tests passed. Browser/iPhone rendering and frame rates not measured.
