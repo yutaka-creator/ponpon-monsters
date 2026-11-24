@@ -45,3 +45,5 @@
 #golf-records{margin-top:1rem}#golf-records details{margin:.5rem 0}#golf-records summary{cursor:pointer;padding:.5rem}#golf-records table{width:100%;border-collapse:collapse;font-size:.85rem}#golf-records td,#golf-records th{padding:.4rem;text-align:left;border-bottom:1px solid #8884}
 
 #museum-meter{width:100%;accent-color:#759b71}#museum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}#museum-grid article{background:#fff8e9;color:#514331;border:1px solid #dbc9a9;border-radius:12px;padding:12px;text-align:center}#museum-grid img{width:72px;height:72px;display:block;margin:0 auto 8px}#museum-grid p{font-size:.85rem;line-height:1.5}#museum label{display:inline-block;margin:8px}
+
+#episode-reader,#episode-list{scroll-margin-top:16px}#episode-reader{margin-top:16px}#episode-reader[hidden]{display:none}#episode-title{text-align:center}
