@@ -1,0 +1,24 @@
+/* Responsive and touch accessibility overrides */
+main, main>section, .world-group, .world-group>div {min-width:0;overflow-wrap:anywhere}
+button {min-height:44px;max-width:100%;touch-action:manipulation;white-space:normal}
+button[data-dir],#golf-canvas,#stage canvas{touch-action:none}
+input,select,textarea{max-width:100%;font-size:16px;min-height:44px}
+nav:not(.tabs){flex-wrap:wrap} img,video{max-width:100%}
+#profile{width:min(92vw,600px);max-height:85dvh;overflow:auto}
+#stage{height:clamp(250px,48svh,480px)}
+#game .pad button{min-height:48px} #catch{flex-shrink:0}
+#mobile-menu-toggle{display:none}
+@media(max-width:600px){
+ main{padding:10px  max(10px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+ #mobile-menu-toggle{display:block;width:100%;margin:10px 0;background:var(--green);color:white}
+ .tabs[data-collapsed=true]{display:none}
+ .tabs button{font-size:14px;min-height:44px}
+ .controls{gap:12px;flex-wrap:wrap} #catch{width:90px;height:90px}
+ #gallery,#shop-grid,#vote-grid,#museum-grid,#travel-map{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #golf label{display:flex;flex-wrap:wrap;justify-content:center} #golf select{width:100%}
+ #golf input[type=range]{width:min(100%,260px)}
+ .profile-fields{grid-template-columns:minmax(4em,auto) minmax(0,1fr);gap:8px}
+ #myroom p,#theater p,.hint{font-size:14px}
+}
+@media(max-width:350px){#gallery,#shop-grid,#vote-grid,#museum-grid,#travel-map{grid-template-columns:repeat(2,minmax(0,1fr))}.controls{gap:8px}.pad{grid-template-columns:repeat(3,44px)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:0s!important}}
