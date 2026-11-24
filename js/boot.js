@@ -16,6 +16,12 @@ import('./museum.js').then(m=>m.initMuseum()).catch(console.error);
 
 let golf3d=null, opening3d=false;
 const g3=id=>document.getElementById(id);
-g3('g3-open').onclick=async()=>{if(opening3d)return;opening3d=true;g3('g3-panel').hidden=false;g3('g3-old').hidden=true;g3('g3-open').hidden=true;try{if(!golf3d)golf3d=(await import('./golf3d.js')).initGolf3D();if(!g3('g3-panel').hidden&&!g3('golf').hidden){golf3d.show();g3('g3-panel').scrollIntoView({block:'start'});}else golf3d.hide();}catch(e){g3('g3-status').textContent='3Dを起動できませんでした。2D版に戻れます。';console.error(e);}finally{opening3d=false;}};
+async function open3d(){return await start3d();}
+const start3d=async()=>{if(opening3d)return;opening3d=true;g3('g3-panel').hidden=false;g3('g3-old').hidden=true;g3('g3-open').hidden=true;try{if(!golf3d)golf3d=(await import('./golf3d.js')).initGolf3D();if(!g3('g3-panel').hidden&&!g3('golf').hidden){golf3d.show();g3('g3-panel').scrollIntoView({block:'start'});}else golf3d.hide();}catch(e){g3('g3-status').textContent='3Dを起動できませんでした。2D版に戻れます。詳細：'+(e.message||e);console.error(e);}finally{opening3d=false;}};
+g3('g3-open').onclick=open3d;
 g3('g3-close').onclick=()=>{golf3d?.hide();g3('g3-panel').hidden=true;g3('g3-old').hidden=false;g3('g3-open').hidden=false;};
-document.addEventListener('ponpon:tab',e=>{if(e.detail==='golf'&&!g3('g3-panel').hidden)golf3d?.show();else golf3d?.hide();});
+document.addEventListener('ponpon:tab',e=>{if(e.detail!=='golf')golf3d?.hide();});
+
+let fairway,fwLoading=false;
+async function openFairway(){if(fwLoading)return;fwLoading=true;g3('fw-panel').hidden=false;g3('fw-return').hidden=true;g3('g3-panel').hidden=true;g3('g3-old').hidden=true;g3('g3-open').hidden=true;golf3d?.hide();try{if(!fairway)fairway=(await import('./fairway.js')).initFairway();if(!g3('golf').hidden&&!g3('fw-panel').hidden)fairway.show();}catch(e){g3('fw-status').textContent='起動失敗：'+e.message;}finally{fwLoading=false;}}
+g3('fw-classic').onclick=()=>{fairway?.hide();g3('fw-panel').hidden=true;g3('fw-return').hidden=false;open3d();};g3('fw-return').onclick=openFairway;document.addEventListener('ponpon:tab',e=>{if(e.detail==='golf')openFairway();else fairway?.hide();});if(!g3('golf').hidden)openFairway();

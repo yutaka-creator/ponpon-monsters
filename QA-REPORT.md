@@ -11,3 +11,5 @@ node --experimental-default-type=module tests/regression.mjs
 
 ## 0.9.19.1
 独り言6300件（話題と反応の組み合わせ）、寝言、仲間の反応、表示切替。実機未検証。
+
+Ver.0.9.19.2: 下部ナビのイベント委譲、ゴルフ3D標準起動。実機未検証。
