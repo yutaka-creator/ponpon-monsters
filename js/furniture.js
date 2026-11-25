@@ -16,3 +16,5 @@ for(const [id,name,icon,golf] of [['golf0','初クリアトロフィー','🏆',
 
 for(const e of exhibits)items.push({id:e.id,name:e.name,icon:e.icon,group:'お土産',gift:e.name,price:0});
 for(const [n,name] of milestones)items.push({id:'museum'+n,name,icon:'🏆',group:'博物館記念品',museum:n,price:0});
+
+for(const [id,name,icon,golf] of [['fwgift0','本格ゴルフバッグ','🎒','本格3ホール制覇'],['fwgift1','ミニチュアゴルフ場','⛳','本格6ホール制覇'],['fwgift2','黄金のカップ','🏆','本格ホールインワン'],['fwgift3','チャンピオン記念盾','🏅','9ホールラウンド35打以下']])items.push({id,name,icon,golf,group:'ゴルフ',price:0});

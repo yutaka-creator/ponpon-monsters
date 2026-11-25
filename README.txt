@@ -42,3 +42,11 @@ Ver.0.9.11: 博物館、100展示品、4記念品。既存のお土産保存を�
 Ver.0.9.12: grouped navigation, home shortcuts, photo hero, separate css/world.css. No save schema changes.
 
 Ver.0.9.15: 初心者ガイド、共有ボタン、SNS用画像、プライバシー確認版、公開チェックリスト。SQL変更なし。
+
+Ver.0.9.22.1: scorecard and nine-hole round. See QA-REPORT.md.
+
+Ver.0.9.24: 18ホール、9/18ホール別記録。実機確認は未実施。
+
+Ver.0.9.25: 画面遷移・ゴルフ記録入力・マイルームのスクロール・遊び方を改善。
+
+Ver.0.9.30: ホームの4分類、配色、カード、ナビゲーションの現在地表示。css/polish.css で編集できます。

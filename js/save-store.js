@@ -1,4 +1,4 @@
-export const keys=['ponpon-catcher.collection.v1','ponpon-catcher.bond.v1','ponpon-catcher.room.v1','ponpon-catcher.shop.v1','ponpon-catcher.lines.v1','ponpon-catcher.pairs.v1','ponpon-catcher.travel.v1'];
+export const keys=['ponpon-catcher.collection.v1','ponpon-catcher.bond.v1','ponpon-catcher.room.v1','ponpon-catcher.shop.v1','ponpon-catcher.lines.v1','ponpon-catcher.pairs.v1','ponpon-catcher.travel.v1','ponpon-catcher.fairway.v1','ponpon-catcher.theater.v1'];
 let owner='';
 export function setOwner(id){owner=id||'';}
 const path=k=>owner?`${k}.user.${owner}`:k;

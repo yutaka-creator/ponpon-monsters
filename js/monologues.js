@@ -22,6 +22,7 @@ import m20 from './monologues/20.js';
 import m21 from './monologues/21.js';
 import m22 from './monologues/22.js';
 const data=[m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16,m17,m18,m19,m20,m21,m22];
+data.push({daily:["わしは打つ側じゃ。","今日はパターの練習じゃ。"],surreal:["ボールと間違えられた。"],hobby:["芝生を眺めておる。"],rare:["昔はカップが大きかった。"]},{daily:["次のホールに虹をかけよう！","空を見上げてみよう。"],surreal:["虹の端にクラブを忘れた。"],hobby:["雲を数えている。"],rare:["今日は七色の風だね。"]});
 const recent=new Map();
 const dreams=['むにゃ…特売ですわ…','むにゃ…昨日に戻るよ…','むにゃ…虹が出た…','むにゃ…世界一周…','むにゃ…甘口じゃ…','むにゃ…脈ありやで…','むにゃ…会議は延期…','むにゃ…あと五分…','むにゃ…昔はなぁ…','むにゃ…負けないもん…'];
 export function monologueEntries(id){return Object.values(data[id]||{}).flat();}
