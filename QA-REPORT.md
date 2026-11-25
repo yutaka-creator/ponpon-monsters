@@ -6,3 +6,6 @@
 
 ## 0.9.30.2
 方向入力を分離。タッチ終了・キャンセルで解除し、キャプチャ喪失だけでは解除しない。全11自動テスト合格。実機未検証。
+
+## 0.9.30.3
+Canvas CSS size synchronized with renderer; fixed views fit cabinet bounds. Existing Node tests passed. Browser/iPhone not tested.
