@@ -34,3 +34,6 @@ Three-press timing meter, automatic endpoint selection, impact angle error, rese
 
 ## 0.9.20.5
 Quality presets, render throttling, minimap and landscape layout added. Syntax, quality preset, regression and save tests passed. Browser/iPhone rendering and frame rates not measured.
+
+## 0.9.20.6
+WebGL初期化の軽量化、ミニマップ取得失敗時の保護、ResizeObserver代替、起動エラー詳細と2Dへの直接退避を追加。iPhone実機およびCDN接続は未確認。
