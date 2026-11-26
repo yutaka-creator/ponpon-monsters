@@ -1,11 +1,10 @@
-# Ver.0.9.30
-- Existing 10 Node test scripts passed.
-- ui.js syntax, unique HTML IDs and data-go destinations checked.
-- New CSS and home directory; no save schema or game physics changes.
-- Browser rendering, mobile hardware and cloud sync not yet verified.
+# Ver.0.9.30.4
+- Existing 12 Node test scripts passed; changed JS syntax checked.
+- Added history entries for screen and theater episode navigation, furniture selector and edit layer, travel layout.
+- Browser and Android/iPhone hardware tests not performed. Existing furniture coordinates retained; overlap remains possible by choice.
 
-## 0.9.30.2
-方向入力を分離。タッチ終了・キャンセルで解除し、キャプチャ喪失だけでは解除しない。全11自動テスト合格。実機未検証。
+## 0.9.30.5
+帰宅通知（ゲーム内）、手動の報酬発表、既存の受取処理を維持。全12テスト合格。実機・ブラウザ未検証。
 
-## 0.9.30.3
-Canvas CSS size synchronized with renderer; fixed views fit cabinet bounds. Existing Node tests passed. Browser/iPhone not tested.
+## Ver.0.9.30.6
+名称・プロフィール・独り言100件・専用会話2件を更新。既存12テストと名称確認を実行。実機・クラウド未検証。
