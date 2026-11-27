@@ -1,1 +1,1 @@
-import assert from 'node:assert/strict';import {trailLimit} from '../js/fairway-effects.js';assert.equal(trailLimit(true),20);assert.equal(trailLimit(false),40);console.log('fairway effects limits OK');
+import assert from 'node:assert/strict';import {trailLimit} from '../js/fairway-effects.js?v=10000';assert.equal(trailLimit(true),20);assert.equal(trailLimit(false),40);console.log('fairway effects limits OK');

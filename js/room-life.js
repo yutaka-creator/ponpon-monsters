@@ -1,7 +1,7 @@
-import {chooseActivity} from './room-activities.js';
-import {monologue,reactions} from './monologues.js';
-import {profiles} from './profiles.js';
-import {speak,clearBubbles,conversation} from './room-bubbles.js';
+import {chooseActivity} from './room-activities.js?v=10000';
+import {monologue,reactions} from './monologues.js?v=10000';
+import {profiles} from './profiles.js?v=10000';
+import {speak,clearBubbles,conversation} from './room-bubbles.js?v=10000';
 // ID順。家具ID、行動名、セリフ、アニメーションを自由に編集できます。
 export const habits=[
  ['s0','お茶会','特売のお茶ですわ。','sway'],['s1','ワープ','未来では徒歩もワープだよ。','warp'],['s2','魔法の練習','今度こそ魔法が出るはず！','hop'],['f25','世界一周','部屋規模で一周しよう。','walk'],['f11','冷蔵庫チェック','カレーはまだあるかな。','sway'],['s5','恋愛相談','それ、絶対脈ありやで。','chat'],['s6','効率調査','動線を最適化します。','walk'],['f0','三度寝','まあ、明日でいいか。','sleep'],['s8','昔話','わしが若い頃はなぁ。','chat'],['s9','ポーズ','今日もかわいい！','hop']];

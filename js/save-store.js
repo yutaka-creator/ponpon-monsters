@@ -1,10 +1,10 @@
-export const keys=['ponpon-catcher.collection.v1','ponpon-catcher.bond.v1','ponpon-catcher.room.v1','ponpon-catcher.shop.v1','ponpon-catcher.lines.v1','ponpon-catcher.pairs.v1','ponpon-catcher.travel.v1','ponpon-catcher.fairway.v1','ponpon-catcher.theater.v1','ponpon-catcher.tower.v1','ponpon-catcher.race.v1','ponpon-catcher.invader.v1','ponpon-catcher.adventure.v1'];
+export const keys=['ponpon-catcher.collection.v1','ponpon-catcher.bond.v1','ponpon-catcher.room.v1','ponpon-catcher.shop.v1','ponpon-catcher.lines.v1','ponpon-catcher.pairs.v1','ponpon-catcher.travel.v1','ponpon-catcher.fairway.v1','ponpon-catcher.theater.v1','ponpon-catcher.tower.v1','ponpon-catcher.race.v1','ponpon-catcher.invader.v1','ponpon-catcher.adventure.v1','ponpon-catcher.town.v1'];
 let owner='';
 export function setOwner(id){owner=id||'';}
 const path=k=>owner?`${k}.user.${owner}`:k;
 const backupPath=()=>path('ponpon-catcher.backup.v1');
 const object=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
-export function validate(data){if(!object(data)||!keys.some(k=>Object.hasOwn(data,k)))throw Error('記録の形式が正しくありません。');for(const [i,k] of keys.entries()){const v=data[k];if(v==null)continue;if([0,1,4].includes(i)?!Array.isArray(v):!object(v))throw Error('記録の形式が正しくありません。');}return data;}
+export function validate(data){if(!object(data)||!keys.some(k=>Object.hasOwn(data,k)))throw Error('記録の形式が正しくありません。');for(const [i,k] of keys.entries()){const v=data[k];if(!Object.hasOwn(data,k)||v===null)continue;if([0,1,4].includes(i)?!Array.isArray(v):!object(v))throw Error('記録の形式が正しくありません。');}return data;}
 export function read(k){return localStorage.getItem(path(k));}
 export function write(k,v){JSON.parse(v);localStorage.setItem(path(k),v);document.dispatchEvent(new Event('ponpon:save'));}
 export function snapshot(guest=false){return Object.fromEntries(keys.map(k=>[k,JSON.parse((guest?localStorage.getItem(k):read(k))||'null')]));}

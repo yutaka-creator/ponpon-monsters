@@ -1,4 +1,4 @@
-import {explorers} from './exploration-data.js';
+import {explorers} from './exploration-data.js?v=10000';
 export const secrets=[
  {base:8,name:'黄金のかずじぃ',color:0xffc52b,condition:'フィーバー発動',bio:'昔話まで黄金色。',quote:'金の時代じゃ。'},
  {base:3,name:'真っ白な地球',color:0xffffff,condition:'地球を5体獲得',bio:'雪の日の地球。',quote:'今日は真っ白。'},

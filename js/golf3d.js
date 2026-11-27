@@ -1,12 +1,12 @@
 import * as T from 'three';
-import {finishGolf} from './golf-rewards.js';
-import {unlockGolfMonster,renderGolfRecords} from './golf-records.js';
-import {step3d} from './golf3d-physics.js';
-import {prize,monsters} from './monsters.js';
-import {getCounts} from './collection.js';
-import {step,W,H} from './golf-physics.js';
-import {launch,abilities} from './golf-abilities.js';
-import {courses3d, themes} from './golf3d-data.js';
+import {finishGolf} from './golf-rewards.js?v=10000';
+import {unlockGolfMonster,renderGolfRecords} from './golf-records.js?v=10000';
+import {step3d} from './golf3d-physics.js?v=10000';
+import {prize,monsters} from './monsters.js?v=10000';
+import {getCounts} from './collection.js?v=10000';
+import {step,W,H} from './golf-physics.js?v=10000';
+import {launch,abilities} from './golf-abilities.js?v=10000';
+import {courses3d, themes} from './golf3d-data.js?v=10000';
 const $=id=>document.getElementById(id), S=40;
 export function initGolf3D(){
  const host=$('g3-view'), renderer=new T.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));host.append(renderer.domElement);

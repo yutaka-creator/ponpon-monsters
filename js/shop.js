@@ -1,9 +1,9 @@
-import {rewardIds as adventureIds} from './adventure-records.js';
-import {rewardIds} from './invader-rewards.js';
-import {achievements,rewardRules} from './fairway-rewards.js';
-import {exhibits} from './museum-data.js';
-import {rarity} from './room-extras.js';
-import {read,write} from './save-store.js';import {items,find,furnitureImage} from './furniture.js';import {bond} from './bond.js';
+import {rewardIds as adventureIds} from './adventure-records.js?v=10000';
+import {rewardIds} from './invader-rewards.js?v=10000';
+import {achievements,rewardRules} from './fairway-rewards.js?v=10000';
+import {exhibits} from './museum-data.js?v=10000';
+import {rarity} from './room-extras.js?v=10000';
+import {read,write} from './save-store.js?v=10000';import {items,find,furnitureImage} from './furniture.js?v=10000';import {bond} from './bond.js?v=10000';
 const key='ponpon-catcher.shop.v1';let data={coins:500,owned:[]};try{const s=JSON.parse(read(key));if(s&&Number.isSafeInteger(s.coins)&&s.coins>=0&&Array.isArray(s.owned))data={coins:s.coins,owned:s.owned.filter(id=>find(id)),fairwayClaims:Array.isArray(s.fairwayClaims)?s.fairwayClaims:[],golf:s.golf&&typeof s.golf==='object'?s.golf:{}};}catch{}
 const $=id=>document.getElementById(id);let place,preview;export function earn(n){data.coins=Math.min(999999,data.coins+n);save();}function save(){try{write(key,JSON.stringify(data));}catch{ $('shop-status').textContent='保存できませんでした。';}render();}function gifts(){try{const d=JSON.parse(read('ponpon-catcher.travel.v1'));return new Set([...(d?.gifts||[]),...(d?.album||[]).map(a=>a.gift)]);}catch{return new Set();}}
 export function owned(item){if(item.gift)return gifts().has(item.gift);if(item.museum)return exhibits.filter(e=>gifts().has(e.name)).length>=item.museum;return item.bond!==undefined?bond(item.bond).level===5:data.owned.includes(item.id);}

@@ -1,4 +1,4 @@
-import {exhibits,milestones} from './museum-data.js';
+import {exhibits,milestones} from './museum-data.js?v=10000';
 // 家具名・アイコン・価格を編集できます。
 const groups=[['生活','ベッド🛏️,ソファ🛋️,椅子🪑,テーブル🪵,座布団🟫,こたつ🧣,ランプ💡,カーテン🪟,クッション🟠,ラグ🟩'],['家電・収納','テレビ📺,冷蔵庫🧊,本棚📚,タンス🗄️,ラジオ📻,扇風機🌀,掃除機🧹,洗濯機🫧,時計🕰️,スピーカー🔊'],['植物・装飾','サボテン🌵,観葉植物🪴,花瓶💐,水槽🐠,絵画🖼️,地球儀🌐,ぬいぐるみ🧸,花壇🌷,盆栽🌳,キャンドル🕯️'],['レトロ','ガチャガチャ🎰,ゲーム筐体🕹️,レコード💿,黒電話☎️,看板🪧,公衆電話📞,駄菓子棚🍬,ジュークボックス🎵,レトロカメラ📷,タイプライター⌨️'],['不思議','UFO🛸,タイムマシン🚀,巨大プリン🍮,謎の石像🗿,魔法の扉🚪,宝箱🧰,巨大きのこ🍄,月🌙,ロボット🤖,恐竜🦕']];
 export const items=groups.flatMap(([group,str],g)=>str.split(',').map((s,i)=>({id:'f'+(g*10+i),group,name:s.slice(0,s.search(/\p{Extended_Pictographic}|[🟫🟠🟩]/u)),icon:s.slice(s.search(/\p{Extended_Pictographic}|[🟫🟠🟩]/u)),price:[50,80,100,150,200,300,400,500,800,1500][i]})));
@@ -10,7 +10,7 @@ export const find=id=>items.find(a=>a.id===id);
 export function cleanDecor(a){return (Array.isArray(a)?a:[]).slice(0,20).filter(o=>o&&find(o.id)&&[o.x,o.y,o.angle,o.scale].every(Number.isFinite)).map(o=>({id:o.id,x:Math.max(8,Math.min(92,o.x)),y:Math.max(12,Math.min(90,o.y)),angle:Math.max(-360,Math.min(360,o.angle)),scale:Math.max(.5,Math.min(2,o.scale))}));}
 export function paint(scene,s,select){scene.style.setProperty('--wall',walls.find(a=>a[0]===s.wall)?.[2]||'#fff0bf');scene.style.setProperty('--floor',floors.find(a=>a[0]===s.floor)?.[2]||'#bc895e');scene.classList.add('decor-scene');let layer=scene.querySelector('.decor-layer');if(!layer){layer=document.createElement('div');layer.className='decor-layer';scene.append(layer);}layer.replaceChildren();for(const [i,o] of cleanDecor(s.decor).entries()){const el=document.createElement(select?'button':'span');el.className='decor-item';el.append(furnitureImage(find(o.id)));el.setAttribute("aria-label",find(o.id).name);el.title=find(o.id).name;el.style.cssText=`left:${o.x}%;top:${o.y}%;transform:translate(-50%,-50%) rotate(${o.angle}deg) scale(${o.scale})`;if(select){el.type='button';el.onclick=()=>select(i);}layer.append(el);}}
 
-export function furnitureImage(item){const img=document.createElement("img");img.src=`assets/furniture/${item.id}.svg`;img.alt=item.name;img.draggable=false;return img;}
+export function furnitureImage(item){const img=document.createElement("img");img.loading="lazy";img.decoding="async";img.src=`assets/furniture/${item.id}.svg`;img.alt=item.name;img.draggable=false;return img;}
 
 for(const [id,name,icon,golf] of [['golf0','初クリアトロフィー','🏆','初クリア'],['golf1','金のトロフィー','🏆','ホールインワン'],['golf2','諦めなかったで賞','🎖️','10打以上でクリア'],['golf3','パター','⛳','5ホールクリア'],['golf4','ゴルフバッグ','🎒','15ホールクリア'],['golf5','芝生マット','🟩','30ホールクリア']])items.push({id,name,icon,golf,group:'ゴルフ',price:0});
 
@@ -26,3 +26,6 @@ walls.push(['galaxy','銀河の壁紙','#211b49']);
 
 items.push(...[['advgift0','冒険者のリュック','3ステージクリア'],['advgift1','冒険の宝箱','5ステージクリア'],['advgift2','天空の壁紙','8ステージクリア'],['advgift3','黄金の冒険トロフィー','全10秘密エリア発見']].map(([id,name,adventure])=>({id,name,adventure,group:'アドベンチャー',price:0,icon:'🏆'})));
 walls.push(['adventureSky','天空の壁紙','#bce6fa']);
+
+for(const d of ['easy','normal','hard'])items.push({id:'cup_'+d,name:d.toUpperCase()+'大会トロフィー',icon:'🏆',golf:d.toUpperCase()+'大会優勝',group:'ゴルフ',price:0});
+for(const d of ['easy','normal','hard'])items.push({id:'golf_complete_'+d,name:d.toUpperCase()+'全制覇記念盾',icon:'🏅',golf:d.toUpperCase()+'全12ホール制覇',group:'ゴルフ',price:0});

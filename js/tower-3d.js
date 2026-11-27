@@ -1,8 +1,9 @@
+import {renderBudget,renderGate} from './render-budget.js?v=10000';
 import * as T from 'three';
-import {W,H} from './tower-physics.js?v=0936';
-import {TYPES} from './tower-blocks.js?v=0936';
+import {W,H} from './tower-physics.js?v=10000';
+import {TYPES} from './tower-blocks.js?v=10000';
 export function createTower3D(){
- const renderer=new T.WebGLRenderer({alpha:false,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(W,H,false);
+ const budget=renderBudget(matchMedia("(pointer: coarse)").matches,devicePixelRatio);const renderer=new T.WebGLRenderer({alpha:false,antialias:budget.antialias,powerPreference:"low-power"});renderer.setPixelRatio(budget.ratio);renderer.setSize(W,H,false);
  const scene=new T.Scene(), camera=new T.OrthographicCamera(0,W,H,0,1,1500);camera.position.set(0,0,600);camera.lookAt(0,0,0);
  scene.add(new T.HemisphereLight(0xffffff,0x475348,2));const light=new T.DirectionalLight(0xffeed8,2.4);light.position.set(-150,350,400);scene.add(light);
  const mat=c=>new T.MeshStandardMaterial({color:c,roughness:.8});const wall=mat('#526b50'),back=mat('#30483b'),edge=mat('#829b78');

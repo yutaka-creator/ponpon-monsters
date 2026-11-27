@@ -11,3 +11,10 @@
 SQL変更なし。公開前確認版であり、公開承認や実機検証を代替しない。
 
 - [ ] iPhone: confirm course and controls fit in portrait, home and classic navigation work.
+
+## Ver.1.0.0 正式版候補
+- [ ] 上記の公開承認・権利・プライバシー項目を完了
+- [ ] iPhone Safariで全ゲームの開始・終了・再開、音声、縦横画面を確認
+- [ ] 36ホールのゴルフと全施設、既存セーブの移行を確認
+- [ ] GitHub Desktopで差分確認、承認後にコミット・Push、公開URLで再確認
+- [ ] 公開記念メッセージ・クレジットを運営者確認

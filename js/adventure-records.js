@@ -1,4 +1,4 @@
-import {read,write} from './save-store.js';
+import {read,write} from './save-store.js?v=10000';
 export const KEY='ponpon-catcher.adventure.v1';
 const clean=a=>[...new Set((Array.isArray(a)?a:[]).filter(n=>Number.isInteger(n)&&n>=1&&n<=10))].sort((a,b)=>a-b);
 export function loadRecords(){try{const r=JSON.parse(read(KEY));return {cleared:clean(r?.cleared),secrets:clean(r?.secrets)};}catch{return {cleared:[],secrets:[]};}}

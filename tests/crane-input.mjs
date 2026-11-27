@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {bindCraneInput} from '../js/crane-input.js';
+import {bindCraneInput} from '../js/crane-input.js?v=10000';
 class Target {constructor(){this.events={}}addEventListener(k,f){(this.events[k]??=[]).push(f)}emit(k,e={}){for(const f of this.events[k]??[])f({preventDefault(){},...e})}}
 const win=new Target(),doc=new Target(),b=new Target();win.ontouchstart=null;b.dataset={dir:'left'};let nudges=0;
 const input=bindCraneInput({buttons:[b],win,doc,canStart:()=>true,nudge:()=>nudges++});

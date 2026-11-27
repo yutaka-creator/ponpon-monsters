@@ -1,11 +1,11 @@
-import {lineFor} from "./line-library.js";
-import {renderGolfRecords,unlockGolfMonster} from './golf-records.js';
-import {finishGolf} from './golf-rewards.js';
-import {abilities,launch} from './golf-abilities.js';
-import {courses} from './golf-data.js';
-import {step,R,W,H} from './golf-physics.js';
-import {getCounts} from './collection.js';
-import {profiles} from './profiles.js';
+import {lineFor} from "./line-library.js?v=10000";
+import {renderGolfRecords,unlockGolfMonster} from './golf-records.js?v=10000';
+import {finishGolf} from './golf-rewards.js?v=10000';
+import {abilities,launch} from './golf-abilities.js?v=10000';
+import {courses} from './golf-data.js?v=10000';
+import {step,R,W,H} from './golf-physics.js?v=10000';
+import {getCounts} from './collection.js?v=10000';
+import {profiles} from './profiles.js?v=10000';
 export function initGolf(){
  const $=id=>document.getElementById(id),canvas=$('golf-canvas'),ctx=canvas.getContext('2d');let course,b,strokes,moving,done,drag=null,origin,img=new Image(),last=0,used=false;
  const ability=()=>abilities[+$ ('golf-monster').value]??abilities[3];
@@ -14,7 +14,7 @@ export function initGolf(){
  function score(){next.disabled=!done||+$ ('golf-course').value>=courses.length-1; $('golf-score').textContent=`PAR ${course.par} ／ ${strokes}打`;$('golf-shot').disabled=moving||done;$('golf-monster').disabled=strokes>0||moving;info(); }
  function reset(){renderGolfRecords();course=courses[+$('golf-course').value];b={x:course.start[0],y:course.start[1],vx:0,vy:0};strokes=0;moving=done=false;used=false;info();drag=null;score();say('引っ張って離そう！');draw();}
  function choose(){if(strokes>0)return;const old=$('golf-monster').value; $('golf-monster').replaceChildren();const counts=getCounts();for(let i=0;i<10;i++)if(counts[i])$('golf-monster').add(new Option(profiles[i][0],i));if(!$('golf-monster').options.length)$('golf-monster').add(new Option('練習用：地球（貸出）',3));if([...$('golf-monster').options].some(o=>o.value===old))$('golf-monster').value=old;loadPhoto();}
- function loadPhoto(){info();img=new Image();img.onload=draw;img.src=`assets/images/${$('golf-monster').value}.png`;}
+ function loadPhoto(){info();img=new Image();img.onload=draw;const base=`assets/images/${$('golf-monster').value}`;const current=img;current.onerror=()=>{current.onerror=null;current.src=base+'.png';};current.src=base+'-small.webp';}
  function draw(){if(!b)return;ctx.fillStyle=course.color??'#80a961';ctx.fillRect(0,0,W,H);for(let x=0;x<W;x+=80){ctx.fillStyle='#ffffff0c';ctx.fillRect(x,0,40,H);}for(const [arr,color] of [[course.water,'#72bad5'],[course.sand,'#e9d39a'],[course.walls,course.wallColor??'#76563d']]){ctx.fillStyle=color;for(const r of arr)ctx.fillRect(...r);}if(course.portal)for(const [x,y] of course.portal){ctx.strokeStyle='#e8d4ff';ctx.lineWidth=5;ctx.beginPath();ctx.arc(x,y,18,0,Math.PI*2);ctx.stroke();}const [hx,hy]=course.hole;ctx.fillStyle='#253e2b';ctx.beginPath();ctx.arc(hx,hy,18,0,Math.PI*2);ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx,hy-42);ctx.stroke();ctx.fillStyle='#e65d57';ctx.fillRect(hx,hy-42,25,15);if(!done){ctx.fillStyle='#0003';ctx.beginPath();ctx.ellipse(b.x,b.y+10,14,6,0,0,Math.PI*2);ctx.fill();if(img.complete&&img.naturalWidth){const scale=36/Math.max(img.naturalWidth,img.naturalHeight),w=img.naturalWidth*scale,h=img.naturalHeight*scale;ctx.drawImage(img,b.x-w/2,b.y-h/2,w,h);}else{ctx.fillStyle='#f3e7bc';ctx.beginPath();ctx.arc(b.x,b.y,R,0,Math.PI*2);ctx.fill();}}if(!moving&&!done){ctx.strokeStyle='white';ctx.setLineDash([7,5]);ctx.beginPath();ctx.moveTo(b.x,b.y);const sim={...b};const angle=+$ ('golf-angle').value*Math.PI/180,power=+$ ('golf-power').value*1.27;const dx=drag?b.x-drag.x:Math.cos(angle)*power,dy=drag?b.y-drag.y:Math.sin(angle)*power;if(!launch(sim,course,dx,dy,ability(),used)){ctx.setLineDash([]);return;}for(let i=0;i<Math.round(360*(ability().preview??1));i++){const r=step(sim,course,.016,ability());ctx.lineTo(sim.x,sim.y);if(r!=='moving')break;}ctx.stroke();ctx.setLineDash([]);}}
  function shot(dx,dy){if(moving||done)return;const len=Math.hypot(dx,dy);if(len<5)return;origin=[b.x,b.y];b.jumped=false;b.skipWall=null;launch(b,course,dx,dy,ability(),used);if(b.warped)used=true;strokes++;moving=true;score();say('ころころ… '+lineFor(+$('golf-monster').value,{scene:'golf'}));}
  function pos(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height};}
