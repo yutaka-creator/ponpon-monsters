@@ -1,0 +1,3 @@
+const base={speed:1,rate:1,duration:1,hp:3,inv:1,drop:.25,radius:65,damage:3,start:null};
+const specs=[['お買い得バリア','開始時にバリアを装備',{start:'shield'}],['未来の連射技術','発射間隔20%短縮',{rate:.8}],['虹の魔法','開始時に虹色貫通弾',{start:'laser'}],['地球のバランス','標準性能',{}],['カレー大爆発','爆発範囲90・開始時に爆弾',{radius:90,start:'bomb'}],['恋の守り','被弾後の無敵時間50%増加',{inv:1.5}],['効率的な資源回収','アイテム出現率35%',{drop:.35}],['のんびり長持ち','攻撃アイテム18秒',{duration:1.5}],['かずじぃの根性','ライフ4・移動速度10%低下',{hp:4,speed:.9}],['こぺの身軽さ','移動速度25%増加',{speed:1.25}]];
+export function powerFor(id){const [name,description,stats]=specs[id]||specs[3];return {...base,...stats,name,description};}

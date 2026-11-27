@@ -1,0 +1,4 @@
+export const TYPES={normal:{hp:1,score:100,color:'#c68be4',size:32},speed:{hp:1,score:150,color:'#8deaff',size:28},armor:{hp:3,score:250,color:'#c0c8d4',size:36},split:{hp:1,score:180,color:'#f6a4d0',size:34},mini:{hp:1,score:50,color:'#f6a4d0',size:18},ufo:{hp:1,score:500,color:'#f9db70',size:32},sniper:{hp:1,score:200,color:'#ff946d',size:32}};
+export function enemy(type,x,y){const t=TYPES[type];return {type,x,y,hp:t.hp,max:t.hp};}
+export function typeFor(w,r,c){if(w===1)return 'normal';if(w>=4&&r===0&&c===2)return 'ufo';if(w>=3&&r===1&&c%3===0)return 'split';if(w>=3&&r===0&&c%2===0)return 'sniper';if(r===0&&c%2===1)return 'armor';if(r===2&&c%2===0)return 'speed';return 'normal';}
+export function enemyShot(e,target){const vx=e.type==='sniper'?Math.max(-110,Math.min(110,(target-e.x)*.65)):0;return {x:e.x,y:e.y+15,vx,speed:e.type==='speed'?195:145};}

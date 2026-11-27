@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {W,H} from './tower-physics.js?v=093110';
-import {TYPES} from './tower-blocks.js?v=093110';
+import {W,H} from './tower-physics.js?v=0936';
+import {TYPES} from './tower-blocks.js?v=0936';
 export function createTower3D(){
  const renderer=new T.WebGLRenderer({alpha:false,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(W,H,false);
  const scene=new T.Scene(), camera=new T.OrthographicCamera(0,W,H,0,1,1500);camera.position.set(0,0,600);camera.lookAt(0,0,0);

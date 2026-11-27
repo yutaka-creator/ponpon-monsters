@@ -20,3 +20,9 @@ for(const [n,name] of milestones)items.push({id:'museum'+n,name,icon:'🏆',grou
 for(const [id,name,icon,golf] of [['fwgift0','本格ゴルフバッグ','🎒','本格3ホール制覇'],['fwgift1','ミニチュアゴルフ場','⛳','本格6ホール制覇'],['fwgift2','黄金のカップ','🏆','本格ホールインワン'],['fwgift3','チャンピオン記念盾','🏅','9ホールラウンド35打以下']])items.push({id,name,icon,golf,group:'ゴルフ',price:0});
 
 for(const [id,name,icon,tower] of [['tower0','卓球ラケット','🏓',100],['tower1','卓球台','🏓',300],['tower2','天空のトロフィー','🏆',500]])items.push({id,name,icon,tower,group:'ピンポン',price:0});
+
+items.push(...[['ivgift0','ミニUFO','STAGE 3クリア'],['ivgift1','宇宙船','STAGE 6クリア'],['ivgift2','銀河の壁紙','STAGE 8クリア'],['ivgift3','黄金の宇宙トロフィー','ライフを失わず全クリア']].map(([id,name,invader])=>({id,name,invader,group:'インベーダーズ',price:0,icon:'🛸'})));
+walls.push(['galaxy','銀河の壁紙','#211b49']);
+
+items.push(...[['advgift0','冒険者のリュック','3ステージクリア'],['advgift1','冒険の宝箱','5ステージクリア'],['advgift2','天空の壁紙','8ステージクリア'],['advgift3','黄金の冒険トロフィー','全10秘密エリア発見']].map(([id,name,adventure])=>({id,name,adventure,group:'アドベンチャー',price:0,icon:'🏆'})));
+walls.push(['adventureSky','天空の壁紙','#bce6fa']);

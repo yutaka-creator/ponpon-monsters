@@ -94,5 +94,5 @@ export const profiles = [
 ];
 profiles.push(...secrets.map(s=>[s.name,s.bio,s.quote]));
 profiles[15].push("自信満々", "カレー、表彰状", "普通の出来事を伝説のように語る", "レトルトカレーの温め方がわからない。");
-export const displayOrder = [3, 2, 4, 5, 0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+export const displayOrder = [3, 2, 4, 5, 0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 export const displayNumber = i => String(displayOrder.indexOf(i)+1).padStart(3,'0');

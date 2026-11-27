@@ -52,3 +52,6 @@
 #room-scene .room-actor:has(.speech-bubble){z-index:20;overflow:visible}
 #room-scene .speech-bubble{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(calc(-50% + var(--bubble-shift,0px)));width:max-content;max-width:min(180px,45vw);padding:7px 10px;background:#fffaf0;color:#403b32;border:1px solid #b8ad96;border-radius:12px;font-size:12px;line-height:1.45;white-space:normal;overflow-wrap:anywhere;box-shadow:0 2px 6px #0002;pointer-events:none;text-align:left}
 #room-scene .speech-bubble:after{content:'';position:absolute;top:100%;left:clamp(10px,calc(50% - var(--bubble-shift,0px)),calc(100% - 10px));border:6px solid transparent;border-top-color:#fffaf0}
+
+.decor-scene[data-wall=galaxy]{background:radial-gradient(circle at 20% 12%,white 0 1px,transparent 2px),radial-gradient(circle at 70% 25%,#c7b8ff 0 2px,transparent 3px),linear-gradient(150deg,#171b45,#644681 55%,var(--floor) 55%)!important;}
+.decor-scene[data-wall=adventureSky]{background:radial-gradient(ellipse at 20% 20%,white 0 8%,transparent 9%),radial-gradient(ellipse at 75% 35%,white 0 10%,transparent 11%),linear-gradient(#a5d9f7 55%,var(--floor) 55%)!important;}
