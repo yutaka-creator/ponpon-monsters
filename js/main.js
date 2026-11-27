@@ -1,4 +1,4 @@
-import {bindCraneInput} from './crane-input.js?v=09303';
+import {bindCraneInput} from './crane-input.js?v=09304';
 import {createFever,feverSettings} from './fever.js';
 import {activate,gripModifiers,abilityNames} from './abilities.js';
 import {secrets,secretState} from "./secrets.js";

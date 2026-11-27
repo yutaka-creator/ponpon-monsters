@@ -5,7 +5,7 @@ export const secrets=[
  {base:9,name:'巨大こぺ',color:0x079b42,scale:1.3,condition:'こぺを5体獲得',bio:'美容への投資が実を結んだ。',quote:'負けないもん！'},
  {base:2,name:'透明ユニコーン',color:0xcceeff,opacity:.45,condition:'PERFECTを9回連続',bio:'存在感はあるのに姿が薄い。',quote:'見えてる？'},
  {base:1,name:'100年後のパペットスソスソ',color:0x9ca4c8,condition:'累計30体獲得',bio:'さらに未来から来た。',quote:'100年ぶり！'},
- {base:4,name:'賞味期限切れの味カレー',color:0x777044,condition:'10回連続で獲得失敗',bio:'熟成しすぎた。食べ物ではありません。',quote:'寝かせすぎた。'}
+ {base:4,name:'伝説の味カレー',color:0x777044,condition:'10回連続で獲得失敗',bio:'自称カレー界の伝説。普通の出来事も壮大な冒険として語る。',quote:'わしの伝説を知らんのか？'}
 ];
 secrets.push(...explorers.map(e=>({...e,condition:"旅先で発見"})));
 secrets.push({base:3,name:'ゴルフ地球',color:0x82ba55,filter:'hue-rotate(65deg)',condition:'ゴルフ全30ホールクリア',bio:'地球規模のゴルフ場を探している。',quote:'地球がボールになる日が来た。'});
