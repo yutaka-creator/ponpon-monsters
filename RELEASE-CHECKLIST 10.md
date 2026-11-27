@@ -1,0 +1,13 @@
+# Ver.0.9.19 公開準備
+- [ ] 運営者による公開名義、写真・キャラクター・文章の利用許諾、問い合わせ先の承認
+- [ ] privacy.html の運営者・連絡先・保存期間・削除手続き・ホスティング情報を確定
+- [ ] index.html の og:image を公開先の絶対HTTPS URLに変更し、og:url を追加。SNSのプレビュー確認
+- [ ] GitHub Pages の公開URLを Supabase の許可済みリダイレクトに追加（既存ゲームの設定を維持）
+- [ ] ゲスト・登録・確認メール・ログイン・クラウド保存/復元・別アカウント分離を実機確認
+- [ ] RLS、公開部屋の非公開化、投票、協力イベントを別アカウントで確認
+- [ ] PC/iPhone/Androidで全施設、クレーン上面、ゴルフ30ホール、報酬重複を確認
+- [ ] Three.js / Rapier / Supabase SDK の配布形態とライセンス表示を確認
+- [ ] 正式公開承認後にバージョン1.0へ
+SQL変更なし。公開前確認版であり、公開承認や実機検証を代替しない。
+
+- [ ] iPhone: confirm course and controls fit in portrait, home and classic navigation work.
