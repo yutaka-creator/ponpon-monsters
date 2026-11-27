@@ -1,0 +1,13 @@
+import {explorers} from './exploration-data.js';
+export const secrets=[
+ {base:8,name:'黄金のかずじぃ',color:0xffc52b,condition:'フィーバー発動',bio:'昔話まで黄金色。',quote:'金の時代じゃ。'},
+ {base:3,name:'真っ白な地球',color:0xffffff,condition:'地球を5体獲得',bio:'雪の日の地球。',quote:'今日は真っ白。'},
+ {base:9,name:'巨大こぺ',color:0x079b42,scale:1.3,condition:'こぺを5体獲得',bio:'美容への投資が実を結んだ。',quote:'負けないもん！'},
+ {base:2,name:'透明ユニコーン',color:0xcceeff,opacity:.45,condition:'PERFECTを9回連続',bio:'存在感はあるのに姿が薄い。',quote:'見えてる？'},
+ {base:1,name:'100年後のパペットスソスソ',color:0x9ca4c8,condition:'累計30体獲得',bio:'さらに未来から来た。',quote:'100年ぶり！'},
+ {base:4,name:'賞味期限切れの味カレー',color:0x777044,condition:'10回連続で獲得失敗',bio:'熟成しすぎた。食べ物ではありません。',quote:'寝かせすぎた。'}
+];
+secrets.push(...explorers.map(e=>({...e,condition:"旅先で発見"})));
+secrets.push({base:3,name:'ゴルフ地球',color:0x82ba55,filter:'hue-rotate(65deg)',condition:'ゴルフ全30ホールクリア',bio:'地球規模のゴルフ場を探している。',quote:'地球がボールになる日が来た。'});
+secrets.push({base:8,name:'ゴルフじぃ',color:0xe7e6d8,filter:'grayscale(1) brightness(1.35)',condition:'本格3Dゴルフ全9ホール制覇',bio:'ゴルフボールに似ているが、ゴルフは苦手。',quote:'わしは打つ側じゃ。'}, {base:2,name:'虹のキャディー',color:0xf4cc70,filter:'hue-rotate(65deg) saturate(1.5)',condition:'本格全9ホールでバーディー以上',bio:'クラブより虹を運ぶキャディー。',quote:'次のホールに虹をかけよう！'});
+export function secretState(){let streak=0,failures=0;return {beats(scores){for(const s of scores)streak=s===100?streak+1:0;},attempt(success){failures=success?0:failures+1;},eligible(counts,fever){return [fever,counts[3]>=5,counts[9]>=5,streak>=9,counts.reduce((a,b)=>a+b,0)>=30,failures>=10];}};}
