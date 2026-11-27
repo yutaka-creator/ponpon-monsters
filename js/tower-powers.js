@@ -1,4 +1,4 @@
-import {balance} from './tower-balance.js?v=09319';
+import {balance} from './tower-balance.js?v=093110';
 const base={name:'標準',description:'基本のラケットで挑戦',width:49,gravity:1,bounce:1,steer:4,wall:1,damage:1,magnet:0,guide:false,rescue:false,jump:false};
 const powers=[
 ['ワイドラケット','ラケット幅が約27%広がる',{width:62}],
@@ -12,4 +12,4 @@ const powers=[
 ['ベテランの反射','壁反射時の横速度を抑える',{wall:.8}],
 ['負けないジャンプ','打ち返す高さがアップ',{bounce:1.12}]];
 export function powerFor(id){const p=powers[id];return {...base,...(p?{name:p[0],description:p[1],...p[2]}:{})};}
-export function landing(s){const dy=s.y-s.camera-45-13,g=balance(s.best).gravity*s.power.gravity;const t=(s.vy+Math.sqrt(Math.max(0,s.vy*s.vy+2*g*Math.max(0,dy))))/g;const span=294;let x=((s.x-13+s.vx*t)%(2*span)+2*span)%(2*span);return 13+(x>span?2*span-x:x);}
+export function landing(s){const dy=s.y-s.camera-s.paddleY-13,g=balance(s.best).gravity*s.power.gravity;const t=(s.vy+Math.sqrt(Math.max(0,s.vy*s.vy+2*g*Math.max(0,dy))))/g;const span=294;let x=((s.x-13+s.vx*t)%(2*span)+2*span)%(2*span);return 13+(x>span?2*span-x:x);}

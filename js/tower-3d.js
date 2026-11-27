@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {W,H} from './tower-physics.js?v=09319';
-import {TYPES} from './tower-blocks.js?v=09319';
+import {W,H} from './tower-physics.js?v=093110';
+import {TYPES} from './tower-blocks.js?v=093110';
 export function createTower3D(){
  const renderer=new T.WebGLRenderer({alpha:false,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(W,H,false);
  const scene=new T.Scene(), camera=new T.OrthographicCamera(0,W,H,0,1,1500);camera.position.set(0,0,600);camera.lookAt(0,0,0);
@@ -19,7 +19,7 @@ export function createTower3D(){
  for(let i=0;i<seams.length;i++)seams[i].position.y=i*30-s.camera%30;
  const live=new Set();for(const b of s.blocks){live.add(b);let o=blocks.get(b);if(!o){o=mesh(geometry,materials[b.type],0,0,-12);blocks.set(b,o);}o.position.set(b.x+b.w/2,b.y-s.camera+b.h/2,-12);o.rotation.x=.18;o.rotation.y=-.12;}
  for(const [b,o] of blocks)if(!live.has(b)){scene.remove(o);blocks.delete(b);}
- paddle.position.x=rim.position.x=handle.position.x=s.paddle;paddle.scale.set(s.power.width,1,25);rim.scale.copy(paddle.scale);
+ paddle.position.x=rim.position.x=handle.position.x=s.paddle;paddle.position.y=s.paddleY;rim.position.y=s.paddleY-4;handle.position.y=s.paddleY-21;paddle.scale.set(s.power.width,1,25);rim.scale.copy(paddle.scale);
  renderer.render(scene,camera);g.drawImage(renderer.domElement,0,0,W,H);
  },lost(){return renderer.getContext().isContextLost();}};
 }
