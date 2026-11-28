@@ -1,7 +1,7 @@
-import {renderBudget,renderGate} from './render-budget.js?v=114910';
+import {renderBudget,renderGate} from './render-budget.js?v=114911';
 import * as T from 'three';
-import {W,H} from './tower-physics.js?v=114910';
-import {TYPES} from './tower-blocks.js?v=114910';
+import {W,H} from './tower-physics.js?v=114911';
+import {TYPES} from './tower-blocks.js?v=114911';
 export function createTower3D(){
  const budget=renderBudget(matchMedia("(pointer: coarse)").matches,devicePixelRatio);const renderer=new T.WebGLRenderer({alpha:false,antialias:budget.antialias,powerPreference:"low-power"});renderer.setPixelRatio(budget.ratio);renderer.setSize(W,H,false);
  const scene=new T.Scene(), camera=new T.OrthographicCamera(0,W,H,0,1,1500);camera.position.set(0,0,600);camera.lookAt(0,0,0);

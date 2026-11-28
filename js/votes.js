@@ -1,6 +1,6 @@
-import {candidates} from './election.js?v=114910';
-import {secrets} from './secrets.js?v=114910';
-import {profiles,displayOrder,displayNumber} from './profiles.js?v=114910';
+import {candidates} from './election.js?v=114911';
+import {secrets} from './secrets.js?v=114911';
+import {profiles,displayOrder,displayNumber} from './profiles.js?v=114911';
 export function initVotes(client,user){
  const grid=document.getElementById('vote-grid'), status=document.getElementById('vote-status'), refresh=document.getElementById('vote-refresh');
  let own=null, totals=new Map(), busy=false, ready=false, reaction=null;

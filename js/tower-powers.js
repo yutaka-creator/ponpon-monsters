@@ -1,4 +1,4 @@
-import {balance} from './tower-balance.js?v=114910';
+import {balance} from './tower-balance.js?v=114911';
 const base={name:'標準',description:'基本のラケットで挑戦',width:49,gravity:1,bounce:1,steer:4,wall:1,damage:1,magnet:0,guide:false,rescue:false,jump:false};
 const powers=[
 ['ワイドラケット','ラケット幅が約27%広がる',{width:62}],

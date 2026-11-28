@@ -66,3 +66,7 @@ nav:not(.tabs){flex-wrap:wrap} img,video{max-width:100%}
  #myroom #room-bond{padding:7px;margin:5px 0;gap:3px;font-size:12px}
  #room-settings summary,#myroom details>summary{cursor:pointer;padding:8px 0}
 }
+
+/* Bottom navigation replaces the redundant upper toggle. */
+#mobile-menu-toggle{display:none!important}
+@media(min-width:601px){#main-menu[data-collapsed=true]{display:none}}

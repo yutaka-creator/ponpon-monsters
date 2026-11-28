@@ -1,4 +1,4 @@
-export const VERSION='1.1.49.10';
+export const VERSION='1.1.49.11';
 export const screens=['welcome','game','golf','tower','race','adventure','invader','pinball','climb','escape','town','myroom','travel','collection','museum','theater','votes','visits','events','records','guide','account'];
 export function makeReport({screen,environment={},events=[],comment='',kind='bug',now=new Date()}={}){
  const allowed=['browser','os','viewport','pixelRatio','touch','online'];

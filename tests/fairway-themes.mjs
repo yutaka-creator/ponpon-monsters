@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import {courses} from '../js/fairway-courses.js?v=114910';
-import {themeFor,surfaceColor} from '../js/fairway-themes.js?v=114910';
+import {courses} from '../js/fairway-courses.js?v=114911';
+import {themeFor,surfaceColor} from '../js/fairway-themes.js?v=114911';
 assert.equal(courses.length,36);
 for(const id of [13,32])assert.equal(courses[id-1].ice,true);
 for(const id of [12,16,25,31,35])assert.equal(courses[id-1].gravity,11);

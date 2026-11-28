@@ -1,4 +1,4 @@
 import assert from 'node:assert/strict';
-import {makeStage,escapeHint,escapeProgress,ready} from '../js/escape-model.js?v=114910';
+import {makeStage,escapeHint,escapeProgress,ready} from '../js/escape-model.js?v=114911';
 for(let n=1;n<=100;n++){const {pieces,rocks,size}=makeStage(n);let left=pieces.slice();let steps=0;while(left.length){assert(++steps<200);const h=escapeHint(left,rocks,size);assert(h);const p=left.find(p=>p.id===h.id);assert(p);if(p.kind==='ice'||(p.kind==='rotate'&&p.dir!==p.safeDir)){left=left.map(q=>q===p?{...q,kind:p.kind==='ice'?'normal':p.kind,dir:p.safeDir}:q);}else{assert(ready(p,left,rocks,size));left=left.filter(q=>q!==p);}}assert.equal(escapeHint(left,rocks,size),null);assert.equal(escapeProgress(pieces.length,0),100);}
 assert.equal(escapeProgress(10,10),0);assert.equal(escapeProgress(10,5),50);assert.equal(escapeProgress(0,0),0);console.log('escape assist passed');
