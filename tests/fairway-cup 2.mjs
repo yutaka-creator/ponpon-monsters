@@ -1,0 +1,2 @@
+import assert from 'node:assert/strict';import {courses} from '../js/fairway-courses.js';import {createCup,finishHole,standings} from '../js/fairway-cup.js';
+for(const d of ['easy','normal','hard'])for(const n of [3,6,9])for(const m of ['vs','cup']){const c=createCup(courses,d,n,m,9);assert.equal(c.holes.length,n);assert.equal(c.rows.length,m==='vs'?2:4);for(let i=0;i<n;i++)assert(finishHole(c,3,()=>.5));assert(!finishHole(c,3));assert.equal(c.rows[0].scores.length,n);assert(standings(c).every((r,i,a)=>!i||r.total>=a[i-1].total));}console.log('cup OK');

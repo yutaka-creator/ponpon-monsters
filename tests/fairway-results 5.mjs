@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';import {scoreResult,cheers} from '../js/fairway-results.js?v=10000';for(const [n,label] of [[1,'HOLE IN ONE'],[2,'EAGLE'],[3,'BIRDIE'],[4,'PAR'],[5,'BOGEY'],[6,'DOUBLE BOGEY'],[7,'+3']])assert.equal(scoreResult(n).label,label);assert.equal(cheers.length,10);assert.equal(scoreResult(5).celebrate,false);console.log('result tests passed');

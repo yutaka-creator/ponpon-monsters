@@ -1,0 +1,16 @@
+export const courses=[
+ ['はじまりの草原',4,82,0,13,1,1.8,-.8,0x527e39],['こもれびの森',3,55,4,10,.8,.5,-.4,0x365f39],['かずじぃの坂道',4,91,-5,12,2,1,-1,0x668342],['カレー砂漠',4,88,6,11,.5,3,-1,0xb69a58],['恋する湖',3,62,-4,12,.6,1.5,.5,0x527e39],['虹の丘',5,120,7,13,2.4,2,-2,0x659b65],['のんびり海岸',4,95,-6,12,.5,4,1,0x9eae75],['未来の庭園',3,66,5,10,1,-2,1,0x497d79],['ポンポン大渓谷',5,130,-7,11,3,3,-2,0x826b49],
+ ['昭和の商店街',4,86,3,11,.5,1,-1,0x998b70],['巨大プリンの丘',4,96,-4,12,2,1,1,0xd8b26a],['星空のゴルフ場',3,65,4,10,.8,-1,1,0x454d78],['雪だるま高原',4,105,-5,12,1.4,2,-1,0xdbe9ed],['こぺの美容庭園',3,72,5,10,.6,1,0,0xa37e9e],['忘れられた遺跡',4,110,-6,11,2,2,1,0x9a8965],['UFO着陸地点',4,118,3,13,.7,-2,1,0x6d8b83],['天空のフェアウェイ',5,140,-5,10,2,4,-2,0x9bb8c8],['ポンポン王国',5,145,6,12,2.5,3,-2,0x779b58]
+].map(([name,par,length,x,width,hills,wx,wz,color],i)=>({name,par,length,x,width,hills,wx,wz,color,id:i+1,bend:[0,3,-5,5,-3,7,-6,4,-7,2,-4,5,-3,6,-5,4,-7,6][i],shape:i%6,sky:[0x8ccbf5,0xb8dbc5,0xb4d6ee,0xffd5a0,0x9bd8ef,0xd6c9f2,0x99dbea,0xa9c5e9,0xe3c3a2,0xe2c8a6,0xffdfab,0x17213f,0xcbdde9,0xf2cde4,0xd8c3a1,0x8cb6b9,0xc6e3ff,0xffe1a9][i],sand:i===0?[[8,-length*.58],[-9,-length*.88]]:Array.from({length:2+i%3},(_,j)=>[(j%2? -1:1)*(5+(i+j)%6),-length*(.28+j*.16)]),gravity:i===15?11:18,ice:i===12,water:i===4||i===17?{x:0,z:-30,rx:6,rz:8}:null}));
+
+// Course-specific hazards; coordinates shared by physics and rendering.
+const themes={7:{hint:'海を越えるショット。右側の砂州を狙おう。',water:[{x:-7,z:-43,rx:16,rz:9}]},9:{hint:'渓谷の岩を避けて左右から攻略。',obstacles:[{x:0,z:-48,r:3,h:7},{x:-7,z:-80,r:2.5,h:6}]},10:{hint:'商店街の建物の間を狙おう。',obstacles:[{x:-7,z:-30,r:3,h:5},{x:8,z:-53,r:3,h:5}]},15:{hint:'遺跡の石柱を避けよう。',obstacles:[{x:0,z:-38,r:2,h:7},{x:6,z:-67,r:2,h:7}]},17:{hint:'雲海を越えて島を渡ろう。',water:[{x:0,z:-40,rx:30,rz:7},{x:0,z:-90,rx:30,rz:7}]},18:{hint:'城の堀と塔を越えてゴールへ。',water:[{x:0,z:-70,rx:30,rz:6}],obstacles:[{x:-8,z:-100,r:3,h:8},{x:8,z:-100,r:3,h:8}]}};
+for(const c of courses){const t=themes[c.id]||{};c.hazards=[...(c.water?[c.water]:[]),...(t.water||[])];c.obstacles=t.obstacles||[];c.hint=t.hint||'風と地形を読んでカップを目指そう。';}
+
+const gimmickHints={2:"オレンジのジャンプ台",4:"緑の加速床",8:"紫のワープ床",12:"紫の引力床",16:"紫のワープ床",17:"オレンジのジャンプ台"};for(const c of courses)if(gimmickHints[c.id])c.hint+=" ／ "+gimmickHints[c.id];
+
+const newNames=['ひだまり公園','巨大な台所','おもちゃ箱','夜のお祭り','恐竜の谷','海底都市','月面基地','風の回廊','チョコレート工場','雲の庭園','時計塔','虹の滝','星の砂漠','氷の迷宮','火山島','巨大ロボット工場','銀河の橋','最後の楽園'];
+for(let i=0;i<18;i++){const b=courses[i],id=i+19,length=65+i*5;courses.push({...b,id,name:newNames[i],length,par:length>125?5:length>85?4:3,x:(i%3-1)*5,bend:(i%2?1:-1)*(2+i%6),sky:[0xffd9a8,0xa8d9ed,0xdec5f0,0x384565,0xb8d9a2,0x72c7d6][i%6],sand:[[9,-length*.45],[-9,-length*.7]],hazards:i>=6?[{x:i%2?8:-8,z:-length*.55,rx:5+i%3,rz:5}]:[],obstacles:i>=6?[{x:i%2?-5:5,z:-length*.35,r:2+i%3*.4,h:4+i%4}]:[],hint:'風と地形を読んで攻略しよう。'});}
+const easy=[1,2,3,4,5,6,19,20,21,22,23,24],normal=[7,8,10,11,12,13,14,16,25,26,27,28];
+for(const c of courses){c.difficulty=easy.includes(c.id)?'easy':normal.includes(c.id)?'normal':'hard';const d=c.difficulty;c.width=d==='easy'?16:d==='normal'?12:9;c.wx*=d==='easy'?.55:d==='hard'?1.35:1;c.wz*=d==='easy'?.55:d==='hard'?1.35:1;c.hills*=d==='easy'?.65:d==='hard'?1.25:1;if(d==='easy')c.obstacles=[];}
+export const difficultyNames={easy:'EASY',normal:'NORMAL',hard:'HARD'};
