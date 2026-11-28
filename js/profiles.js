@@ -1,4 +1,4 @@
-import {secrets} from './secrets.js?v=10000';
+import {secrets} from './secrets.js?v=1112';
 // 内部IDは保存互換性のため維持。名前、紹介、口癖、性格、好きなもの、特技、ひみつの順。
 export const profiles = [
   [
@@ -93,6 +93,7 @@ export const profiles = [
   ]
 ];
 profiles.push(...secrets.map(s=>[s.name,s.bio,s.quote]));
+for(const s of secrets.filter(s=>s.id>=29))profiles[s.id].push(s.rarity+"・ゲームオリジナル",s.bio,"クレーンの握力補正 "+s.grip+"倍",s.condition);
 profiles[15].push("自信満々", "カレー、表彰状", "普通の出来事を伝説のように語る", "レトルトカレーの温め方がわからない。");
-export const displayOrder = [3, 2, 4, 5, 0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+export const displayOrder = [3, 2, 4, 5, 0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, ...Array.from({length:21},(_,i)=>29+i)];
 export const displayNumber = i => String(displayOrder.indexOf(i)+1).padStart(3,'0');

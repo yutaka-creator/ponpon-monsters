@@ -1,4 +1,4 @@
-export const keys=['ponpon-catcher.collection.v1','ponpon-catcher.bond.v1','ponpon-catcher.room.v1','ponpon-catcher.shop.v1','ponpon-catcher.lines.v1','ponpon-catcher.pairs.v1','ponpon-catcher.travel.v1','ponpon-catcher.fairway.v1','ponpon-catcher.theater.v1','ponpon-catcher.tower.v1','ponpon-catcher.race.v1','ponpon-catcher.invader.v1','ponpon-catcher.adventure.v1','ponpon-catcher.town.v1'];
+export const keys=['ponpon-catcher.collection.v1','ponpon-catcher.bond.v1','ponpon-catcher.room.v1','ponpon-catcher.shop.v1','ponpon-catcher.lines.v1','ponpon-catcher.pairs.v1','ponpon-catcher.travel.v1','ponpon-catcher.fairway.v1','ponpon-catcher.theater.v1','ponpon-catcher.tower.v1','ponpon-catcher.race.v1','ponpon-catcher.invader.v1','ponpon-catcher.adventure.v1','ponpon-catcher.town.v1','ponpon-catcher.escape.v1','ponpon-catcher.climb.v1','ponpon-catcher.pinball.v1','ponpon-catcher.room-memories.v1'];
 let owner='';
 export function setOwner(id){owner=id||'';}
 const path=k=>owner?`${k}.user.${owner}`:k;

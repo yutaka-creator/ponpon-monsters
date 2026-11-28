@@ -1,0 +1,12 @@
+/* Portrait play surfaces; settings may scroll independently. */
+@media(max-width:900px) and (pointer:coarse) and (orientation:portrait){
+:is(#game,#golf,#race,#tower,#invader,#adventure,#town,#escape,#climb):not([hidden]){overflow:hidden!important;min-height:0!important;overscroll-behavior:none;gap:3px!important}
+:is(#game,#golf,#race,#tower,#invader,#adventure,#town,#escape,#climb) button{min-height:44px;line-height:1.15;margin-block:0;touch-action:manipulation}
+:is(.race-controls,.adv-controls,.iv-controls,.cl-controls,.town-controls,.pad) button{touch-action:none!important;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;min-height:48px!important}
+:is(#race,#tower,#invader,#adventure,#town,#golf) .compact-options[open]{position:absolute;inset: max(54px,env(safe-area-inset-top)) 8px auto;max-height:65dvh;overflow:auto;z-index:50;background:#fffaf0;color:#403b32;padding:8px!important;border:1px solid #b9a98f;border-radius:10px;box-shadow:0 5px 20px #0004}
+:is(#race,#tower,#invader,#adventure,#town,#golf) .compact-options:not([open]){flex:0 0 auto}
+#town>p:not([id]){display:none}#town #town-map{flex:1 1 0;min-height:0;max-height:none;aspect-ratio:auto;width:100%;margin:0}#town-status{min-height:1.5em!important;max-height:3em;overflow:auto}#town .town-controls{grid-template-columns:repeat(3,minmax(0,1fr));width:100%}#town .town-controls button{min-height:44px!important}#town-progress{margin:0}
+#climb .cl-area,#escape #esc-area{flex:1 1 0;min-height:0;height:0}#climb .cl-controls button{font-size:13px}#cl-stage{max-width:100px}#cl-status,#esc-status{margin:0;min-height:1.5em;font-size:12px}
+#fw-panel:not([hidden]),#g3-panel:not([hidden]),#g3-old:not([hidden]){overflow:hidden!important}#fw-panel .g3-row{gap:2px!important}#fw-panel .g3-row label{min-width:0!important;font-size:12px}#fw-panel .g3-row button{padding:3px;font-size:12px}#fw-panel .fw-scene{min-height:64px!important}#fw-panel .fw-footer{display:flex;flex-wrap:wrap;gap:2px}#fw-panel .fw-footer button{flex:1 1 25%;min-height:44px}#fw-panel #fw-card,#fw-panel #fw-result{max-height:100%;overflow:auto}
+#race .race-stage,#tower #tower-canvas,#invader #iv-view,#adventure #adv-view,#game #stage{min-height:64px!important}
+}

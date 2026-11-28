@@ -1,8 +1,2 @@
-# ポンポンモンスターズ キャッチャー Ver.1.0.0
-正式版候補（公開承認・実機確認待ち）
-
-クレーンゲーム、2D/3Dゴルフ、レース、ピンポンタワー、インベーダー、アドベンチャー、ポンポンタウン、マイルーム、図鑑、劇場、お出かけ、博物館、交流機能を収録。初心者ガイドとスマホ向け調整を引き継ぎます。
-
-今回の変更：バージョン表記・モジュールキャッシュ識別子の統一、ホームの記念メッセージ、クレジット確認事項、公開手順の整理。ゲームルール・保存キー・SQLは変更なし。
-
-公開前に RELEASE-CHECKLIST.md を確認してください。公開名義、権利、問い合わせ先、プライバシー情報、実機・本番通信の確認は未完了です。GitHub Pages への反映は運営者の承認後に行ってください。
+# Ver.1.1.12
+Adventure: eight world-specific modifiers, visible hazards, second-phase triple projectiles, phase indicator. Existing 50 stages and rewards retained. Unique boss models and full-clear reward not added. Browser/device testing pending.

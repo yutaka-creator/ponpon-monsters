@@ -6,7 +6,7 @@ function wall(x,y,z,a,b,c){const body=world.createRigidBody(RAPIER.RigidBodyDesc
 // Floor split around the open chute: x [-2.65,-1.35], z [1,2.3].
 wall(0,.5,-.75,2.9,.1,1.75);wall(.775,.5,1.75,2.125,.1,.75);wall(-2.775,.5,1.75,.125,.1,.75);wall(-2,.5,2.4,.65,.1,.1);
 wall(-2.95,2.5,0,.05,2.5,2.5);wall(2.95,2.5,0,.05,2.5,2.5);wall(0,2.5,-2.5,3,2.5,.05);wall(0,2.5,2.5,3,2.5,.05);
-export function addPrize(p,i){const b=world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(p.position.x,p.position.y,p.position.z).setLinearDamping(.25).setAngularDamping(.4).setCcdEnabled(true));world.createCollider(RAPIER.ColliderDesc.ball(.47*(p.userData.scale||1)).setDensity(i===3?2.1:i===8?1.9:.7+i*.08).setFriction(i===7?.18:i===8?.85:.45).setRestitution(.25),b);p.userData.body=b;return b;}
+export function addPrize(p,i){const b=world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(p.position.x,p.position.y,p.position.z).setLinearDamping(.25).setAngularDamping(.4).setCcdEnabled(true));world.createCollider(RAPIER.ColliderDesc.ball(.47*(p.userData.scale||1)).setDensity(i===3?2.1:i===8?1.9:.7+(i>=29?3:i)*.08).setFriction(i===7?.18:i===8?.85:.45).setRestitution(.25),b);p.userData.body=b;return b;}
 export function removePrize(p){world.removeRigidBody(p.userData.body);}
 export function sync(p){const b=p.userData.body;p.position.copy(b.translation());p.quaternion.copy(b.rotation());}
 export function makeFinger(){const b=world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(0,4,0));world.createCollider(RAPIER.ColliderDesc.cuboid(.055,.23,.055).setFriction(.8),b);return b;}

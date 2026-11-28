@@ -1,4 +1,4 @@
-import {profiles,displayOrder,displayNumber} from './profiles.js?v=10000';
+import {profiles,displayOrder,displayNumber} from './profiles.js?v=1112';
 export function initVotes(client,user){
  const grid=document.getElementById('vote-grid'), status=document.getElementById('vote-status'), refresh=document.getElementById('vote-refresh');
  let own=null, totals=new Map(), busy=false, ready=false;

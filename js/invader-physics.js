@@ -1,7 +1,7 @@
-import {MAX_WAVE,bossFor,bossMove,bossShots} from './invader-bosses.js?v=10000';
-import {TYPES,enemy,typeFor,enemyShot} from './invader-enemies.js?v=10000';
-import {powerFor} from './invader-powers.js?v=10000';
-import {ITEMS,collect,shoot} from './invader-items.js?v=10000';
+import {MAX_WAVE,bossFor,bossMove,bossShots} from './invader-bosses.js?v=1112';
+import {TYPES,enemy,typeFor,enemyShot} from './invader-enemies.js?v=1112';
+import {powerFor} from './invader-powers.js?v=1112';
+import {ITEMS,collect,shoot} from './invader-items.js?v=1112';
 export const W=320,H=400;
 export function create(id=3){const ability=powerFor(id);const s={ability,x:160,hp:ability.hp,score:0,cleared:0,hits:0,wave:1,shots:[],enemyShots:[],enemies:[],dir:1,cool:0,fire:1,inv:0,items:[],power:null,powerTime:0,shield:false,over:false,won:false};spawn(s);if(ability.start)collect(s,ability.start);return s;}
 function spawn(s){s.enemies=[];s.items=[];s.dir=1;s.enemyShots=[];s.shots=[];s.fire=1;const boss=bossFor(s.wave);if(boss){s.enemies.push(boss);return;}for(let r=0;r<3;r++)for(let c=0;c<6;c++)s.enemies.push(enemy(typeFor(s.wave,r,c),55+c*42,45+r*34));}

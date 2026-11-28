@@ -1,4 +1,5 @@
-import {explorers} from './exploration-data.js?v=10000';
+import {originals} from './original-monsters.js?v=1112';
+import {explorers} from './exploration-data.js?v=1112';
 export const secrets=[
  {base:8,name:'黄金のかずじぃ',color:0xffc52b,condition:'フィーバー発動',bio:'昔話まで黄金色。',quote:'金の時代じゃ。'},
  {base:3,name:'真っ白な地球',color:0xffffff,condition:'地球を5体獲得',bio:'雪の日の地球。',quote:'今日は真っ白。'},
@@ -15,3 +16,7 @@ secrets.push({base:9,name:'インベーダーこぺ',color:0x42d9d8,filter:'hue-
 export function secretState(){let streak=0,failures=0;return {beats(scores){for(const s of scores)streak=s===100?streak+1:0;},attempt(success){failures=success?0:failures+1;},eligible(counts,fever){return [fever,counts[3]>=5,counts[9]>=5,streak>=9,counts.reduce((a,b)=>a+b,0)>=30,failures>=10];}};}
 
 secrets.push({base:3,name:'冒険家ポンポン',color:0xd6a45d,filter:'sepia(.8) saturate(1.4)',condition:'アドベンチャー全10ステージクリア',bio:'地図を逆さに持って世界を旅する冒険家。',quote:'寄り道こそ冒険だ！'});
+
+secrets.push({base:3,name:'ピンボール地球',color:0xe8bd73,filter:'hue-rotate(160deg) saturate(1.6)',condition:'全10台で50,000点達成',bio:'跳ね返るたびに世界が広がる。',quote:'地球は丸いからね！'});
+
+secrets.push(...originals);

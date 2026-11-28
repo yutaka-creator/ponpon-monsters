@@ -4,3 +4,8 @@
 
 #town-map[data-season=spring]{--season-grass:#b9d49a}#town-map[data-season=summer]{--season-grass:#85b96f}#town-map[data-season=autumn]{--season-grass:#c8b77b}#town-map[data-season=winter]{--season-grass:#e3edf0}#town-map[data-season]{background:linear-gradient(0deg,transparent 45%,#d9c49c 45% 64%,transparent 64%),linear-gradient(90deg,var(--season-grass) 40%,#d9c49c 40% 60%,var(--season-grass) 60%)}.town-building{box-shadow:0 3px 0 #705b4633}.town-building:nth-of-type(2n){border-top-color:#668b79}#town-furniture{min-height:44px}
 .town-audio{display:flex;gap:8px;flex-wrap:wrap}.town-audio button{min-height:44px;flex:1}.town-controls button{min-height:54px}#town-book p{overflow-wrap:anywhere}
+
+.town-decoration{opacity:.9}.town-building:active{filter:brightness(1.12)}#town-map[data-period=night] .town-decoration{filter:brightness(.85)}
+#town-facilities,#town-facility-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#town-facilities button,#town-facility-actions button{min-height:44px;white-space:normal}#town-cafe-room:not([hidden]){position:absolute;inset:8px;z-index:60;overflow:auto;max-height:85dvh}#town{position:relative}#town-facility-scene{white-space:pre-line}
+
+#town-daily{padding:8px;border:1px solid #d9cbb4;border-radius:8px}#town-daily-action{min-height:44px;width:100%}

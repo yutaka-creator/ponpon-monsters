@@ -1,18 +1,18 @@
-import {secrets} from './secrets.js?v=10000';
+import {secrets} from './secrets.js?v=1112';
 import * as T from 'three';
 export const monsters=[
  ['Mrs.プリングルスアップル',0x66df16],['未来のパペットスソスソ',0x7779ee],['ユニコーン',0xb994e4],['地球',0x008cae],['味カレー',0xd98b08],['バレンタイン',0x783714],['resource（りそーす）',0x24b6d5],['うーぱーるーぱー',0x1528d4],['かずじぃ',0xff6508],['こぺ',0x079b42]
 ];
 export const colors=monsters.map(m=>m[1]);
 const sphere=new T.SphereGeometry(1,24,16), tuft=new T.SphereGeometry(1,8,6);
-export function prize(i){
- if(i>=10){const s=secrets[i-10],g=prize(s.base);g.userData.monsterId=i;g.userData.name=s.name;g.userData.scale=s.scale||1;g.scale.setScalar(g.userData.scale);g.traverse(m=>{if(!m.isMesh)return;if(m.isInstancedMesh){for(let j=0;j<m.count;j++)m.setColorAt(j,new T.Color(s.color));m.instanceColor.needsUpdate=true;}else if(m.material.color.getHex()===colors[s.base])m.material.color.setHex(s.color);if(s.opacity){m.material.transparent=true;m.material.opacity=s.opacity;m.material.depthWrite=false;}});return g;}
+export function prize(i,tufts=240){
+ if(i>=10){const s=secrets[i-10],g=prize(s.base,tufts);g.userData.monsterId=i;g.userData.name=s.name;g.userData.scale=s.scale||1;g.scale.setScalar(g.userData.scale);g.traverse(m=>{if(!m.isMesh)return;if(m.isInstancedMesh){for(let j=0;j<m.count;j++)m.setColorAt(j,new T.Color(s.color));m.instanceColor.needsUpdate=true;}else if(m.material.color.getHex()===colors[s.base])m.material.color.setHex(s.color);if(s.opacity){m.material.transparent=true;m.material.opacity=s.opacity;m.material.depthWrite=false;}});if(s.shape){const add=(geo,color,x,y,z)=>{const m=new T.Mesh(geo,new T.MeshStandardMaterial({color,roughness:.75}));m.position.set(x,y,z);g.add(m);return m;};const c=s.color;switch(s.shape){case 'hat':add(new T.CylinderGeometry(.28,.28,.08,24),0x483b35,0,.42,0);add(new T.CylinderGeometry(.18,.2,.18,24),0x483b35,0,.52,0);break;case 'ears':for(const x of [-.23,.23])add(new T.SphereGeometry(.14,16,12),c,x,.39,0);break;case 'leaf':add(new T.SphereGeometry(.13,16,12),0x347b43,0,.47,0).scale.set(.6,1.5,.5);break;case 'antenna':add(new T.CylinderGeometry(.025,.025,.2,12),0x535966,0,.48,0);add(new T.SphereGeometry(.08,16,12),0xf5d76a,0,.61,0);break;case 'crown':for(const x of [-.14,0,.14])add(new T.ConeGeometry(.09,.18,5),0xffd24b,x,.49,0);break;case 'drop':g.scale.y*=1.12;break;case 'rice':add(new T.BoxGeometry(.23,.16,.07),0x343c36,0,-.24,.36);break;case 'pudding':add(new T.SphereGeometry(.23,20,12),0x87512d,0,.36,0).scale.y=.25;break;case 'moon':case 'star':add(new T.OctahedronGeometry(.14),0xffe39a,0,.48,0);break;}}return g;}
  const g=new T.Group(), c=colors[i]; g.userData.name=monsters[i][0]; g.userData.monsterId=i;
  function ell(color,x,y,z,a,b,d,rot=0,rough=.85){const m=new T.Mesh(sphere,new T.MeshStandardMaterial({color,roughness:rough}));m.position.set(x,y,z);m.scale.set(a,b,d);m.rotation.z=rot;g.add(m);return m;}
  function line(points,color,r){const curve=new T.CatmullRomCurve3(points.map(p=>new T.Vector3(...p)));const m=new T.Mesh(new T.TubeGeometry(curve,24,r,8,false),new T.MeshStandardMaterial({color,roughness:.9}));g.add(m);}
  ell(c,0,0,0,.40,.40,.40);
- const wool=new T.InstancedMesh(tuft,new T.MeshStandardMaterial({roughness:1}),240), dummy=new T.Object3D();
- for(let j=0;j<240;j++){const y=1-2*(j+.5)/240,a=j*2.399963,s=Math.sqrt(1-y*y),x=s*Math.cos(a),z=s*Math.sin(a);dummy.position.set(.397*x,.397*y,.397*z);dummy.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),new T.Vector3(x,y,z));dummy.scale.set(.035+.012*(j%3),.064,.035);dummy.updateMatrix();wool.setMatrixAt(j,dummy.matrix);let col=c;if(i===3&&x<-.65)col=0xff6410;if(i===7&&x>.52)col=0x647b83;if(i===5&&z<-.65)col=0xf52259;wool.setColorAt(j,new T.Color(col).multiplyScalar(.85+.23*(j%7)/6));}g.add(wool);
+ const wool=new T.InstancedMesh(tuft,new T.MeshStandardMaterial({roughness:1}),tufts), dummy=new T.Object3D();
+ for(let j=0;j<tufts;j++){const y=1-2*(j+.5)/tufts,a=j*2.399963,s=Math.sqrt(1-y*y),x=s*Math.cos(a),z=s*Math.sin(a);dummy.position.set(.397*x,.397*y,.397*z);dummy.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),new T.Vector3(x,y,z));dummy.scale.set((.035+.012*(j%3))*Math.sqrt(240/tufts),.064,.035*Math.sqrt(240/tufts));dummy.updateMatrix();wool.setMatrixAt(j,dummy.matrix);let col=c;if(i===3&&x<-.65)col=0xff6410;if(i===7&&x>.52)col=0x647b83;if(i===5&&z<-.65)col=0xf52259;wool.setColorAt(j,new T.Color(col).multiplyScalar(.85+.23*(j%7)/6));}g.add(wool);
  const eyeY=i===0||i===8||i===9?-.04:.08;
  for(const x of [-.105,.105]){ell(0xffffff,x,eyeY,.385,.112,.12,.075,0,.23);ell(0x151515,x,eyeY,.45,.047,.05,.024,0,.2);ell(0xffffff,x-.012,eyeY+.017,.472,.012,.012,.005);}
  function lips(color){ell(color,0,-.13,.405,.19,.075,.065,0,.23);ell(0x421e35,0,-.135,.462,.135,.023,.012);}

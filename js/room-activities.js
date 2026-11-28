@@ -17,3 +17,12 @@ export function chooseActivity(state,actor,hour,rng=Math.random){
  const a=available[Math.min(available.length-1,Math.floor(rng()*available.length))];
  return {...a,target:state.decor.find(f=>a.furniture.includes(f.id)),other:a.pair?other:undefined};
 }
+
+// Personality-weighted selection; existing uniform selector remains compatible.
+export const favorites=['お茶会','音楽鑑賞','散歩','散歩','一緒にごはん','おしゃべり','植物のお世話','昼寝','テレビ鑑賞','音楽鑑賞'];
+export function chooseLifeActivity(state,actor,hour,rng=Math.random){
+ const other=state.actors.find(a=>a.id!==actor.id);
+ const extra=[{label:'一緒にごはん',kind:'eat',pair:true,furniture:['f3','f11','s4'],icon:'🍚',line:'一緒に食べるとおいしいね。'},{label:'一緒にテレビ',kind:'sway',pair:true,furniture:['f10'],icon:'📺',line:'この番組、面白いね。'},{label:'お茶会',kind:'eat',pair:true,furniture:['s0','f3'],icon:'☕',line:'お茶にしましょう。'}];
+ const available=[...activities,...extra].filter(a=>{const h=a.hours;return (!h||(h[0]<h[1]?hour>=h[0]&&hour<h[1]:hour>=h[0]||hour<h[1]))&&(!a.pair||other)&&(!a.furniture.length||state.decor.some(f=>a.furniture.includes(f.id)));});
+ const weighted=available.flatMap(a=>Array(a.label===favorites[actor.id]?4:1).fill(a));const a=weighted[Math.min(weighted.length-1,Math.floor(rng()*weighted.length))];return {...a,target:state.decor.find(f=>a.furniture.includes(f.id)),other:a.pair?other:undefined};
+}
