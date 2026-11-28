@@ -1,0 +1,5 @@
+export const themes={cave:{label:'落石注意',hazard:true},water:{label:'水中ジャンプ',gravity:.65,swim:true},desert:{label:'向かい風',wind:35},ice:{label:'滑る床',ice:true},factory:{label:'ベルトコンベア',belt:45},lava:{label:'溶岩注意',hazard:true},space:{label:'低重力',gravity:.55},castle:{label:'強風と落石',wind:25,hazard:true}};
+export function gimmick(stage){return themes[stage.theme]||{};}
+export function horizontal(s,target,dt){const g=gimmick(s.stage);if(g.ice&&s.ground)return s.vx+(target-s.vx)*Math.min(1,dt*3);return target+(g.wind&&target?-g.wind:0)+(g.belt&&s.ground&&s.x>700&&s.x<1050?g.belt:0);}
+export function hazards(s){return gimmick(s.stage).hazard?[{x:980,y:s.stage.theme==='lava'?260:Math.min(260,(s.time%3)*130),r:14},{x:1550,y:s.stage.theme==='lava'?260:Math.min(260,((s.time+1.5)%3)*130),r:14}]:[];}
+export function bossPattern(stage,phase){const mode=stage.theme||'plain';return {count:phase===2?3:1, speed:phase===2?245:180, vertical: ['water','space','cave'].includes(mode), interval:phase===2?.95:1.65};}

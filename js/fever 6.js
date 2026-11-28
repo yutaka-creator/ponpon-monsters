@@ -1,0 +1,4 @@
+import {gameClock} from "./pause-clock.js?v=11401";
+const {performance}=gameClock("game");
+export const feverSettings={required:6,duration:30000,multiplier:1.35};
+export function createFever(){let points=0,until=0;const bar=document.querySelector('#fever-bar'),label=document.querySelector('#fever-label');function active(){return performance.now()<until;}return {active,add(scores){if(active())return;points+=scores.filter(s=>s===100).length;if(points>=feverSettings.required){points=0;until=performance.now()+feverSettings.duration;}},update(){const on=active();const pct=on?Math.max(0,(until-performance.now())/feverSettings.duration):points/feverSettings.required;bar.value=pct*100;label.textContent=on?`PON PON FEVER!! 残り ${Math.ceil((until-performance.now())/1000)} 秒`:`フィーバー ${points} / ${feverSettings.required}`;document.querySelector('#fever').classList.toggle('active',on);}};}

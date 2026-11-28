@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';
+import {createClock} from '../js/pause-clock.js';
+let t=100;const c=createClock(()=>t);assert.equal(c.now(),100);c.pause();t=900;c.pause();assert.equal(c.now(),100);c.resume();assert.equal(c.now(),100);t=950;assert.equal(c.now(),150);c.resume();assert.equal(c.now(),150);console.log('pause clock OK');
+const {gameClock}=await import('../js/pause-clock.js');let seq=0;const queue=new Map();globalThis.requestAnimationFrame=fn=>{queue.set(++seq,fn);return seq;};globalThis.cancelAnimationFrame=id=>queue.delete(id);const step=()=>{const jobs=[...queue.values()];queue.clear();jobs.forEach(fn=>fn());};const g=gameClock('test');let calls=0;g.clock.pause();const id=g.requestAnimationFrame(()=>calls++);step();assert.equal(calls,0);g.cancelAnimationFrame(id);g.clock.resume();step();assert.equal(calls,0);g.requestAnimationFrame(()=>calls++);step();assert.equal(calls,1);

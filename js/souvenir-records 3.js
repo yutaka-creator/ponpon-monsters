@@ -1,0 +1,5 @@
+import {destinations} from './travel-data.js?v=11401';
+const names=new Set(destinations.flatMap(d=>d[2]));
+export function giftRecords(d={}){const out={};for(const name of names){const old=d.records?.[name], entries=(Array.isArray(d.album)?d.album:[]).filter(a=>a?.gift===name);const count=Math.max(Number.isSafeInteger(old?.count)?old.count:0,entries.length,Array.isArray(d.gifts)&&d.gifts.includes(name)?1:0);if(count){const dates=[old?.first,...entries.map(a=>a.at)].filter(x=>Number.isFinite(x)&&x>0);out[name]={count,first:dates.length?Math.min(...dates):null,approx:old?.approx??(!old&&((d.gifts||[]).includes(name)||entries.some(a=>!a.at)))};}}return out;}
+export function addGift(records,name,at){if(!names.has(name))return;const r=records[name];records[name]={count:(r?.count||0)+1,first:r?r.first:at,approx:r?.approx||false};}
+export function giftLabel(r){return r?`${r.approx?'少なくとも ':''}${r.count}個 ／ 初入手：${r.first&&!r.approx?new Date(r.first).toLocaleDateString('ja-JP'):'記録なし'}`:'未発見';}
