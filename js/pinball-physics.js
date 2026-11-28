@@ -1,6 +1,6 @@
-import {createSlot,slotHit,tickSlot} from './pinball-slot.js?v=11460';
-import {powerFor} from './pinball-powers.js?v=11460';
-import {tableFor} from './pinball-tables.js?v=11460';
+import {createSlot,slotHit,tickSlot} from './pinball-slot.js?v=114910';
+import {powerFor} from './pinball-powers.js?v=114910';
+import {tableFor} from './pinball-tables.js?v=114910';
 export const bumpers=[{x:100,y:115,r:24},{x:205,y:115,r:24},{x:150,y:185,r:26}];
 export const rails=[[12,320,70,395],[278,320,230,395],[12,65,55,15],[55,15,250,15],[250,15,300,65],[278,85,278,350],[55,230,85,280],[235,230,205,280]];
 export function create(table=0,hero=3){const p=powerFor(hero);return {hero:p.id,revive:!!p.revive,warp:!!p.warp,slow:0,table:tableFor(table).id,x:292,y:420,vx:0,vy:0,balls:p.balls,score:0,ready:true,over:false,charge:0,combo:0,comboTime:0,fever:0,gauge:0,lit:[],extra:[],slot:createSlot()};}
@@ -22,5 +22,6 @@ function animatedArms(s,input,dt){
 }
 export function displayedFlippers(s,input){return s.armAngles?s.armAngles.map((a,i)=>[i?230:70,395,(i?230:70)+(i?-1:1)*67*Math.cos(a),395+67*Math.sin(a),!!(i?input.right:input.left)]):flippers({});}
 
-export function hit(s,index){slotHit(s.slot);s.combo=s.comboTime>0?s.combo+1:1;s.comboTime=s.hero===6?4:2;s.score+=Math.round(100*powerFor(s.hero).points*Math.min(5,s.combo)*(s.fever>0?2:1));if(!s.lit.includes(index))s.lit.push(index);if(s.lit.length===tableFor(s.table).bumpers.length){s.score+=500;s.lit=[];s.gauge=Math.min(10,s.gauge+2);}if(!s.fever){s.gauge++;if(s.gauge>=10){s.gauge=0;s.fever=s.hero===9?25:15;while(s.extra.length<2)s.extra.push({x:150,y:285,vx:s.extra.length?150:-150,vy:-350});}}}
-export function step(s,input,dt){tickSlot(s.slot,s,dt);if(s.over)return;s.comboTime=Math.max(0,s.comboTime-dt);if(!s.comboTime)s.combo=0;s.fever=Math.max(0,s.fever-dt);const arms=animatedArms(s,input,dt);motion(s,input,dt,arms);if(s.ready||s.over){s.extra=[];s.combo=0;s.comboTime=0;s.fever=0;return;}for(const b of [...s.extra]){const proxy={...s,...b,secondary:true,ready:false,slow:0};motion(proxy,input,dt,arms);for(const k of ['score','combo','comboTime','fever','gauge','lit'])s[k]=proxy[k];for(const k of ['x','y','vx','vy','stuck'])b[k]=proxy[k];if(b.y>490)s.extra.splice(s.extra.indexOf(b),1);}}
+export function feverMultiplier(s){return s.fever>0?(s.slot.jackpotTime>0?3:2):1;}
+export function hit(s,index){slotHit(s.slot);s.combo=s.comboTime>0?s.combo+1:1;s.comboTime=s.hero===6?4:2;s.score+=Math.round(100*powerFor(s.hero).points*Math.min(5,s.combo)*feverMultiplier(s));if(!s.lit.includes(index))s.lit.push(index);if(s.lit.length===tableFor(s.table).bumpers.length){s.score+=500;s.lit=[];s.gauge=Math.min(10,s.gauge+2);}if(!s.fever){s.gauge++;if(s.gauge>=10){s.gauge=0;s.fever=s.hero===9?25:15;while(s.extra.length<2)s.extra.push({x:150,y:285,vx:s.extra.length?150:-150,vy:-350});}}}
+export function step(s,input,dt){tickSlot(s.slot,s,dt);if(s.over)return;s.comboTime=Math.max(0,s.comboTime-dt);if(!s.comboTime)s.combo=0;s.fever=Math.max(0,s.fever-dt);const arms=animatedArms(s,input,dt);motion(s,input,dt,arms);if(s.ready||s.over){s.extra=[];s.combo=0;s.comboTime=0;s.fever=0;s.slot.jackpotTime=0;return;}for(const b of [...s.extra]){const proxy={...s,...b,secondary:true,ready:false,slow:0};motion(proxy,input,dt,arms);for(const k of ['score','combo','comboTime','fever','gauge','lit'])s[k]=proxy[k];for(const k of ['x','y','vx','vy','stuck'])b[k]=proxy[k];if(b.y>490)s.extra.splice(s.extra.indexOf(b),1);}}

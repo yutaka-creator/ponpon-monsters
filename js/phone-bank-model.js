@@ -1,0 +1,2 @@
+export function recordChange(history,before,after,label,date){const rows=Array.isArray(history)?history:[];if(!Number.isSafeInteger(before)||!Number.isSafeInteger(after)||before===after)return rows;return [{delta:after-before,balance:after,label,date},...rows].slice(0,100)}
+export function goalProgress(balance,goal){return Number.isSafeInteger(goal)&&goal>0?Math.min(100,Math.max(0,balance/goal*100)):0}

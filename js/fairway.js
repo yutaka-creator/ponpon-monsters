@@ -1,38 +1,39 @@
-import {gameClock} from "./pause-clock.js?v=11460";
+import {surfaceColor} from './fairway-themes.js?v=114910';
+import {gameClock} from "./pause-clock.js?v=114910";
 const {performance,requestAnimationFrame,cancelAnimationFrame}=gameClock("golf");
-import {cameraBlend} from './render-budget.js?v=11460';
-import {initGolfMuseum} from './fairway-museum.js?v=11460';
-import {renderGolfGoals} from './fairway-goals.js?v=11460';
-import {createCinema} from './fairway-cinema.js?v=11460';
-import {createCupPresentation,reaction} from './fairway-presentation.js?v=11460';
-import {cpuTurn} from './fairway-cpu.js?v=11460';
-import {rivals,createCup,finishHole,standings} from './fairway-cup.js?v=11460';
-import {clubStyles,unlockedStyles,styleShot} from './fairway-style.js?v=11460';
-import {gimmicksFor,colors} from './fairway-gimmicks.js?v=11460';
-import {specialFor,shotAbility} from './fairway-special.js?v=11460';
-import {createShotEffects} from './fairway-effects.js?v=11460';
-import {awardFairway} from './shop.js?v=11460';
-import {achievements} from './fairway-rewards.js?v=11460';
-import {loadRecords,recordHole,recordRound,recordCup} from './fairway-records.js?v=11460';
-import {courses,difficultyNames} from "./fairway-courses.js?v=11460";
-import {showResult,hideResult} from './fairway-results.js?v=11460';
-import {powerFor} from './fairway-powers.js?v=11460';
-import {CLUBS,recommendClub} from './fairway-clubs.js?v=11460';
-import {meterValue,impactResult,aimStep} from './fairway-assist.js?v=11460';
-import {qualityFor} from './fairway-quality.js?v=11460';
-import {addScenery} from './fairway-scenery.js?v=11460';
+import {cameraBlend} from './render-budget.js?v=114910';
+import {initGolfMuseum} from './fairway-museum.js?v=114910';
+import {renderGolfGoals} from './fairway-goals.js?v=114910';
+import {createCinema} from './fairway-cinema.js?v=114910';
+import {createCupPresentation,reaction} from './fairway-presentation.js?v=114910';
+import {cpuTurn} from './fairway-cpu.js?v=114910';
+import {rivals,createCup,finishHole,standings} from './fairway-cup.js?v=114910';
+import {clubStyles,unlockedStyles,styleShot} from './fairway-style.js?v=114910';
+import {gimmicksFor,colors} from './fairway-gimmicks.js?v=114910';
+import {specialFor,shotAbility} from './fairway-special.js?v=114910';
+import {createShotEffects} from './fairway-effects.js?v=114910';
+import {awardFairway} from './shop.js?v=114910';
+import {achievements} from './fairway-rewards.js?v=114910';
+import {loadRecords,recordHole,recordRound,recordCup} from './fairway-records.js?v=114910';
+import {courses,difficultyNames} from "./fairway-courses.js?v=114910";
+import {showResult,hideResult} from './fairway-results.js?v=114910';
+import {powerFor} from './fairway-powers.js?v=114910';
+import {CLUBS,recommendClub} from './fairway-clubs.js?v=114910';
+import {meterValue,impactResult,aimStep} from './fairway-assist.js?v=114910';
+import {qualityFor} from './fairway-quality.js?v=114910';
+import {addScenery} from './fairway-scenery.js?v=114910';
 import * as T from 'three';
-import {profiles} from './profiles.js?v=11460';
-import {prize,monsters} from './monsters.js?v=11460';
-import {getCounts,recordCatch,photo} from './collection.js?v=11460';
-import {CUP,ground,shoot,tick,lie,wind,course,setCourse} from './fairway-physics.js?v=11460';
+import {profiles} from './profiles.js?v=114910';
+import {prize,monsters} from './monsters.js?v=114910';
+import {getCounts,recordCatch,photo} from './collection.js?v=114910';
+import {CUP,ground,shoot,tick,lie,wind,course,setCourse} from './fairway-physics.js?v=114910';
 export function initFairway(){
  initGolfMuseum();
  const $=id=>document.getElementById(id),host=$('fw-view'),scene=new T.Scene();const mobile=matchMedia("(pointer: coarse)").matches;let renderer;try{renderer=new T.WebGLRenderer({antialias:!mobile,powerPreference:'low-power',alpha:false});}catch(e){throw new Error('WebGL 2 の初期化に失敗：'+e.message);}let quality=qualityFor("auto",mobile),lastRender=0,drawDt=1/30;renderer.setPixelRatio(Math.min(devicePixelRatio,quality.ratio));host.replaceChildren(renderer.domElement);scene.background=new T.Color(0x8ccbf5);scene.fog=new T.Fog(0x8ccbf5,65,180);scene.add(new T.HemisphereLight(0xffffff,0x66824b,2));const sun=new T.DirectionalLight(0xfff2ce,2);sun.position.set(-30,50,15);scene.add(sun);const camera=new T.PerspectiveCamera(58,1,.1,250);
  function mesh(g,c,x,y,z){const m=new T.Mesh(g,new T.MeshStandardMaterial({color:c}));m.position.set(x,y,z);scene.add(m);return m;}
  let courseObjects=[],animateScenery; let round=null,roundLimit=9,cup=null;
  function buildCourse(){for(const o of courseObjects){scene.remove(o);o.traverse(n=>{n.geometry?.dispose();n.material?.dispose();});}const before=new Set(scene.children);const sky=course.sky;scene.background.setHex(sky);scene.fog.color.setHex(sky);
- const geo=new T.PlaneGeometry(90,210,90,210);geo.rotateX(-Math.PI/2);geo.translate(0,0,-75);const pos=geo.attributes.position,terrainColors=[];for(let i=0;i<pos.count;i++){const x=pos.getX(i),z=pos.getZ(i);pos.setY(i,ground(x,z));const surface=lie(x,z);const c=new T.Color(surface==='water'?0x55a9d4:surface==='sand'?0xe5cc94:surface==='green'?0xa4d575:surface==='fairway'?(Math.floor(z/6)%2?0x83b95a:0x91c465):course.color);c.multiplyScalar(.96+.04*Math.sin(x*12.7+z*9.1));terrainColors.push(c.r,c.g,c.b);}geo.setAttribute('color',new T.Float32BufferAttribute(terrainColors,3));geo.computeVertexNormals();scene.add(new T.Mesh(geo,new T.MeshStandardMaterial({vertexColors:true})));
+ const geo=new T.PlaneGeometry(90,210,90,210);geo.rotateX(-Math.PI/2);geo.translate(0,0,-75);const pos=geo.attributes.position,terrainColors=[];for(let i=0;i<pos.count;i++){const x=pos.getX(i),z=pos.getZ(i);pos.setY(i,ground(x,z));const surface=lie(x,z);const c=new T.Color(surfaceColor(course,surface,z));c.multiplyScalar(.96+.04*Math.sin(x*12.7+z*9.1));terrainColors.push(c.r,c.g,c.b);}geo.setAttribute('color',new T.Float32BufferAttribute(terrainColors,3));geo.computeVertexNormals();scene.add(new T.Mesh(geo,new T.MeshStandardMaterial({vertexColors:true})));
  for(const o of course.obstacles){mesh(new T.CylinderGeometry(o.r,o.r,o.h,12),course.id===10?0xb67b58:course.id===18?0xe5c38c:0x96988b,o.x,ground(o.x,o.z)+o.h/2,o.z);}
  for(const g of gimmicksFor(course.id)){const m=mesh(new T.CylinderGeometry(g.r,g.r,.12,32),colors[g.type],g.x,ground(g.x,g.z)+.09,g.z);m.material.emissive.setHex(colors[g.type]);m.material.emissiveIntensity=.35;}
  animateScenery=addScenery(scene);animateScenery.setQuality(quality);
@@ -58,7 +59,7 @@ export function initFairway(){
  clubSelect.onchange=()=>{if(b)updateClub();};
  function meter(t){return meterValue(phase,t-started,controlLie(),course.difficulty);}
  function cancelMeter(){phase=0;$('fw-power').value=0;$('fw-value').textContent='0%';$('fw-shot').textContent='SHOT!';}
- function reset(){cinema.clear();$('fw-cup-result').classList.remove('cup-champion');$('fw-cup-result').textContent='';specialUsed=false;specialArmed=false;fx.clear();hideResult();$('fw-result-retry').hidden=false;$('fw-result-close').hidden=false;cancelMeter();clubSelect.value='auto';if(model){scene.remove(model);model.traverse(o=>{if(o.isMesh)o.material.dispose();});}model=prize(+$('fw-monster').value);model.scale.setScalar(.85);scene.add(model);b={x:0,z:0,y:ground(0,0)+.38,vx:0,vy:0,vz:0,air:false};angle=0;strokes=0;moving=done=false;overview=false;status('方向とパワーを決めてショット！');draw(true);}
+ function reset(){cinema.clear();$('fw-cup-result').classList.remove('cup-champion');$('fw-cup-result').textContent='';specialUsed=false;specialArmed=false;fx.clear();hideResult();$('fw-result-retry').hidden=false;$('fw-result-close').hidden=false;cancelMeter();clubSelect.value='auto';if(model){scene.remove(model);model.traverse(o=>{if(o.isMesh)o.material.dispose();});}model=prize(+$('fw-monster').value);model.scale.setScalar(.85);scene.add(model);b={x:0,z:0,y:ground(0,0)+.38,vx:0,vy:0,vz:0,air:false};angle=0;strokes=0;moving=done=false;overview=false;status(course.hint);draw(true);}
  function status(t){const sp=$("fw-special");sp.disabled=specialUsed||moving||done||phase>0;sp.textContent=specialUsed?"必殺技 使用済み":(specialArmed?"発動予約中：":"必殺技：")+specialFor(+$ ("fw-monster").value).name;sp.setAttribute("aria-pressed",String(specialArmed));updateClub();$('fw-panel').dataset.phase=phase===2?'impact':'power';$('fw-status').textContent=t;$('fw-shot').disabled=moving||done;$('fw-monster').disabled=strokes>0||phase>0;$('fw-score').textContent=`HOLE ${course.id} / PAR ${course.par} / ${strokes}打`;}
  function draw(snap=false){if(!b||!active)return;if(replay){const f=replay.paths[Math.min(replay.paths.length-1,Math.floor(replay.index))];if(f.id!==replay.id){presentation.cue(f.id,f.name,reaction(f.id));scene.remove(replay.model);replay.model.traverse(o=>{if(o.isMesh)o.material.dispose();});replay.model=prize(f.id);scene.add(replay.model);replay.id=f.id;}replay.model.position.set(f.x,f.y,f.z);shadow.visible=false;arrow.visible=false;camera.position.set(f.x+3,f.y+3,f.z+7);camera.lookAt(f.x,f.y,f.z-2);$("fw-mode").textContent=f.name+" のショット";renderer.render(scene,camera);return;}shadow.visible=true;const a=angle*Math.PI/180;model.position.set(b.x,b.y,b.z);shadow.position.set(b.x,ground(b.x,b.z)+.025,b.z);arrow.position.set(b.x,b.y+.25,b.z);arrow.setDirection(new T.Vector3(Math.sin(a),0,-Math.cos(a)));arrow.visible=!moving&&!done;const dir=moving?flightDir:new T.Vector3(Math.sin(a),0,-Math.cos(a));const mode=overview?'map':done&&follow?'cup':moving&&follow?'flight':'aim';const target=mode==='cup'?new T.Vector3(CUP.x+4,ground(CUP.x,CUP.z)+2.2,CUP.z+5):mode==='map'?new T.Vector3(0,course.length+15,-course.length/2+1):mode==='flight'?new T.Vector3(b.x-dir.x*10,b.y+3.8,b.z-dir.z*10):new T.Vector3(b.x-dir.x*6,ground(b.x,b.z)+2.4,b.z-dir.z*6);const focus=mode==='cup'?new T.Vector3(CUP.x,ground(CUP.x,CUP.z)+.5,CUP.z):mode==='map'?new T.Vector3(0,0,-course.length/2):mode==='flight'?new T.Vector3(b.x+dir.x*3,b.y+.3,b.z+dir.z*3):new T.Vector3(b.x+dir.x*10,b.y+.5,b.z+dir.z*10);if(snap){camera.position.copy(target);look.copy(focus);}else{camera.position.lerp(target,cameraBlend(.10,drawDt));look.lerp(focus,cameraBlend(.13,drawDt));}camera.up.set(0,1,0);camera.lookAt(look);$('fw-mode').textContent=mode==='cup'?'カップインカメラ':mode==='map'?'全体マップ':mode==='flight'?'追尾カメラ':'後方視点';$('fw-distance').textContent=`残り ${Math.hypot(b.x-CUP.x,b.z-CUP.z).toFixed(lie(b.x,b.z)==='green'?1:0)} m`;$('fw-terrain').textContent=`${({green:'グリーン',sand:'バンカー',rough:'ラフ',water:'池',fairway:'フェアウェイ'})[lie(b.x,b.z)]} ｜ 風 ${wind.x>=0?"→":"←"}${wind.z<0?"↑":"↓"} ${Math.hypot(wind.x,wind.z).toFixed(1)}m/s`;$('fw-flight').textContent=`飛距離 ${Math.round(Math.hypot(b.x-(b.startX??b.x),b.z-(b.startZ??b.z)))}m / 高さ ${(b.peak||0).toFixed(1)}m`;const map=$("fw-map"),ctx=map?.getContext("2d");if(ctx){ctx.clearRect(0,0,100,120);ctx.fillStyle="#527e39";ctx.fillRect(0,0,100,120);ctx.fillStyle="#91c465";ctx.fillRect(27,0,46,120);const mx=x=>50+x*1.7,mz=z=>12-z*95/course.length;ctx.fillStyle="#e5cc94";for(const [x,z] of course.sand){ctx.beginPath();ctx.ellipse(mx(x),mz(z),8,7,0,0,7);ctx.fill();}ctx.fillStyle="#55a9d4";for(const w of course.hazards){ctx.beginPath();ctx.ellipse(mx(w.x),mz(w.z),w.rx*1.7,w.rz*95/course.length,0,0,7);ctx.fill();}ctx.fillStyle="#756451";for(const o of course.obstacles){ctx.beginPath();ctx.arc(mx(o.x),mz(o.z),o.r*1.7,0,7);ctx.fill();}ctx.fillStyle="#ef654e";ctx.fillRect(mx(CUP.x)-2,mz(CUP.z)-5,5,9);ctx.fillStyle="white";ctx.beginPath();ctx.arc(mx(b.x),mz(b.z),3,0,7);ctx.fill();}renderer.render(scene,camera);}
  function setQuality(){quality=qualityFor($("fw-quality").value,mobile);renderer.setPixelRatio(Math.min(devicePixelRatio,quality.ratio));animateScenery.setQuality(quality);resize();}

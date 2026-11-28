@@ -14,3 +14,5 @@ body[data-screen=pinball] #pinball:not([hidden]){height:100dvh;min-height:0;max-
 #pinball .pb-options summary{min-height:28px;cursor:pointer}
 #pinball .pb-top button{min-height:40px}
 #pb-board{position:relative;flex:1;min-height:0;width:100%;display:flex;justify-content:center;overflow:hidden;border-radius:12px}#pinball #pb-board #pb-view{height:100%;width:100%;flex:none;object-fit:contain}#pb-board .pb-source{visibility:hidden}#pb-3d{position:absolute;inset:0}#pb-3d[hidden]{display:none}#pb-3d canvas{display:block;width:100%;height:100%}#pb-mode{min-height:44px;white-space:nowrap}
+
+#pb-board.pb-fever{box-shadow:inset 0 0 0 3px #e8bd73}#pb-board.pb-jackpot{box-shadow:inset 0 0 0 4px #d69b32,0 0 12px #e8bd7380}

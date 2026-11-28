@@ -34,3 +34,10 @@ export function makeStage(stage){
  return {...level,rocks,pieces:pieces.map((p,i)=>({...p,kind:stage>=61&&i%13===1?'warp':stage>=41&&i%9===2?'ice':stage>=31&&i%7===0?'rotate':'normal',safeDir:p.dir,dir:stage>=31&&i%7===0&&!(stage>=61&&i%13===1)&&!(stage>=41&&i%9===2)?(p.dir+1)%4:p.dir}))};
 }
 export function ready(p,pieces,rocks,size){return (p.kind!=='rotate'||p.dir===p.safeDir)&&(p.kind==='warp'||canExit(p,[...pieces,...rocks],size));}
+
+export function escapeHint(pieces,rocks,size){
+ const p=pieces.find(p=>p.kind==='ice'||(p.kind==='rotate'&&p.dir!==p.safeDir)||ready(p,pieces,rocks,size));
+ if(!p)return null;
+ return {id:p.id,message:p.kind==='ice'?'氷の仲間をタップして溶かそう！':p.kind==='rotate'&&p.dir!==p.safeDir?'回転マークの仲間をタップして向きを変えよう！':p.kind==='warp'?'星マークの仲間はワープできるよ！':'光っている仲間の矢印の先が空いているよ！'};
+}
+export function escapeProgress(total,left){return total>0?Math.round(100*Math.max(0,Math.min(total,total-left))/total):0;}

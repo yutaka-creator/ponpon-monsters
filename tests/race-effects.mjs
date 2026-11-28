@@ -1,1 +1,1 @@
-import assert from 'node:assert/strict';import {countdown} from '../js/race-effects.js?v=11460';assert.equal(countdown(3),'3');assert.equal(countdown(1.1),'2');assert.equal(countdown(.1),'1');assert.equal(countdown(0),'GO!');assert.equal(countdown(-1),'');console.log('race countdown OK');
+import assert from 'node:assert/strict';import {countdown} from '../js/race-effects.js?v=114910';assert.equal(countdown(3),'3');assert.equal(countdown(1.1),'2');assert.equal(countdown(.1),'1');assert.equal(countdown(0),'GO!');assert.equal(countdown(-1),'');console.log('race countdown OK');

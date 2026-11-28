@@ -1,0 +1,2 @@
+// Slipstream: bounded speed bonus behind an active rival, no teleport.
+export function draftBonus(car,cars){if(car.speed<12||car.finish!==null)return 0;let bonus=0;for(const rival of cars){if(rival===car||rival.finish!==null)continue;const gap=rival.distance-car.distance;const side=Math.abs(rival.lane-car.lane);if(gap>=3&&gap<=22&&side<2.5)bonus=Math.max(bonus,5*Math.min(1,(gap-3)/3,(22-gap)/5)*(1-side/2.5));}return bonus;}

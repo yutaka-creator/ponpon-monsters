@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';import {cinematicStep} from '../js/fairway-cinema.js?v=11440';assert.equal(cinematicStep(1,.2,true,false,true),.45);assert.equal(cinematicStep(1,1,true,true,true),.65);assert.equal(cinematicStep(1,.2,true,true,false),1);assert.equal(cinematicStep(1,1,false,false,true),1);

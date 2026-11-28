@@ -1,0 +1,3 @@
+import assert from 'node:assert/strict';
+const store=new Map();globalThis.localStorage={getItem:k=>store.get(k)??null,setItem:(k,v)=>store.set(k,v)};globalThis.document={dispatchEvent(){}};
+const r=await import('../js/fairway-records.js?v=11440');const s=await import('../js/save-store.js?v=11440');const cup={difficulty:'easy',holes:[1,2,3],index:2};assert.equal(r.recordCup(cup,true),false);cup.index=3;assert.equal(r.recordCup(cup,false),false);assert.equal(r.recordCup(cup,true),true);r.recordHole(1,2);assert.equal(r.loadRecords().cups['easy:3'],1);s.setOwner('other');assert.deepEqual(r.loadRecords().cups,{});

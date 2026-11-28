@@ -1,4 +1,4 @@
-import {cleanDaily} from './town-daily.js?v=11460';
+import {cleanDaily} from './town-daily.js?v=114910';
 export const requests=[{id:'curry',resident:4,item:'leaf',name:'カレーの飾り',ask:'四つ葉のクローバーを見つけてくれへんか？',thanks:'これで盛り付けも完璧や！'},{id:'grandpa',resident:8,item:'letter',name:'思い出の絵はがき',ask:'絵はがきを探しておくれ。',thanks:'懐かしいのう。ありがとう。'},{id:'kope',resident:9,item:'ribbon',name:'おしゃれなリボン',ask:'虹色のリボンを探してほしいもん！',thanks:'今日もかわいくなれたもん！'},{id:'cafe',resident:0,item:'bean',name:'喫茶店のお手伝い',ask:'コーヒー豆を探してくださいな。',thanks:'助かりましたわ！'}];
 export function cleanEvents(s={}){return {daily:cleanDaily(s.daily),accepted:requests.filter(q=>s.accepted?.includes?.(q.id)).map(q=>q.id),done:requests.filter(q=>s.done?.includes?.(q.id)).map(q=>q.id),memories:memoryLabels.map(([k])=>k).filter(k=>s.memories?.includes?.(k))};}
 export function advance(s,resident,found){const q=requests.find(q=>q.resident===resident);if(!q||s.done.includes(q.id))return null;const next=cleanEvents(s);if(!next.accepted.includes(q.id)){next.accepted.push(q.id);return {next,message:q.ask};}if(!found.includes(q.item))return {next,message:q.ask};next.done.push(q.id);return {next,message:q.thanks};}

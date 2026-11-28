@@ -1,4 +1,4 @@
-import {gameClock} from "./pause-clock.js?v=11460";
+import {gameClock} from "./pause-clock.js?v=114910";
 const {performance,requestAnimationFrame,cancelAnimationFrame}=gameClock("game");
 // Three timed beats; all timings are editable here.
 export const settings={interval:850,perfect:145,good:280,lead:1000};

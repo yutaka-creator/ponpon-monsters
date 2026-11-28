@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';
+import {bindHold} from '../js/hold-input.js?v=11440';
+class Target {constructor(){this.events={};}addEventListener(n,f){(this.events[n]??=[]).push(f);}fire(n,e={}){for(const f of this.events[n]||[])f({preventDefault(){},...e});}}
+const win=new Target(),doc=new Target(),left=new Target(),jump=new Target();win.navigator={maxTouchPoints:2};left.dataset={cl:'left'};jump.dataset={cl:'jump'};const state={};bindHold([left,jump],'cl',(k,v)=>state[k]=v,{win,doc});
+left.fire('touchstart',{changedTouches:[{identifier:1},{identifier:2}]});jump.fire('touchstart',{changedTouches:[{identifier:3}]});left.fire('lostpointercapture');assert.equal(state.left,true);assert.equal(state.jump,true);win.fire('touchend',{changedTouches:[{identifier:1}]});assert.equal(state.left,true);win.fire('touchcancel',{changedTouches:[{identifier:2}]});assert.equal(state.left,false);doc.fire('ponpon:tab');assert.equal(state.jump,false);left.fire('pointerdown',{pointerType:'mouse',button:0,pointerId:4});assert.equal(state.left,true);win.fire('pointerup',{pointerId:4});assert.equal(state.left,false);console.log('hold input OK');

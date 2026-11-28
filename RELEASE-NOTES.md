@@ -169,3 +169,8 @@ Sequential reel stops, reach message, jackpot border/confetti and chord, cumulat
 ## Ver.1.1.43.1
 - 全30事件の模式図タップ調査、依頼書、探偵事務所風ヘッダー、段階式推理ショー、任意の効果音。
 - BGM、個別背景イラスト、証拠組み合わせ拡充は未実装。既存保存キー維持。
+
+## 1.1.46.3
+- Hide collapsed legacy menu; balanced explicit menu grid.
+- Detective compact viewport, independently scrollable dialogue and investigation, named evidence entries.
+- Device testing pending.

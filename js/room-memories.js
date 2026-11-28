@@ -1,4 +1,4 @@
-import {read,write} from './save-store.js?v=11460';
+import {read,write} from './save-store.js?v=114910';
 export const KEY='ponpon-catcher.room-memories.v1';
 export function appendMemory(entries,entry){return [entry,...entries].slice(0,30);}
 export function memories(){try{const v=JSON.parse(read(KEY)||'{}');return Array.isArray(v.entries)?v.entries.filter(e=>e&&typeof e.text==='string'&&Number.isFinite(e.at)).slice(0,30):[];}catch{return [];}}

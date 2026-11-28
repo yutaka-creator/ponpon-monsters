@@ -1,0 +1,3 @@
+import assert from 'node:assert/strict';
+const map=new Map();let fail=true;globalThis.localStorage={getItem:k=>map.get(k)??null,setItem:(k,v)=>{if(fail)throw Error('quota');map.set(k,v)},removeItem:k=>map.delete(k)};globalThis.document={dispatchEvent(){}};
+const s=await import('../js/save-store.js?v=11440');const k=s.keys[0];assert.throws(()=>s.write(k,'[1]'));assert.throws(()=>s.write(k,'[2]'));assert.equal(s.read(k),'[2]');assert.equal(s.pendingCount(),1);s.setOwner('other');assert.equal(s.read(k),null);assert.throws(()=>s.write(k,'[3]'));assert.equal(s.flushPending(),false);fail=false;assert.equal(s.flushPending(),true);assert.equal(s.read(k),'[3]');s.setOwner('');assert.equal(s.read(k),'[2]');assert.equal(s.pendingCount(),0);console.log('save retry OK');
