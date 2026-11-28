@@ -1,5 +1,5 @@
-import {powerFor} from './pinball-powers.js?v=1139';
-import {tableFor} from './pinball-tables.js?v=1139';
+import {powerFor} from './pinball-powers.js?v=11401';
+import {tableFor} from './pinball-tables.js?v=11401';
 export const bumpers=[{x:100,y:115,r:24},{x:205,y:115,r:24},{x:150,y:185,r:26}];
 export const rails=[[12,320,70,395],[278,320,230,395],[12,65,55,15],[55,15,250,15],[250,15,300,65],[278,85,278,350],[55,230,85,280],[235,230,205,280]];
 export function create(table=0,hero=3){const p=powerFor(hero);return {hero:p.id,revive:!!p.revive,warp:!!p.warp,slow:0,table:tableFor(table).id,x:292,y:420,vx:0,vy:0,balls:p.balls,score:0,ready:true,over:false,charge:0,combo:0,comboTime:0,fever:0,gauge:0,lit:[],extra:[]};}

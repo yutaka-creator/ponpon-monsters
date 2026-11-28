@@ -1,8 +1,8 @@
-import {characterSettings} from './character-settings.js?v=1139';
-import {earn} from './shop.js?v=1139';
-import {read,write} from './save-store.js?v=1139';
-import {secrets} from './secrets.js?v=1139';
-import {profiles,displayOrder,displayNumber} from './profiles.js?v=1139';
+import {characterSettings} from './character-settings.js?v=11401';
+import {earn} from './shop.js?v=11401';
+import {read,write} from './save-store.js?v=11401';
+import {secrets} from './secrets.js?v=11401';
+import {profiles,displayOrder,displayNumber} from './profiles.js?v=11401';
 const KEY='ponpon-catcher.collection.v1';
 let counts=Array(profiles.length).fill(0), saveOK=true, timer;
 try { const raw=JSON.parse(read(KEY)||'null'); if(Array.isArray(raw)) counts=counts.map((_,i)=>Number.isSafeInteger(raw[i])&&raw[i]>=0?raw[i]:0); } catch {saveOK=false;}

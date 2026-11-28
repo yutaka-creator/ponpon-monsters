@@ -1,4 +1,4 @@
-import {makeReport} from './feedback-data.js?v=1139';
+import {makeReport} from './feedback-data.js?v=11401';
 const events=[],started=performance.now();
 const screen=()=>document.body?.dataset.screen||'welcome';
 function log(type){events.push({type,screen:screen(),seconds:(performance.now()-started)/1000});if(events.length>20)events.shift();}

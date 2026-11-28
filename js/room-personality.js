@@ -1,5 +1,5 @@
-import {characterSettings} from './character-settings.js?v=1139';
-import {voices} from './character-voices.js?v=1139';
+import {characterSettings} from './character-settings.js?v=11401';
+import {voices} from './character-voices.js?v=11401';
 // ID順。日課に対応する家具候補・動き・好む時間帯。
 const rows=[
 ['s0 f12','sway','morning'],['f10 s1','sway','day'],['f7 s2','hop','morning'],['s3 f25','walk','day'],['s4 f11','eat','day'],['s5 f3','chat','evening'],['s6 f3','walk','day'],['s7 f0','sleep','day'],['s8 s0','eat','morning'],['s9 f13','hop','morning'],

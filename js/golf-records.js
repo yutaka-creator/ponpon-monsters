@@ -1,6 +1,6 @@
-import {golfRecords} from './shop.js?v=1139';
-import {courses} from './golf-data.js?v=1139';
-import {getCounts,recordCatch} from './collection.js?v=1139';
+import {golfRecords} from './shop.js?v=11401';
+import {courses} from './golf-data.js?v=11401';
+import {getCounts,recordCatch} from './collection.js?v=11401';
 export function summarize(records){const valid=i=>Number.isSafeInteger(records[i])&&records[i]>0;return {cleared:courses.filter((_,i)=>valid(i)).length,aces:courses.filter((_,i)=>records[i]===1).length,areas:[...new Set(courses.map(c=>c.area))].map(area=>({area,total:courses.filter(c=>c.area===area).length,cleared:courses.filter((c,i)=>c.area===area&&valid(i)).length})),valid};}
 export function unlockGolfMonster(){if(summarize(golfRecords()).cleared===courses.length&&!getCounts()[22])recordCatch(22);}
 export function renderGolfRecords(){const root=document.getElementById('golf-records');if(!root)return;const r=golfRecords(),s=summarize(r);const el=(tag,t)=>{const n=document.createElement(tag);n.textContent=t;return n;};root.replaceChildren(el('h3','マイスコアカード'),el('p',`クリア ${s.cleared}/${courses.length} ・ ホールインワン ${s.aces} ・ クリア率 ${Math.round(s.cleared/courses.length*100)}%`));for(const a of s.areas){const d=document.createElement('details');d.append(el('summary',`${a.area} ${a.cleared}/${a.total}`));const table=document.createElement('table');const head=document.createElement('tr');for(const t of ['ホール','PAR','自己ベスト','差'])head.append(el('th',t));table.append(head);courses.forEach((c,i)=>{if(c.area!==a.area)return;const row=document.createElement('tr');const diff=r[i]-c.par;for(const t of [`${i+1} ${c.name}`,c.par,s.valid(i)?r[i]:'未クリア',s.valid(i)?(diff>0?'+'+diff:diff):'—'])row.append(el('td',t));table.append(row);});d.append(table);root.append(d);}}

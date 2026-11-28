@@ -1,9 +1,9 @@
-import {rewardIds as adventureIds} from './adventure-records.js?v=1139';
-import {rewardIds} from './invader-rewards.js?v=1139';
-import {achievements,rewardRules} from './fairway-rewards.js?v=1139';
-import {exhibits} from './museum-data.js?v=1139';
-import {rarity} from './room-extras.js?v=1139';
-import {read,write} from './save-store.js?v=1139';import {items,find,furnitureImage} from './furniture.js?v=1139';import {bond} from './bond.js?v=1139';
+import {rewardIds as adventureIds} from './adventure-records.js?v=11401';
+import {rewardIds} from './invader-rewards.js?v=11401';
+import {achievements,rewardRules} from './fairway-rewards.js?v=11401';
+import {exhibits} from './museum-data.js?v=11401';
+import {rarity} from './room-extras.js?v=11401';
+import {read,write} from './save-store.js?v=11401';import {items,find,furnitureImage} from './furniture.js?v=11401';import {bond} from './bond.js?v=11401';
 const key='ponpon-catcher.shop.v1';let data={coins:500,owned:[]};try{const s=JSON.parse(read(key));if(s&&Number.isSafeInteger(s.coins)&&s.coins>=0&&Array.isArray(s.owned))data={coins:s.coins,owned:s.owned.filter(id=>find(id)),fairwayClaims:Array.isArray(s.fairwayClaims)?s.fairwayClaims:[],golf:s.golf&&typeof s.golf==='object'?s.golf:{}};}catch{}
 const $=id=>document.getElementById(id);let place,preview;export function earn(n){data.coins=Math.min(999999,data.coins+n);save();}function save(){try{write(key,JSON.stringify(data));}catch{ $('shop-status').textContent='保存できませんでした。';}render();}function gifts(){try{const d=JSON.parse(read('ponpon-catcher.travel.v1'));return new Set([...(d?.gifts||[]),...(d?.album||[]).map(a=>a.gift)]);}catch{return new Set();}}
 export function owned(item){if(item.gift)return gifts().has(item.gift);if(item.museum)return exhibits.filter(e=>gifts().has(e.name)).length>=item.museum;return item.bond!==undefined?bond(item.bond).level===5:data.owned.includes(item.id);}
@@ -24,5 +24,5 @@ export function awardAdventure(r){const names=[];for(const id of adventureIds(r)
 
 export function awardClimb(completed){const count=new Set((Array.isArray(completed)?completed:[]).filter(n=>Number.isInteger(n)&&n>=1&&n<=50)).size;const names=[];for(const [id,n] of [['climb0',5],['climb1',25],['climb2',50]])if(count>=n&&!data.owned.includes(id)){data.owned.push(id);names.push(find(id).name);}if(names.length)save();return names;}
 
-import {eligible as pbEligible,rewards as pbRewards} from './pinball-rewards.js?v=1139';
+import {eligible as pbEligible,rewards as pbRewards} from './pinball-rewards.js?v=11401';
 export function awardPinball(records,played){const flags=pbEligible(records,played),names=[];for(const [i,[id,name]] of pbRewards.entries())if(flags[i]&&!data.owned.includes(id)){data.owned.push(id);names.push(name);}if(names.length)save();return names;}

@@ -90,3 +90,10 @@ Museum exhibit walk and 30% wider race courses.
 ## 1.1.39
 - 50 candidates, individual pledges, speeches, applause and vote reactions.
 - Apply sql/ponpon_votes_50.sql before publishing. Existing votes retained.
+
+## Ver.1.1.40
+Brand lockup, new earth-inspired icon SVG and four PNG sizes, favicon, Apple touch icon, theme color, about page and draft brand/rights checklist. Existing game mechanics unchanged.
+
+## 1.1.40.1
+- Pinball center mascot and 50 event lines for ten playable heroes.
+- Automatic race acceleration, removed accelerator button, retained brake.

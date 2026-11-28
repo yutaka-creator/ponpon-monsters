@@ -1,6 +1,6 @@
 import * as T from 'three';
-import {renderBudget,renderGate} from './render-budget.js?v=1139';
-import {displayedFlippers} from './pinball-physics.js?v=1139';
+import {renderBudget,renderGate} from './render-budget.js?v=11401';
+import {displayedFlippers} from './pinball-physics.js?v=11401';
 export function createPinball3D(host,source){
  const budget=renderBudget(matchMedia('(pointer: coarse)').matches,devicePixelRatio), gate=renderGate(budget.fps);
  const renderer=new T.WebGLRenderer({antialias:budget.antialias,powerPreference:'low-power'});renderer.setPixelRatio(budget.ratio);

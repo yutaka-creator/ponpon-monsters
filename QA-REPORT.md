@@ -1,2 +1,3 @@
-# Ver.1.1.39 QA
-116/116 Node test scripts passed, including election data coverage. votes.js syntax checked. Browser/device and live Supabase not tested. Apply sql/ponpon_votes_50.sql before publishing; existing votes and RLS preserved. Applause is local and does not change vote totals. Candidate speeches combine individual pledges with existing character settings. All candidates visible, including hidden characters.
+# Ver.1.1.40.1 QA
+
+118 test scripts passed; modified JS syntax checked. Standard hero unattended race: all 30 course/difficulty combinations completed without winning in automated test. Browser/device tests not performed. Pinball mascot and speech are canvas decoration shared with 3D board texture; no physics changes. Auto speed cap 26, brake retained.

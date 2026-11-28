@@ -1,8 +1,8 @@
-import {gimmicksFor,applyGimmicks} from './fairway-gimmicks.js?v=1139';
-import {shotAbility} from './fairway-special.js?v=1139';
-import {powerFor} from './fairway-powers.js?v=1139';
-import {clubShot,recommendClub} from './fairway-clubs.js?v=1139';
-import {courses} from "./fairway-courses.js?v=1139";
+import {gimmicksFor,applyGimmicks} from './fairway-gimmicks.js?v=11401';
+import {shotAbility} from './fairway-special.js?v=11401';
+import {powerFor} from './fairway-powers.js?v=11401';
+import {clubShot,recommendClub} from './fairway-clubs.js?v=11401';
+import {courses} from "./fairway-courses.js?v=11401";
 export let course=courses[0];
 export const CUP={x:0,z:-82};
 export const wind={x:1.8,z:-.8};
