@@ -1,3 +1,3 @@
 import assert from 'node:assert/strict';
-import {create,step} from '../js/invader-physics.js?v=114911';
+import {create,step} from '../js/invader-physics.js?v=114924';
 let s=create();s.hp=2;s.enemyShots=[{x:160,y:365}];step(s,.01,{},()=>.99);assert.equal(s.hp,1);assert.equal(s.shield,true);assert.equal(s.power,'rapid');assert.equal(s.rescues,1);s.inv=0;s.enemyShots=[{x:160,y:365}];step(s,.01);assert.equal(s.shield,false);assert.equal(s.rescues,1);s=create();s.enemies=[{x:160,y:100,hp:1},{x:160,y:150,hp:1},{x:250,y:50,hp:1}];s.shots=[{x:160,y:103},{x:160,y:153}];step(s,.01,{},()=>.99);assert.equal(s.combo,2);assert.equal(s.maxCombo,2);s.comboTime=.01;step(s,.05);assert.equal(s.combo,0);assert.equal(s.maxCombo,2);

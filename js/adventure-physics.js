@@ -1,9 +1,9 @@
-import {variedLayout} from './adventure-layout.js?v=114911';
-import {gimmick,horizontal,hazards} from './adventure-gimmicks.js?v=114911';
-import {stageFor,bossHit,updateBoss} from './adventure-stages.js?v=114911';
-import {world,updateWorld} from './adventure-world.js?v=114911';
-import {abilityFor} from './adventure-powers.js?v=114911';
-import {blocks,springs,grant,POWERS} from './adventure-items.js?v=114911';
+import {variedLayout} from './adventure-layout.js?v=114924';
+import {gimmick,horizontal,hazards} from './adventure-gimmicks.js?v=114924';
+import {stageFor,bossHit,updateBoss} from './adventure-stages.js?v=114924';
+import {world,updateWorld} from './adventure-world.js?v=114924';
+import {abilityFor} from './adventure-powers.js?v=114924';
+import {blocks,springs,grant,POWERS} from './adventure-items.js?v=114924';
 export const W=480,H=300,END=2400;
 export const platforms=[{x:0,y:260,w:580},{x:650,y:260,w:480},{x:1200,y:260,w:500},{x:1770,y:260,w:700},{x:250,y:195,w:120},{x:470,y:175,w:100},{x:800,y:190,w:140},{x:1350,y:180,w:150},{x:1640,y:195,w:140},{x:2000,y:180,w:140}];
 export function layoutFor(stage){return stage.id===1?platforms.map(p=>({...p})):variedLayout(stage,platforms);}

@@ -1,0 +1,15 @@
+/* Reserve an additional touch buffer even when Android reports zero safe inset. */
+@media (max-width:900px) and (pointer:coarse){
+  :root{--game-bottom-buffer:24px;--game-safe-bottom:calc(var(--game-bottom-buffer) + env(safe-area-inset-bottom,0px));}
+  body:is([data-screen=game],[data-screen=golf],[data-screen=race],[data-screen=tower],[data-screen=invader],[data-screen=adventure],[data-screen=town],[data-screen=escape],[data-screen=climb],[data-screen=pinball]) :is(#game,#golf,#race,#tower,#invader,#adventure,#town,#escape,#climb,#pinball):not([hidden]){
+    padding-bottom:var(--game-safe-bottom)!important;
+    box-sizing:border-box;
+    overflow-y:auto!important;
+    scroll-padding-bottom:var(--game-safe-bottom);
+  }
+  body:not(.crane-playing) #bottom-nav{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;}
+  body:not(.crane-playing) main{padding-bottom:calc(94px + env(safe-area-inset-bottom,0px))!important;}
+}
+@media (max-width:900px) and (pointer:coarse) and (max-height:650px){
+  :root{--game-bottom-buffer:18px;}
+}

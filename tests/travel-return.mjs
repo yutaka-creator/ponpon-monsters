@@ -1,2 +1,2 @@
-import assert from 'node:assert/strict';import {isHome,revealSteps} from '../js/travel-return.js?v=114911';
+import assert from 'node:assert/strict';import {isHome,revealSteps} from '../js/travel-return.js?v=114924';
 assert.equal(isHome(null,100),false);assert.equal(isHome({end:101},100),false);assert.equal(isHome({end:100},100),true);assert.deepEqual(revealSteps({gift:'お土産',discovery:null},true),[{kind:'gift',name:'お土産',isNew:true}]);assert.equal(revealSteps({gift:'お土産',discovery:16},false)[1].id,16);console.log('travel return OK');

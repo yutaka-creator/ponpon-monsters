@@ -1,0 +1,2 @@
+import assert from 'node:assert/strict';import {stage,move,solved} from '../js/tube-model.js';
+for(let i=1;i<=999;i++){let {board,solution}=stage(i);assert(!solved(board));for(const [a,z] of solution){board=move(board,a,z);assert(board,`stage ${i}`);}assert(solved(board));}assert.equal(move([[0],[1]],0,1),null);assert.equal(move([[0],[0,0,0,0,0]],0,1),null);assert.equal(move([[0],[]],0,0),null);console.log('999 stages solvable; invalid moves rejected');

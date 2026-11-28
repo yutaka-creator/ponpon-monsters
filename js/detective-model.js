@@ -1568,3 +1568,5 @@ export function testimonyEntries(c,seen,challenged){return [...c.suspects.filter
 export function endingPresentation(c,solved){if(!solved||!cases.includes(c))return null;const tone=['snack','pudding','sock','wig','resume','birthday','detective-accused'].includes(c.id)?'comic':['song','nobody','locked-cake','false-clock','three-photos','future-letter'].includes(c.id)?'mystery':'quiet';return {tone,label:{comic:'ちょっと笑える事件のその後',mystery:'謎がほどけたあと',quiet:'それぞれの、その後'}[tone],epilogue:caseEpilogue(c,true),finale:c.id==='town-smiles'};}
 
 export function albumEntries(solved,records={}){return cases.map((c,i)=>{const unlocked=!!solved(c.id);return {id:c.id,number:i+1,genre:caseGenre(i),unlocked,...(unlocked?{title:c.title,intro:c.intro,ending:c.ending,epilogue:caseEpilogue(c,true),reflection:detectiveReflection(c),choice:savedChoice(c,records)}:{})};});}
+
+export function nextUnsolvedCase(solved){return cases.find(x=>!solved(x.id))||null;}

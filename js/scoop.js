@@ -1,0 +1,9 @@
+import {startRound,remaining,scoop} from './scoop-model.js?v=114924';
+const $=id=>document.getElementById(id), key='ponpon.scoop.best.v1';let best=0,round=null,frame=0;
+try{best=Math.max(0,Number(localStorage.getItem(key))||0)}catch{}
+const render=()=>{$('scoop-best').textContent=best;$('scoop-count').textContent=round?.count||0;$('scoop-score').textContent=round?.score||0;};
+function finish(){cancelAnimationFrame(frame);if(!round)return;const r=round;round=null;best=Math.max(best,r.score);try{localStorage.setItem(key,String(best))}catch{}$('scoop-best').textContent=best;$('scoop-time').textContent='0.00';$('scoop-hit').disabled=true;$('scoop-start').disabled=false;$('scoop-start').textContent='もう一度';$('scoop-status').textContent=`終了！ ${r.count}匹・${r.score}点（レア ${r.rare}匹）`;}
+function tick(){if(!round)return;const left=remaining(round,performance.now());$('scoop-time').textContent=(left/1000).toFixed(2);if(!left)finish();else frame=requestAnimationFrame(tick);}
+$('scoop-start').onclick=()=>{if(round)return;round=startRound(performance.now());render();$('scoop-start').disabled=true;$('scoop-hit').disabled=false;$('scoop-status').textContent='連打しよう！';$('scoop-caught').replaceChildren();tick();};
+$('scoop-hit').onclick=()=>{if(!round)return;const hit=scoop(round,performance.now());if(!hit){finish();return;}render();const img=new Image();img.src=`assets/images/${hit.id}-small.webp`;img.alt=hit.rare?'レアポンポン':'ポンポン';img.className=hit.rare?'rare':'';const caught=$('scoop-caught');caught.append(img);while(caught.children.length>12)caught.firstChild.remove();$('scoop-status').textContent=hit.rare?'レア！ +3点':'+1点';};
+document.addEventListener('ponpon:tab',e=>{if(e.detail!=='scoop'&&round){cancelAnimationFrame(frame);round=null;$('scoop-hit').disabled=true;$('scoop-start').disabled=false;$('scoop-status').textContent='中断しました';$('scoop-time').textContent='10.00';render();}});render();

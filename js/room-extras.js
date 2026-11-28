@@ -1,4 +1,4 @@
-import {find,walls,floors} from './furniture.js?v=114911';
+import {find,walls,floors} from './furniture.js?v=114924';
 export const reactions={0:{s0:'お茶より特売情報が気になりますわ。'},1:{f33:'未来ではこれをスマホと呼ぶよ。'},2:{s2:'それって運命じゃない？'},3:{f25:'世界規模で模様替えしよう。'},4:{f11:'昨日のカレーがない。これは事件だ。'},5:{s5:'この机なら恋愛相談もはかどるね。'},6:{s6:'模様替えの効率を可視化します。'},7:{f0:'ここで三度寝しよう。'},8:{f31:'昔はこれで全国大会に出たもんじゃ。'},9:{s9:'今日もかわいい。異常なし！'}};
 export function reaction(id,decor){return decor.map(o=>reactions[id]?.[o.id]).find(Boolean);}
 export const themes={retro:['retro','tatami','shelf'],space:['space','dark','none'],forest:['forest','wood','none'],sweet:['pink','rose','sofa']};

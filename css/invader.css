@@ -4,3 +4,11 @@
 #iv-view{width:min(100%,320px);max-height:none}#invader.iv-playing #iv-view{width:min(100%,360px,48dvh);max-height:60dvh}
 
 .iv-mode{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}.iv-mode button{min-height:44px}.iv-mode button[aria-pressed="true"]{background:#365b48;color:white}
+
+/* Wide movement targets, with a central fire button for two-thumb play. */
+#invader .iv-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(64px,1fr) minmax(0,2fr);width:100%;max-width:520px;gap:8px;}
+#invader .iv-controls button{width:100%;min-width:0;min-height:64px!important;padding:8px 4px;touch-action:none;}
+#invader .iv-setup{align-items:center;}
+#invader #iv-selected{display:flex;align-items:center;text-align:left;gap:12px;width:100%;max-width:420px;padding:8px 12px;border:2px solid #327c80;border-radius:14px;background:#e2f1ef;color:#234b52;box-sizing:border-box;}
+#iv-selected-photo img{width:54px;height:54px;object-fit:contain;display:block;}
+#iv-selected #iv-ability{margin:3px 0 0;font-size:12px;}

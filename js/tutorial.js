@@ -1,4 +1,4 @@
-import {steps,nextIndex} from './tutorial-data.js?v=114911';
+import {steps,nextIndex} from './tutorial-data.js?v=114924';
 const $=id=>document.getElementById(id), key='ponpon-tutorial-seen.v1';
 const dialog=$('tutorial-dialog'),invite=$('tutorial-invite');let index=0;
 try{invite.hidden=localStorage.getItem(key)==='1';}catch{invite.hidden=false;}

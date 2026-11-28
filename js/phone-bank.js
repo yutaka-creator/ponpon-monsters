@@ -1,6 +1,6 @@
-import {read,write,snapshot} from './save-store.js?v=114911';
-import {summarize} from './world-records.js?v=114911';
-import {goalProgress} from './phone-bank-model.js?v=114911';
+import {read,write,snapshot} from './save-store.js?v=114924';
+import {summarize} from './world-records.js?v=114924';
+import {goalProgress} from './phone-bank-model.js?v=114924';
 const $=id=>document.getElementById(id),key='ponpon.phone.bank.goal.v1';
 function get(k,f){try{return JSON.parse(read(k))??f}catch{return f}}
 function row(host,label,value){const n=document.createElement('div');n.className='bank-row';const a=document.createElement('span'),b=document.createElement('strong');a.textContent=label;b.textContent=value;n.append(a,b);host.append(n)}

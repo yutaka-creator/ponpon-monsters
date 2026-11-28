@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {chooseActivity,activities} from '../js/room-activities.js?v=114910';
+const a={id:0,x:50,y:70}, b={id:1,x:60,y:70};
+const s={actors:[a],decor:[]};
+assert.equal(chooseActivity(s,a,8,()=>0).label,'散歩');
+s.decor.push({id:'f3',x:40,y:60});
+assert.equal(chooseActivity(s,a,8,()=>0).label,'朝ごはん');
+assert.equal(chooseActivity(s,a,15,()=>0).label,'おやつ');
+s.actors.push(b);s.decor=[];
+assert.equal(chooseActivity(s,a,15,()=>0).other,b);
+s.decor.push({id:'f0'});assert.equal(chooseActivity(s,a,23,()=>0.3).label,'夜のひと休み');
+assert.equal(activities.length,10);console.log('room activities OK');

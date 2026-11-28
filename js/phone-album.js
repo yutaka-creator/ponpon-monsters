@@ -1,10 +1,10 @@
-import {getCounts,photo} from './collection.js?v=114911';
-import {profiles} from './profiles.js?v=114911';
-import {read,write,snapshot} from './save-store.js?v=114911';
-import {summarize} from './world-records.js?v=114911';
-import {albumEntries} from './detective-model.js?v=114911';
-import {detectiveSolved} from './shop.js?v=114911';
-import {ownedPhotos,filterPhotos} from './phone-album-model.js?v=114911';
+import {getCounts,photo} from './collection.js?v=114924';
+import {profiles} from './profiles.js?v=114924';
+import {read,write,snapshot} from './save-store.js?v=114924';
+import {summarize} from './world-records.js?v=114924';
+import {albumEntries} from './detective-model.js?v=114924';
+import {detectiveSolved} from './shop.js?v=114924';
+import {ownedPhotos,filterPhotos} from './phone-album-model.js?v=114924';
 const $=id=>document.getElementById(id),key='ponpon.phone.album.favorites.v1';let mode='photos';
 function el(tag,text,cls){const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;}
 function favorites(){try{const a=JSON.parse(read(key)||'[]');return Array.isArray(a)?a:[]}catch{return []}}

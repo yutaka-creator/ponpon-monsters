@@ -1,5 +1,5 @@
 // 報酬条件・セリフを編集できます。記録とコインは同じショップ保存に格納。
-import {awardGolf} from './shop.js?v=114911';
+import {awardGolf} from './shop.js?v=114924';
 export const prizes=[['golf0','初クリアトロフィー','初クリア'],['golf1','金のトロフィー','ホールインワン'],['golf2','諦めなかったで賞','10打以上でクリア'],['golf3','パター','5ホールクリア'],['golf4','ゴルフバッグ','15ホールクリア'],['golf5','芝生マット','30ホールクリア']];
 const lines=['あら、特売よりお得ですわ。','未来ではもうクリアしていたよ。','それって運命じゃない？','地球規模のナイスショット！','カレーのおかわりじゃ。','カップと両思いやで。','成果を可視化しました。','ここで寝てもいい？','昔はもっと転がったもんじゃ。','かわいいうえに上手いって罪だね。'];
 export function finishGolf(hole,strokes,id){const r=awardGolf(hole,strokes);return `${strokes===1?'ホールインワン！':strokes+'打でクリア！'} ${r.coins?`＋${r.coins}ポンコイン`:'記録更新に挑戦しよう'}${r.items.length?' ／ 獲得：'+r.items.join('、'):''} ／ ${lines[id]??'やったね！'}`;}

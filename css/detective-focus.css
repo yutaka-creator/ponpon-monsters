@@ -37,3 +37,6 @@ body[data-screen=detective] #feedback-open{display:none!important}
 #detective:has(.dt-case-picker[open]) .dt-brief,#detective:has(.dt-brief[open]) .dt-case-picker{display:none}
 #detective:has(.dt-case-picker[open]) .dt-dialogue,#detective:has(.dt-brief[open]) .dt-dialogue{min-height:60px}
 }
+
+#detective .dt-case-picker{position:fixed;inset:0;margin:auto;width:min(94vw,600px);max-height:85dvh;box-sizing:border-box;overflow:auto;background:#f7fbfc;color:#344e60;border:1px solid #d6e3e9;border-radius:16px;padding:16px;overscroll-behavior:contain}
+#detective .dt-case-picker[open]{max-height:85dvh;display:block!important}#detective .dt-case-picker::backdrop{background:#20364599}#detective .dt-case-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}#detective .dt-episodes{max-height:none;overflow:visible}#detective .dt-episode{min-height:60px}#detective #dt-case-title{flex:none;min-height:44px;white-space:normal}#detective #dt-resume{min-height:44px;background:#327c80;color:white}

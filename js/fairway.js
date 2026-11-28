@@ -1,32 +1,32 @@
-import {surfaceColor} from './fairway-themes.js?v=114911';
-import {gameClock} from "./pause-clock.js?v=114911";
+import {surfaceColor} from './fairway-themes.js?v=114924';
+import {gameClock} from "./pause-clock.js?v=114924";
 const {performance,requestAnimationFrame,cancelAnimationFrame}=gameClock("golf");
-import {cameraBlend} from './render-budget.js?v=114911';
-import {initGolfMuseum} from './fairway-museum.js?v=114911';
-import {renderGolfGoals} from './fairway-goals.js?v=114911';
-import {createCinema} from './fairway-cinema.js?v=114911';
-import {createCupPresentation,reaction} from './fairway-presentation.js?v=114911';
-import {cpuTurn} from './fairway-cpu.js?v=114911';
-import {rivals,createCup,finishHole,standings} from './fairway-cup.js?v=114911';
-import {clubStyles,unlockedStyles,styleShot} from './fairway-style.js?v=114911';
-import {gimmicksFor,colors} from './fairway-gimmicks.js?v=114911';
-import {specialFor,shotAbility} from './fairway-special.js?v=114911';
-import {createShotEffects} from './fairway-effects.js?v=114911';
-import {awardFairway} from './shop.js?v=114911';
-import {achievements} from './fairway-rewards.js?v=114911';
-import {loadRecords,recordHole,recordRound,recordCup} from './fairway-records.js?v=114911';
-import {courses,difficultyNames} from "./fairway-courses.js?v=114911";
-import {showResult,hideResult} from './fairway-results.js?v=114911';
-import {powerFor} from './fairway-powers.js?v=114911';
-import {CLUBS,recommendClub} from './fairway-clubs.js?v=114911';
-import {meterValue,impactResult,aimStep} from './fairway-assist.js?v=114911';
-import {qualityFor} from './fairway-quality.js?v=114911';
-import {addScenery} from './fairway-scenery.js?v=114911';
+import {cameraBlend} from './render-budget.js?v=114924';
+import {initGolfMuseum} from './fairway-museum.js?v=114924';
+import {renderGolfGoals} from './fairway-goals.js?v=114924';
+import {createCinema} from './fairway-cinema.js?v=114924';
+import {createCupPresentation,reaction} from './fairway-presentation.js?v=114924';
+import {cpuTurn} from './fairway-cpu.js?v=114924';
+import {rivals,createCup,finishHole,standings} from './fairway-cup.js?v=114924';
+import {clubStyles,unlockedStyles,styleShot} from './fairway-style.js?v=114924';
+import {gimmicksFor,colors} from './fairway-gimmicks.js?v=114924';
+import {specialFor,shotAbility} from './fairway-special.js?v=114924';
+import {createShotEffects} from './fairway-effects.js?v=114924';
+import {awardFairway} from './shop.js?v=114924';
+import {achievements} from './fairway-rewards.js?v=114924';
+import {loadRecords,recordHole,recordRound,recordCup} from './fairway-records.js?v=114924';
+import {courses,difficultyNames} from "./fairway-courses.js?v=114924";
+import {showResult,hideResult} from './fairway-results.js?v=114924';
+import {powerFor} from './fairway-powers.js?v=114924';
+import {CLUBS,recommendClub} from './fairway-clubs.js?v=114924';
+import {meterValue,impactResult,aimStep} from './fairway-assist.js?v=114924';
+import {qualityFor} from './fairway-quality.js?v=114924';
+import {addScenery} from './fairway-scenery.js?v=114924';
 import * as T from 'three';
-import {profiles} from './profiles.js?v=114911';
-import {prize,monsters} from './monsters.js?v=114911';
-import {getCounts,recordCatch,photo} from './collection.js?v=114911';
-import {CUP,ground,shoot,tick,lie,wind,course,setCourse} from './fairway-physics.js?v=114911';
+import {profiles} from './profiles.js?v=114924';
+import {prize,monsters} from './monsters.js?v=114924';
+import {getCounts,recordCatch,photo} from './collection.js?v=114924';
+import {CUP,ground,shoot,tick,lie,wind,course,setCourse} from './fairway-physics.js?v=114924';
 export function initFairway(){
  initGolfMuseum();
  const $=id=>document.getElementById(id),host=$('fw-view'),scene=new T.Scene();const mobile=matchMedia("(pointer: coarse)").matches;let renderer;try{renderer=new T.WebGLRenderer({antialias:!mobile,powerPreference:'low-power',alpha:false});}catch(e){throw new Error('WebGL 2 の初期化に失敗：'+e.message);}let quality=qualityFor("auto",mobile),lastRender=0,drawDt=1/30;renderer.setPixelRatio(Math.min(devicePixelRatio,quality.ratio));host.replaceChildren(renderer.domElement);scene.background=new T.Color(0x8ccbf5);scene.fog=new T.Fog(0x8ccbf5,65,180);scene.add(new T.HemisphereLight(0xffffff,0x66824b,2));const sun=new T.DirectionalLight(0xfff2ce,2);sun.position.set(-30,50,15);scene.add(sun);const camera=new T.PerspectiveCamera(58,1,.1,250);
@@ -40,7 +40,7 @@ export function initFairway(){
  for(let i=0;i<9;i++)mesh(new T.ConeGeometry(15,20+i%3*6,5),0x829b9c,-70+i*18,7,-135-i%2*8);for(let i=0;i<7;i++)for(let j=0;j<3;j++)mesh(new T.SphereGeometry(3+j*.6,10,7),0xffffff,-55+i*18+j*3,24+i%2*5,-95-i%3*12);
  mesh(new T.CylinderGeometry(1.05,1.05,.04,32),0x243e29,CUP.x,ground(CUP.x,CUP.z)+.025,CUP.z);mesh(new T.CylinderGeometry(.045,.045,3,10),0xffffff,CUP.x,ground(CUP.x,CUP.z)+1.5,CUP.z);
  // Decorative objects stay outside the playable corridor.
- if(course.id>=10){for(let i=0;i<6;i++){const x=(i%2?1:-1)*19,z=-12-i*course.length/7,y=ground(x,z);switch(course.id){case 10:mesh(new T.BoxGeometry(5,5,6),0xb67b58,x,y+2.5,z);mesh(new T.BoxGeometry(5.5,.5,6.5),0x814e3d,x,y+5,z);break;case 11:mesh(new T.CylinderGeometry(2,3,3,20),0xf3cb72,x,y+1.5,z);mesh(new T.CylinderGeometry(2,2,.3,20),0x985324,x,y+3,z);break;case 12:mesh(new T.SphereGeometry(.25,6,6),0xfff3b0,x,y+16+i,z);break;case 13:for(let j=0;j<3;j++)mesh(new T.SphereGeometry(1.3-j*.3,12,8),0xffffff,x,y+1+j*1.5,z);break;case 14:mesh(new T.BoxGeometry(4,.5,4),0xd38eaa,x,y+.25,z);break;case 15:mesh(new T.CylinderGeometry(.65,.8,5,8),0xc1b59a,x,y+2.5,z);break;case 16:mesh(new T.SphereGeometry(2,16,8),0x99cbd0,x,y+5,z).scale.y=.25;break;case 17:mesh(new T.SphereGeometry(3,10,8),0xffffff,x,y-1,z).scale.y=.45;break;case 18:mesh(new T.CylinderGeometry(2,2,6,8),0xe5c38c,x,y+3,z);mesh(new T.ConeGeometry(2.5,3,8),0xa34e42,x,y+7.5,z);break;}}}
+ if(course.id>=10){for(let i=0;i<6;i++){const x=(i%2?1:-1)*19,z=-12-i*course.length/7,y=ground(x,z);if(Math.hypot(x-CUP.x,z-CUP.z)<13)continue;switch(course.id){case 10:mesh(new T.BoxGeometry(5,5,6),0xb67b58,x,y+2.5,z);mesh(new T.BoxGeometry(5.5,.5,6.5),0x814e3d,x,y+5,z);break;case 11:mesh(new T.CylinderGeometry(2,3,3,20),0xf3cb72,x,y+1.5,z);mesh(new T.CylinderGeometry(2,2,.3,20),0x985324,x,y+3,z);break;case 12:mesh(new T.SphereGeometry(.25,6,6),0xfff3b0,x,y+16+i,z);break;case 13:for(let j=0;j<3;j++)mesh(new T.SphereGeometry(1.3-j*.3,12,8),0xffffff,x,y+1+j*1.5,z);break;case 14:mesh(new T.BoxGeometry(4,.5,4),0xd38eaa,x,y+.25,z);break;case 15:mesh(new T.CylinderGeometry(.65,.8,5,8),0xc1b59a,x,y+2.5,z);break;case 16:mesh(new T.SphereGeometry(2,16,8),0x99cbd0,x,y+5,z).scale.y=.25;break;case 17:mesh(new T.SphereGeometry(3,10,8),0xffffff,x,y-1,z).scale.y=.45;break;case 18:mesh(new T.CylinderGeometry(2,2,6,8),0xe5c38c,x,y+3,z);mesh(new T.ConeGeometry(2.5,3,8),0xa34e42,x,y+7.5,z);break;}}}
  courseObjects=scene.children.filter(o=>!before.has(o));}
  buildCourse();
  const cinema=createCinema(host,photo); const fx=createShotEffects(T,scene,host.parentElement,mobile); $('fw-sound').onclick=()=>{const on=fx.toggle();$('fw-sound').textContent=on?'効果音 ON':'効果音 OFF';$('fw-sound').setAttribute('aria-pressed',String(on));cinema.sound=on;if(on)fx.unlock();};
@@ -72,7 +72,7 @@ export function initFairway(){
  function scorecard(){const r=loadRecords();$('fw-card-body').replaceChildren(...courses.map(c=>{const row=document.createElement('tr');for(const v of [c.id+' '+c.name,c.par,r.best[c.id]??'—',r.aces[c.id]||0,round?.[c.id-1]??'—']){const td=document.createElement('td');td.textContent=v;row.append(td);}return row;}));const a=achievements(r);$('fw-prizes').textContent=`報酬：初クリア ${a.first?'✓':'未'} ／ 3ホール ${a.fwgift0?'✓':'未'} ／ 6ホール ${a.fwgift1?'✓':'未'} ／ HIO ${a.fwgift2?'✓':'未'} ／ 35打以下 ${a.fwgift3?'✓':'未'} ／ 全9 ${a.monster?'✓':'未'} ／ 全バーディー ${a.master?'✓':'未'}`;$('fw-card-summary').textContent=`制覇 ${courses.filter(c=>r.best[c.id]>0).length}/36 ｜ 9ホール自己ベスト ${r.roundBest??'—'}打 ｜ 18ホール自己ベスト ${r.roundBest18??'—'}打`+(round?` ｜ 今回 ${round.reduce((a,b)=>a+b,0)}打 (${round.length}/${roundLimit})`:'');}
  const presentation=createCupPresentation(host,photo); let replay=null; const skip=document.createElement("button");skip.textContent="CPU観戦をスキップ";skip.hidden=true;$("fw-view").after(skip);skip.onclick=()=>endReplay();
  function endReplay(){if(!replay)return;scene.remove(replay.model);replay.model.traverse(o=>{if(o.isMesh)o.material.dispose();});model.visible=true;replay=null;presentation.clear();skip.hidden=true;$("fw-result").hidden=false;draw(true);}
- function showCup(){const rows=standings(cup);$('fw-cup-board').textContent=`🏆 獲得数 ${Object.values(loadRecords().cups).reduce((a,b)=>a+b,0)} ｜ ${cup.index}/${cup.holes.length} ホール ｜ `+rows.map(r=>r.name+' '+r.total+'打').join(' ／ ')+(cup.index===cup.holes.length?' ｜ 🏆 優勝：'+rows.filter(r=>r.total===rows[0].total).map(r=>r.name).join('・'):'');}for(let i=0;i<rivals.length;i++)$('fw-rival').add(new Option(rivals[i].name,i));$('fw-cup-start').onclick=()=>{if(moving||phase||round||cup)return;cup=createCup(courses,difficultySelect.value,+$('fw-cup-length').value,$('fw-cup-mode').value,+$('fw-rival').value);$('fw-monster').disabled=true;showCup();$('fw-card').hidden=true;changeCourse(cup.holes[0].id-1);presentation.cue(+$ ("fw-monster").value,"PON PON CUP",cup.rows.slice(1).map(r=>r.name).join(" ／ "));};$('fw-cup-stop').onclick=()=>{if(!cup||moving||phase||replay)return;cup=null;$('fw-monster').disabled=false;$('fw-cup-board').textContent='大会終了';$('fw-cup-result').textContent='';$('fw-result-retry').hidden=false;$('fw-result-close').hidden=false;updateClub();};$('fw-card-open').onclick=()=>{scorecard();$('fw-card').hidden=false;};$('fw-card-close').onclick=()=>{$('fw-card').hidden=true;};
+ function showCup(){const rows=standings(cup);$('fw-cup-board').textContent=`🏆 獲得数 ${Object.values(loadRecords().cups).reduce((a,b)=>a+b,0)} ｜ ${cup.index}/${cup.holes.length} ホール ｜ `+rows.map(r=>r.name+' '+r.total+'打').join(' ／ ')+(cup.index===cup.holes.length?' ｜ 🏆 優勝：'+rows.filter(r=>r.total===rows[0].total).map(r=>r.name).join('・'):'');}for(let i=0;i<rivals.length;i++)$('fw-rival').add(new Option(rivals[i].name,i));$('fw-cup-start').onclick=()=>{if(moving||phase||round||cup)return;cup=createCup(courses,difficultySelect.value,+$('fw-cup-length').value,$('fw-cup-mode').value,+$('fw-rival').value);$('fw-monster').disabled=true;showCup();$('fw-card').hidden=true;changeCourse(cup.holes[0].id-1);presentation.cue(+$ ("fw-monster").value,"PON PON CUP",cup.rows.slice(1).map(r=>r.name).join(" ／ "));};$('fw-cup-stop').onclick=()=>{if(!cup||moving||phase||replay)return;cup=null;$('fw-monster').disabled=false;$('fw-cup-board').textContent='大会終了';$('fw-cup-result').textContent='';$('fw-result-retry').hidden=false;$('fw-result-close').hidden=false;updateClub();};$('fw-card-open').onclick=()=>{const card=$('fw-card');if(!card.hidden){card.hidden=true;return;}scorecard();card.hidden=false;};$('fw-card-close').onclick=()=>{$('fw-card').hidden=true;};
  function startRound(limit){if(moving||phase||cup)return;if(round&&!confirm('現在のラウンドをやり直しますか？'))return;roundLimit=limit;round=[];$('fw-card').hidden=true;changeCourse(0);};$('fw-round-start').onclick=()=>startRound(9);$('fw-round18-start').onclick=()=>startRound(18);
  $('fw-round-stop').onclick=()=>{if(moving||phase)return;round=null;updateClub();$('fw-result-retry').hidden=false;$('fw-result-close').hidden=false;$('fw-result-next').textContent='次のホール';scorecard();};
  $('fw-result-next').onclick=()=>{if(replay)return;if(cup){if(cup.index===cup.holes.length){showCup();cup=null;$('fw-monster').disabled=false;updateClub();hideResult();$('fw-card').hidden=false;return;}changeCourse(cup.holes[cup.index].id-1);return;}if(round&&round.length===roundLimit){scorecard();round=null;updateClub();hideResult();$('fw-card').hidden=false;return;}const group=courses.filter(c=>c.difficulty===course.difficulty);changeCourse(round?course.id%courses.length:group[(group.findIndex(c=>c.id===course.id)+1)%group.length].id-1);};

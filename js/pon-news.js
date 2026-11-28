@@ -1,5 +1,5 @@
-import {articles,publish,markRead} from './pon-news-model.js?v=114911';
-import {dayKey} from './pon-talk-model.js?v=114911';
+import {articles,publish,markRead} from './pon-news-model.js?v=114924';
+import {dayKey} from './pon-talk-model.js?v=114924';
 const key='ponpon.news.v1',list=document.getElementById('news-list'),badge=document.getElementById('news-badge'),select=document.getElementById('news-date'),detail=document.getElementById('news-detail');let state={},day='',active=null;try{state=JSON.parse(localStorage.getItem(key))||{}}catch{}
 function el(tag,text,cls){const e=document.createElement(tag);e.textContent=text;if(cls)e.className=cls;return e;}
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch{document.getElementById('news-status').textContent='この端末では既読状態を保存できません。'}}

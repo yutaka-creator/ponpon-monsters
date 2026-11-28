@@ -1,6 +1,6 @@
-import {cases} from './detective-model.js?v=114911';
-import {detectiveSolved} from './shop.js?v=114911';
-import {caseNotices,unreadNotices} from './phone-detective-model.js?v=114911';
+import {cases} from './detective-model.js?v=114924';
+import {detectiveSolved} from './shop.js?v=114924';
+import {caseNotices,unreadNotices} from './phone-detective-model.js?v=114924';
 const $=id=>document.getElementById(id),key='ponpon.phone.detective.read.v1';let read=[];try{const a=JSON.parse(localStorage.getItem(key));if(Array.isArray(a))read=a}catch{}
 const labels={talk:'💬 依頼人からのお礼',news:'📰 事件解決ニュース',album:'🖼️ 思い出カード'};
 function mark(ids){read=[...new Set([...read,...ids])];try{localStorage.setItem(key,JSON.stringify(read))}catch{} }

@@ -1,4 +1,4 @@
-import {flushPending,pendingCount} from './save-store.js?v=114911';
+import {flushPending,pendingCount} from './save-store.js?v=114924';
 const games=new Set(['game','golf','race','tower','invader','adventure','climb','pinball','escape']);
 const status=document.createElement('p');status.setAttribute('role','alert');status.hidden=true;status.style.cssText='position:fixed;bottom:80px;left:8px;right:8px;z-index:9999;background:#fff3d6;color:#403b32;padding:10px;border-radius:8px';document.body.append(status);
 function update(){const ok=flushPending();status.hidden=ok;status.textContent=ok?'':'端末に保存できません。空き容量を確認してください。ページを閉じないでください。';return ok;}

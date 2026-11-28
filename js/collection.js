@@ -1,9 +1,9 @@
-import {catchCard} from './crane-celebration.js?v=114911';
-import {characterSettings} from './character-settings.js?v=114911';
-import {earn} from './shop.js?v=114911';
-import {read,write} from './save-store.js?v=114911';
-import {secrets} from './secrets.js?v=114911';
-import {profiles,displayOrder,displayNumber} from './profiles.js?v=114911';
+import {catchCard} from './crane-celebration.js?v=114924';
+import {characterSettings} from './character-settings.js?v=114924';
+import {earn} from './shop.js?v=114924';
+import {read,write} from './save-store.js?v=114924';
+import {secrets} from './secrets.js?v=114924';
+import {profiles,displayOrder,displayNumber} from './profiles.js?v=114924';
 const FAV='ponpon-catcher.dex-favorites.v1';
 function favorites(){try{const a=JSON.parse(read(FAV)||'[]');return new Set(Array.isArray(a)?a.filter(i=>Number.isInteger(i)&&i>=0&&i<profiles.length):[]);}catch{return new Set();}}
 function toggleFavorite(i){const f=favorites();f.has(i)?f.delete(i):f.add(i);try{write(FAV,JSON.stringify([...f]));}catch{}renderCollection();return f.has(i);}

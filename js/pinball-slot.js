@@ -1,5 +1,5 @@
-export const symbols=['7','🌏','🍒','🍛','🔔','🌈'];
-export function slotResult(a){if(a.every(x=>x===a[0]))return {points:({'7':10000,'🌏':5000,'🍒':1000,'🍛':3000,'🔔':2000,'🌈':0})[a[0]],fever:a[0]==='7'?30:0,multi:a[0]==='🌈'};return {points:new Set(a).size===2?300:100,fever:0,multi:false};}
+export const symbols=['3','0','5','4','8','2'];
+export function slotResult(a){if(a.every(x=>x===a[0]))return {points:({'3':10000,'0':5000,'5':1000,'4':3000,'8':2000,'2':0})[a[0]],fever:a[0]==='3'?30:0,multi:a[0]==='2'};return {points:new Set(a).size===2?300:100,fever:0,multi:false};}
 export function createSlot(){return {hits:0,left:0,reels:['–','–','–'],result:null,locked:0,show:0,jackpots:0,jackpotTime:0};}
 export function slotHit(slot){if(slot.left>0)return; if(++slot.hits>=5){slot.hits=0;slot.left=1.5;slot.result=null;slot.locked=0;slot.show=0;}}
 export function tickSlot(slot,s,dt,random=Math.random){slot.show=Math.max(0,slot.show-dt);slot.jackpotTime=Math.max(0,slot.jackpotTime-dt);if(!slot.left)return false;slot.left=Math.max(0,slot.left-dt);for(let i=slot.locked;i<3;i++)slot.reels[i]=symbols[Math.floor(random()*symbols.length)];slot.locked=slot.left<=0?3:slot.left<=.45?2:slot.left<=.95?1:0;if(slot.left)return false;const r=slotResult(slot.reels);slot.result=r;slot.show=r.fever?4:1.5;if(r.fever){slot.jackpots++;slot.jackpotTime=r.fever;}s.score+=r.points;s.fever=Math.max(s.fever,r.fever);if((r.multi||r.fever)&&!s.ready&&!s.over)while(s.extra.length<2)s.extra.push({x:150,y:285,vx:s.extra.length?150:-150,vy:-350});return true;}

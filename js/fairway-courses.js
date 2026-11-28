@@ -1,4 +1,4 @@
-import {themeFor} from './fairway-themes.js?v=114911';
+import {themeFor} from './fairway-themes.js?v=114924';
 export const courses=[
  ['はじまりの草原',4,82,0,13,1,1.8,-.8,0x527e39],['こもれびの森',3,55,4,10,.8,.5,-.4,0x365f39],['かずじぃの坂道',4,91,-5,12,2,1,-1,0x668342],['カレー砂漠',4,88,6,11,.5,3,-1,0xb69a58],['恋する湖',3,62,-4,12,.6,1.5,.5,0x527e39],['虹の丘',5,120,7,13,2.4,2,-2,0x659b65],['のんびり海岸',4,95,-6,12,.5,4,1,0x9eae75],['未来の庭園',3,66,5,10,1,-2,1,0x497d79],['ポンポン大渓谷',5,130,-7,11,3,3,-2,0x826b49],
  ['昭和の商店街',4,86,3,11,.5,1,-1,0x998b70],['巨大プリンの丘',4,96,-4,12,2,1,1,0xd8b26a],['星空のゴルフ場',3,65,4,10,.8,-1,1,0x454d78],['雪だるま高原',4,105,-5,12,1.4,2,-1,0xdbe9ed],['こぺの美容庭園',3,72,5,10,.6,1,0,0xa37e9e],['忘れられた遺跡',4,110,-6,11,2,2,1,0x9a8965],['UFO着陸地点',4,118,3,13,.7,-2,1,0x6d8b83],['天空のフェアウェイ',5,140,-5,10,2,4,-2,0x9bb8c8],['ポンポン王国',5,145,6,12,2.5,3,-2,0x779b58]
@@ -17,3 +17,7 @@ for(const c of courses){c.difficulty=easy.includes(c.id)?'easy':normal.includes(
 export const difficultyNames={easy:'EASY',normal:'NORMAL',hard:'HARD'};
 
 for(const c of courses){const t=themeFor(c.id);if(t){c.ice=t.roll<1;if(t.gravity)c.gravity=t.gravity;c.hint=t.label+"："+t.hint+" ／ "+c.hint;}}
+
+// Keep the putting green clear of physical obstacles.
+export const clearOfCup=(c,x,z,r=0)=>Math.hypot(x-c.x,z+c.length)>=9+r;
+for(const c of courses)c.obstacles=c.obstacles.filter(o=>clearOfCup(c,o.x,o.z,o.r));

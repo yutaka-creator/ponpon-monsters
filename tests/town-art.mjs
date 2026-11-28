@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import {exterior,interiors,decorateBuilding,decorateInterior} from '../js/town-art.js?v=114911';
-import {buildings} from '../js/town-data.js?v=114911';
-import {facilities} from '../js/town-facilities.js?v=114911';
+import {exterior,interiors,decorateBuilding,decorateInterior} from '../js/town-art.js?v=114924';
+import {buildings} from '../js/town-data.js?v=114924';
+import {facilities} from '../js/town-facilities.js?v=114924';
 const element=()=>({dataset:{},style:{setProperty(){}},children:[],replaceChildren(){this.children=[]},append(x){this.children.push(x)}});globalThis.document={createElement:element};
 for(const b of buildings){const e=element();decorateBuilding(e,b);assert.equal(e.dataset.building,b.go);assert(e.children[0].textContent.includes(b.name));}for(const f of facilities){const e=element();decorateInterior(e,f);assert.equal(e.dataset.facility,f.id);assert.equal(e.children.length,6);}assert.equal(new Set(Object.values(exterior).map(a=>a[0])).size,6);assert.equal(new Set(Object.values(interiors).map(a=>a[0])).size,6);
