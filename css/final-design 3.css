@@ -1,0 +1,27 @@
+/* Release visual layer: deliberately scoped away from canvas and game physics. */
+body{background:#f3eddf;color:#403b32}
+main>header{background:#365b48;color:#fffaf0;border:1px solid #294637;box-shadow:0 4px 0 #294637}
+main>header small{color:#f0d9a6;letter-spacing:.12em}
+main>header h1{color:inherit;line-height:1.25}
+main>header p{color:#fffaf0}
+#welcome{background:#fffaf0;border:1px solid #d9cbb4}
+#quick-play{padding:14px;background:#e8eee1;border:1px solid #c7d4bf;border-radius:16px}
+#quick-play h2{font-size:20px;margin:0;color:#365b48}
+.quick-intro{font-size:13px;color:#4c6352;margin:2px 0 12px}
+.quick-grid{gap:8px}
+.quick-grid button{min-height:76px;padding:8px 3px;border-color:#c7d4bf;box-shadow:0 2px 0 #c7d4bf}
+.quick-grid strong{font-size:12px;line-height:1.35}
+.quick-grid span{font-size:26px}
+.world-directory article{border-radius:16px}
+.world-directory h3{font-size:13px;letter-spacing:.04em}
+.world-directory button span{font-size:12px;line-height:1.45}
+.game-entry-bar button{border:1px solid #294637;border-radius:10px;box-shadow:0 2px 0 #294637}
+.game-entry-bar summary{color:#365b48;font-weight:700}
+#tutorial-dialog{border:2px solid #78977b;box-shadow:0 12px 36px #263b3233}
+#tutorial-next,#tutorial-play{background:#365b48;color:#fffaf0;box-shadow:0 2px 0 #294637}
+#bottom-nav{background:#fffaf0;border-top:1px solid #d9cbb4}
+#bottom-nav button[aria-current=page]{background:#dce8d7;color:#294637}
+button:focus-visible,summary:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #a34e42;outline-offset:2px}
+@media(max-width:600px){#quick-play{padding:10px}.quick-grid{gap:6px}.quick-grid button{min-height:70px}.world-directory h3{font-size:12px}.world-directory button span{font-size:12px}}
+@media(max-width:350px){.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.world-directory{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.quick-grid button,.world-directory button,#bottom-nav button{transition:none;animation:none}}

@@ -1,0 +1,23 @@
+/* Visual-only release layer. No changes to playfield dimensions or touch input. */
+:root{--pon-forest:#365b48;--pon-paper:#fffaf0;--pon-ink:#403b32;--pon-brass:#e8bd73;--pon-border:#d9cbb4;--pon-moss:#e8eee1}
+body{background-color:#f3eddf;background-image:radial-gradient(#b8a58b22 .7px,transparent .7px);background-size:12px 12px}
+.welcome-hero{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--pon-border);border-radius:20px;background:linear-gradient(155deg,#fffaf0,#eadfc7);padding:20px 10px 0;margin:12px 0 18px;text-align:center}
+#welcome .welcome-hero h2{color:var(--pon-forest);font-size:clamp(25px,5vw,42px);line-height:1.25;margin:8px 0}
+#welcome .welcome-hero .world-kicker{color:#65533b;font-weight:700;letter-spacing:.08em;font-size:12px}
+#welcome .welcome-hero .world-heroes{margin:0 auto;background:none;max-width:580px}
+#welcome .welcome-hero .release-message{font-size:13px;color:var(--pon-ink);margin:8px 0}
+#quick-play{background:var(--pon-moss);border-radius:18px}
+.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.quick-grid button{background:#fffdf7;color:var(--pon-forest);border:1px solid #b9c8b4;border-radius:14px;min-height:90px;box-shadow:0 3px 0 #c7d4bf;padding:8px 4px;gap:4px}
+.quick-grid button small{font-size:11px;color:#615747;font-weight:400;line-height:1.3;overflow-wrap:anywhere}
+.quick-grid button strong{font-size:13px}.quick-grid button span{font-size:28px}
+.world-directory article{border-radius:18px}.world-directory button{border-radius:10px}
+#gallery .monster-card,#shop-grid article{border-radius:14px;border-color:var(--pon-border);background:#fffdf7}
+#gallery .monster-card:not(:disabled) img{filter:drop-shadow(0 3px 3px #403b3220)}
+#myroom .room-tabs button{border:1px solid var(--pon-border);border-radius:9px}#myroom .room-tabs button[aria-pressed=true]{background:var(--pon-forest);color:white}
+#room-scene{outline:1px solid var(--pon-border);outline-offset:-1px}
+:is(.race-controls,.adv-controls,.iv-controls,.cl-controls,.escape-controls,.town-controls,.pad) button{border-radius:10px;border:1px solid #b9aa91}
+:is(.race-controls,.adv-controls,.iv-controls,.cl-controls,.escape-controls,.town-controls,.pad) button:active{filter:brightness(.9);transform:none}
+@media(hover:hover){.quick-grid button:hover{background:#f2f5eb;border-color:var(--pon-forest)}}
+@media(prefers-reduced-motion:no-preference){#welcome .quick-grid button,#welcome .world-directory button{transition:background-color .15s,border-color .15s}}
+@media(max-width:600px){.welcome-hero{padding-top:14px;margin:8px 0 12px}.quick-grid{gap:6px}.quick-grid button{min-height:82px}.quick-grid button strong{font-size:12px}.quick-grid button small{font-size:10px}}

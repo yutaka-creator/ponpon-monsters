@@ -1,0 +1,28 @@
+/* Touch-first overrides, loaded last. Keep document zoom available. */
+@media (pointer:coarse) {
+ button, [role=button], select, summary {touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!important;max-width:100%;min-width:0}
+ .pad,.pad button,#catch,.race-controls,.race-controls button,.adv-controls,.adv-controls button,.iv-controls,.iv-controls button,.town-controls,.town-controls button,#tower-canvas,#adv-view,#iv-view,#race-view,#fw-view canvas,#room-move button,.room-actor,.decor-item{touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+ main{min-width:0;padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right));padding-top:max(8px,env(safe-area-inset-top))}
+ main>section{min-width:0;max-width:100%;overflow-wrap:anywhere}
+ img,video,canvas{max-width:100%}
+ button{min-height:44px;white-space:normal;overflow-wrap:anywhere}
+ #myroom .decor-item,#myroom .room-actor{min-height:0}
+ #bottom-nav{padding-left:max(4px,env(safe-area-inset-left));padding-right:max(4px,env(safe-area-inset-right))}
+ body.fairway-playing #fw-panel,body[data-screen=myroom] #myroom:not([hidden]){padding-top:max(6px,env(safe-area-inset-top))}
+ #fw-panel .g3-row{flex-wrap:wrap}#fw-panel .g3-row label{min-width:100px}#fw-panel .g3-row button{min-width:44px}#fw-panel .fw-scene{flex:0 0 auto;height:clamp(160px,36dvh,340px)}
+ #fw-shot,#golf-shot,#g3-shot,#town-action{min-height:52px}#town-action{width:100%}
+ #fw-card,#fw-museum,#fw-goals{max-width:100%;overflow-wrap:anywhere}
+ .race-controls,.adv-controls{gap:6px}.race-controls button,.adv-controls button,.iv-controls button{min-height:58px}
+ #town-map{width:100%;max-height:45dvh;aspect-ratio:15/11}.town-controls{grid-template-columns:repeat(3,minmax(44px,80px))}.town-controls button{min-height:54px}
+ #travel-map,#travel-pickers,#gallery,#shop-grid,#vote-grid,#museum-grid{min-width:0}#travel-map button,#travel-pickers button{min-height:48px}
+ #theater button,#collection button,#museum button,#records button,#guide button{min-height:44px}
+ #iv-view,#adv-view,#tower-canvas{object-fit:contain}
+}
+@media (pointer:coarse) and (orientation:landscape) and (max-height:550px){
+ #race-view,#race.race-playing #race-view,#g3-view{height:clamp(140px,52dvh,280px)}
+ #adv-view{max-height:52dvh}#iv-view,#invader.iv-playing #iv-view{width:min(100%,calc(58dvh * .8));max-height:58dvh}
+ #tower-canvas,#tower.tower-playing #tower-canvas{width:min(100%,calc(60dvh * 320 / 520))}
+ #town-map{max-width:calc(52dvh * 15 / 11);max-height:52dvh}
+ body[data-screen=myroom] #myroom:not([hidden]){overflow-y:auto}#myroom .room-panels{min-height:100px}
+}
