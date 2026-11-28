@@ -1,0 +1,3 @@
+const base={speed:1,hp:3,gravity:1,bonus:1,magnet:25,extraJump:false,dash:false,blast:false,guard:false};
+const specs=[['お買い得ボーナス','コイン獲得数2倍',{bonus:2}],['虹の二段ジャンプ','空中でジャンプをもう1回',{extraJump:true}],['カレー爆発','X・発射ボタンで周囲90pxの敵を倒す（3秒間隔）',{blast:true}],['恋のバリア','敵からのダメージを1回防ぐ',{guard:true}],['未来ダッシュ','空中でX・発射ボタンを押すと前方へダッシュ（着地で回復）',{dash:true}],['効率的な回収','コイン回収範囲65px',{magnet:65}],['のんびり落下','落下中の重力40%減少',{gravity:.6}],['かずじぃの根性','ライフ4',{hp:4}],['こぺの俊足','移動速度25%増加',{speed:1.25}]];
+export function abilityFor(id=3){const v=id===3?['地球のバランス','標準性能',{}]:specs[[0,4,1,-1,2,3,5,6,7,8][id]]||['地球のバランス','標準性能',{}];return {...base,...v[2],name:v[0],description:v[1]};}

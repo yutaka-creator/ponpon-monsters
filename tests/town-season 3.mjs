@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';import {townSeason,dialogue} from '../js/town-life.js?v=1112';import {residents} from '../js/town-data.js?v=1112';assert.deepEqual([1,4,7,10].map(m=>townSeason(m).key),['winter','spring','summer','autumn']);for(const r of residents)assert.equal(new Set(Array.from({length:6},(_,i)=>dialogue(r,i))).size,6);

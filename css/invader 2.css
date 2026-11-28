@@ -1,0 +1,4 @@
+#invader{text-align:center}#iv-view{display:block;width:min(100%,320px,41.6dvh);height:auto;max-height:52dvh;object-fit:contain;margin:auto;background:#141a35;border-radius:10px;touch-action:none} .iv-controls,.iv-setup{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.iv-controls{margin:8px auto;max-width:420px;flex-wrap:nowrap}.iv-controls button{flex:1;min-height:48px;touch-action:none;user-select:none}.iv-controls button:active{background:#d5a43e}#iv-hud{font-size:12px;font-weight:bold;margin:8px 0}#iv-status{font-size:13px}
+#invader.iv-playing .iv-setup,#invader.iv-playing #iv-ability{display:none}#invader.iv-playing #iv-view{width:min(100%,360px,48dvh);max-height:60dvh}.iv-controls button{min-height:56px;-webkit-user-select:none}#iv-sound{min-height:44px}#iv-power{margin:4px 0}
+
+#iv-view{width:min(100%,320px);max-height:none}#invader.iv-playing #iv-view{width:min(100%,360px,48dvh);max-height:60dvh}

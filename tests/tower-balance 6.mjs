@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';import {balance} from '../js/tower-balance.js?v=1112';import {create,step} from '../js/tower-physics.js?v=1112';assert.equal(balance(0).assist,0);assert(balance(5000).gravity>balance(0).gravity);let s=create();s.x=160;s.y=65;s.vy=-100;s.vx=0;step(s,.08);assert.equal(s.hits,1);assert(s.vy>400);console.log('tower balance OK');
