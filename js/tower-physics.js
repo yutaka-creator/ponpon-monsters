@@ -1,6 +1,6 @@
-import {balance} from './tower-balance.js?v=11401';
-import {powerFor} from './tower-powers.js?v=11401';
-import {TYPES,blockType,difficulty,hit} from './tower-blocks.js?v=11401';
+import {balance} from './tower-balance.js?v=11440';
+import {powerFor} from './tower-powers.js?v=11440';
+import {TYPES,blockType,difficulty,hit} from './tower-blocks.js?v=11440';
 export const W=320,H=520,R=13;
 export function create(id="demo"){return {power:powerFor(id),usedPower:false,hits:0,x:160,y:75,vx:65,vy:340,paddle:160,paddleY:45,targetX:160,targetY:45,camera:0,best:0,blocks:[],row:0,over:false,broken:0,stars:0,shield:false,notice:""};}
 export function fill(s){while(s.row*75+210<s.camera+H+150){let y=s.row*75+210;for(let i=0;i<5;i++)if((i+s.row*2)%5!==2&&(i+s.row)%7!==0){const type=blockType(s.row,i);s.blocks.push({x:12+i*60,y,w:54,h:22,type,hp:TYPES[type].hp});};s.row++;}}

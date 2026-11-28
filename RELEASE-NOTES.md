@@ -1,3 +1,29 @@
+## Ver.1.1.44.0 — ポンポン探偵 Season 1 完成版
+- ホームの紹介と探偵事務所の完成版表記を更新。全30事件、保存形式、報酬は維持。
+- 公開前に実機操作と外部サービスの確認が必要。
+
+## Ver.1.1.43.7 — Season 1 RC
+- バージョン更新、古いテスト期待値4件を修正。124テストファイル合格。
+- 実機・総合プレイ確認は正式公開前に実施。
+
+## Ver.1.1.43.6
+- 全30事件の導入文、主要3キャラクターの会話表現、解決済み記念カード一覧とPNG保存。
+
+# Ver.1.1.43.2
+- 第2〜8話の汎用証拠14件を個別化。全30話に依頼人表示。
+- オプトインのオリジナルBGMと事件解決記念カード。
+- 保存ID・報酬・判定は維持。
+
+# Ver.1.1.42.9
+- ポンポン探偵 第21〜25話追加。新事件は再聞き込み2件と証拠2点が必要。
+- 既存の事件ID・報酬・保存形式を維持。
+
+## Ver.1.1.42.5
+- ポンポン探偵 第15〜20話追加。全20事件、初回報酬合計1000。進捗メーターを事件数に連動。
+
+## Ver.1.1.42.4
+- 探偵手帳の後日談を端末に保存、難易度・解決率・ヒント・会話フェード追加。
+
 # Ver.1.1.12
 Adventure: eight world-specific modifiers, visible hazards, second-phase triple projectiles, phase indicator. Existing 50 stages and rewards retained. Unique boss models and full-clear reward not added. Browser/device testing pending.
 
@@ -97,3 +123,44 @@ Brand lockup, new earth-inspired icon SVG and four PNG sizes, favicon, Apple tou
 ## 1.1.40.1
 - Pinball center mascot and 50 event lines for ten playable heroes.
 - Automatic race acceleration, removed accelerator button, retained brake.
+
+## 1.1.40.2
+バンパー5回でスロット始動。6絵柄、スコア・フィーバー・マルチボール報酬。
+
+## 1.1.40.3
+Sequential reel stops, reach message, jackpot border/confetti and chord, cumulative jackpot count in existing local save.
+
+## 1.1.41.0
+- Player-only distance-based comeback speed assistance, stronger on final lap; HUD indicator. Existing items and rewards retained. Race and version tests: 14 passed. Browser/device testing pending.
+
+## Ver.1.1.41.1
+- レーシングアイテム5種追加。順位別抽選、既存バリア・無敵判定を維持。お楽しみボックスなし。実機未確認。
+
+## Ver.1.1.41.2
+- アイテム獲得時の絵柄切替、専用アイコン・効果音、順位アップ応援、順位別ゴール演出。ゲーム効果とDBは変更なし。
+- ブラウザ・実機未確認。
+
+## Ver.1.1.42.0
+ポンポン探偵：第1話、聞き込み・現場調査・証拠手帳・推理・初回報酬50コイン。途中の調査は画面内のみ保持。
+
+## Ver.1.1.42.1
+- 探偵7事件追加、解決後の選択と後日談。各初回50コイン。
+- ブラウザ実機未確認。
+
+## Ver.1.1.42.2
+- 全8事件の再聞き込み、追加証言、写真、解決済み手帳、7事件の個別後日談。
+- ブラウザ実機未確認。
+
+## Ver.1.1.42.3
+- ポンポン探偵 第9〜14話追加。各3証言・3証拠・再聞き込み・2後日談。初回50ポンコイン。
+
+## Ver.1.1.42.9
+- ポンポン探偵 長編5事件追加。第27〜30話は前話解決で解放。
+- 全30事件、初回報酬合計1500ポンコイン。
+
+## Ver.1.1.42.9
+- 証拠の組み合わせ6事件、写真の時系列整理、調査再開マークを追加。任意の補助問題。
+
+## Ver.1.1.43.1
+- 全30事件の模式図タップ調査、依頼書、探偵事務所風ヘッダー、段階式推理ショー、任意の効果音。
+- BGM、個別背景イラスト、証拠組み合わせ拡充は未実装。既存保存キー維持。

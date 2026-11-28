@@ -1,3 +1,3 @@
-import assert from 'node:assert/strict';import {create,launch,step,flippers} from '../js/pinball-physics.js?v=11401';
+import assert from 'node:assert/strict';import {create,launch,step,flippers} from '../js/pinball-physics.js?v=11440';
 for(let table=0;table<10;table++)for(let hero=0;hero<10;hero++){const s=create(table,hero);launch(s);let frames=0;while(!s.ready&&!s.over&&frames++<240*30){step(s,{left:frames%120<60,right:frames%180<90},1/240);assert(Number.isFinite(s.x)&&Number.isFinite(s.y)&&Number.isFinite(s.score));assert(s.extra.length<=2);assert(s.balls>=0);}assert(frames>0);}
 const a=flippers({left:true,right:true});assert(a.every(f=>f[4]));console.log('100 combinations finite-state simulation passed');

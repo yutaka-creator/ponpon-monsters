@@ -1,0 +1,2 @@
+export const rewards=[['pb0','ミニピンボール台','初プレイ'],['pb1','レトロピンボール台','10,000点'],['pb2','黄金のフリッパー','50,000点'],['pb3','虹色のトロフィー','100,000点'],['pb4','ピンボール専用壁紙','全10台で10,000点']];
+export function eligible(records={},played=false){const scores=Array.from({length:10},(_,i)=>Number.isSafeInteger(records[i])&&records[i]>0?records[i]:0),max=Math.max(...scores);return [played||max>0,max>=10000,max>=50000,max>=100000,scores.every(n=>n>=10000),scores.every(n=>n>=50000)];}

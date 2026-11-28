@@ -1,4 +1,4 @@
-import {secrets} from './secrets.js?v=11401';
+import {secrets} from './secrets.js?v=11440';
 import * as T from 'three';
 export const monsters=[
  ['Mrs.プリングルスアップル',0x66df16],['未来のパペットスソスソ',0x7779ee],['ユニコーン',0xb994e4],['地球',0x008cae],['味カレー',0xd98b08],['バレンタイン',0x783714],['resource（りそーす）',0x24b6d5],['うーぱーるーぱー',0x1528d4],['かずじぃ',0xff6508],['こぺ',0x079b42]

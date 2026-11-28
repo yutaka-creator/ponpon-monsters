@@ -1,4 +1,4 @@
-import {exhibits,halls} from './museum-data.js?v=11401';
+import {exhibits,halls} from './museum-data.js?v=11440';
 export function hallExhibits(hall){return exhibits.filter(e=>hall==='all'||e.hall===Number(hall));}
 export function moveExhibit(index,delta,length){return Math.max(0,Math.min(Math.max(0,length-1),index+delta));}
 export function exhibitDetail(e,found){return found.has(e.name)?`${e.name}：${e.description}`:`未発見の展示品：${e.place}で見つかるかも。`;}

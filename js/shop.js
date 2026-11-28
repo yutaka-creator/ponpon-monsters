@@ -1,10 +1,11 @@
-import {rewardIds as adventureIds} from './adventure-records.js?v=11401';
-import {rewardIds} from './invader-rewards.js?v=11401';
-import {achievements,rewardRules} from './fairway-rewards.js?v=11401';
-import {exhibits} from './museum-data.js?v=11401';
-import {rarity} from './room-extras.js?v=11401';
-import {read,write} from './save-store.js?v=11401';import {items,find,furnitureImage} from './furniture.js?v=11401';import {bond} from './bond.js?v=11401';
-const key='ponpon-catcher.shop.v1';let data={coins:500,owned:[]};try{const s=JSON.parse(read(key));if(s&&Number.isSafeInteger(s.coins)&&s.coins>=0&&Array.isArray(s.owned))data={coins:s.coins,owned:s.owned.filter(id=>find(id)),fairwayClaims:Array.isArray(s.fairwayClaims)?s.fairwayClaims:[],golf:s.golf&&typeof s.golf==='object'?s.golf:{}};}catch{}
+import {claimReward} from './detective-model.js?v=11440';
+import {rewardIds as adventureIds} from './adventure-records.js?v=11440';
+import {rewardIds} from './invader-rewards.js?v=11440';
+import {achievements,rewardRules} from './fairway-rewards.js?v=11440';
+import {exhibits} from './museum-data.js?v=11440';
+import {rarity} from './room-extras.js?v=11440';
+import {read,write} from './save-store.js?v=11440';import {items,find,furnitureImage} from './furniture.js?v=11440';import {bond} from './bond.js?v=11440';
+const key='ponpon-catcher.shop.v1';let data={coins:500,owned:[]};try{const s=JSON.parse(read(key));if(s&&Number.isSafeInteger(s.coins)&&s.coins>=0&&Array.isArray(s.owned))data={coins:s.coins,detectiveClaims:Array.isArray(s.detectiveClaims)?s.detectiveClaims:[],owned:s.owned.filter(id=>find(id)),fairwayClaims:Array.isArray(s.fairwayClaims)?s.fairwayClaims:[],golf:s.golf&&typeof s.golf==='object'?s.golf:{}};}catch{}
 const $=id=>document.getElementById(id);let place,preview;export function earn(n){data.coins=Math.min(999999,data.coins+n);save();}function save(){try{write(key,JSON.stringify(data));}catch{ $('shop-status').textContent='保存できませんでした。';}render();}function gifts(){try{const d=JSON.parse(read('ponpon-catcher.travel.v1'));return new Set([...(d?.gifts||[]),...(d?.album||[]).map(a=>a.gift)]);}catch{return new Set();}}
 export function owned(item){if(item.gift)return gifts().has(item.gift);if(item.museum)return exhibits.filter(e=>gifts().has(e.name)).length>=item.museum;return item.bond!==undefined?bond(item.bond).level===5:data.owned.includes(item.id);}
 export function render(){if(!$('shop-grid'))return;$('shop-coins').textContent=data.coins+' ポンコイン';$('shop-count').textContent=items.filter(owned).length+' / '+items.length+' 種類';const grid=$('shop-grid');grid.replaceChildren();for(const item of items){if($('shop-filter').value!=='all'&&$('shop-filter').value!==item.group)continue;if($('shop-owned').checked&&!owned(item))continue;const card=document.createElement('article');const icon=document.createElement('div');icon.className='shop-icon';icon.append(furnitureImage(item));const name=document.createElement('strong');name.textContent=item.name;const b=document.createElement('button');b.textContent=owned(item)?'配置する':item.gift?'旅先で発見':item.museum?item.museum+'種類で解放':item.pinball?item.pinball:item.adventure?item.adventure:item.invader?item.invader:item.tower?item.tower+'m到達で獲得':item.golf?item.golf+'で獲得':item.bond!==undefined?'好感度MAXで解放':item.price+' コインで購入';b.disabled=!owned(item)&&(item.gift||item.museum||item.pinball||item.adventure||item.invader||item.tower||item.golf||item.bond!==undefined||data.coins<item.price);b.onclick=()=>{if(owned(item)){place?.(item.id);return;}if(item.gift||item.museum||item.pinball||item.adventure||item.invader||item.tower||item.golf||item.bond!==undefined||data.coins<item.price)return;data.coins-=item.price;data.owned.push(item.id);save();};const rank=document.createElement('small');rank.textContent=rarity(item)+' · '+(owned(item)?'所持済み':'未所持');const test=document.createElement('button');test.textContent='試し置き';test.onclick=()=>preview?.(item.id);card.append(icon,name,rank,b,test);grid.append(card);}}
@@ -24,5 +25,8 @@ export function awardAdventure(r){const names=[];for(const id of adventureIds(r)
 
 export function awardClimb(completed){const count=new Set((Array.isArray(completed)?completed:[]).filter(n=>Number.isInteger(n)&&n>=1&&n<=50)).size;const names=[];for(const [id,n] of [['climb0',5],['climb1',25],['climb2',50]])if(count>=n&&!data.owned.includes(id)){data.owned.push(id);names.push(find(id).name);}if(names.length)save();return names;}
 
-import {eligible as pbEligible,rewards as pbRewards} from './pinball-rewards.js?v=11401';
+import {eligible as pbEligible,rewards as pbRewards} from './pinball-rewards.js?v=11440';
 export function awardPinball(records,played){const flags=pbEligible(records,played),names=[];for(const [i,[id,name]] of pbRewards.entries())if(flags[i]&&!data.owned.includes(id)){data.owned.push(id);names.push(name);}if(names.length)save();return names;}
+
+export function detectiveSolved(id){return (data.detectiveClaims||[]).includes(id);}
+export function awardDetective(c){const was=detectiveSolved(c.id);const n=claimReward(data,c);if(!was)save();return n;}

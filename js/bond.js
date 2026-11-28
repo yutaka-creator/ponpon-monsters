@@ -1,5 +1,5 @@
-import {read,write} from './save-store.js?v=11401';
-import {profiles} from './profiles.js?v=11401';
+import {read,write} from './save-store.js?v=11440';
+import {profiles} from './profiles.js?v=11440';
 export const levels=[0,5,15,30,50];
 export const labels=['はじめまして','顔見知り','お友達','仲良し','大切な相棒'];
 const KEY='ponpon-catcher.bond.v1';

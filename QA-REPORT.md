@@ -1,3 +1,8 @@
-# Ver.1.1.40.1 QA
+# Ver.1.1.40.3 QA
+- Node regression scripts: 120/120 passed.
+- Jackpot test: sequential stops, 10000 points once, effect duration.
+- Browser/device/audio and production tests not performed.
+- No SQL changes.
 
-118 test scripts passed; modified JS syntax checked. Standard hero unattended race: all 30 course/difficulty combinations completed without winning in automated test. Browser/device tests not performed. Pinball mascot and speech are canvas decoration shared with 3D board texture; no physics changes. Auto speed cap 26, brake retained.
+## 1.1.41.0
+14 race/version tests passed with Node.js. Browser and device tests pending.

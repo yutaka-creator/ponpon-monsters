@@ -1,4 +1,4 @@
-import {courses as classic} from './golf-data.js?v=11401';
+import {courses as classic} from './golf-data.js?v=11440';
 const first=[
  {name:'森の練習場',par:2,start:[75,220],hole:[565,220],walls:[],water:[],sand:[[270,320,100,70]]},
  {name:'キノコの小道',par:3,start:[75,350],hole:[565,85],walls:[[280,0,30,220]],water:[],sand:[[400,300,100,90]]},

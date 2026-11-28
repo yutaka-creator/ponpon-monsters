@@ -1,8 +1,8 @@
-import {initEvents} from './events.js?v=11401';
-import {initVisits} from './visits.js?v=11401';
-import {initVotes} from './votes.js?v=11401';
-import {SUPABASE_URL,SUPABASE_PUBLIC_KEY} from './supabase-config.js?v=11401';
-import {setOwner,snapshot,restore,recover,hasBackup} from './save-store.js?v=11401';
+import {initEvents} from './events.js?v=11440';
+import {initVisits} from './visits.js?v=11440';
+import {initVotes} from './votes.js?v=11440';
+import {SUPABASE_URL,SUPABASE_PUBLIC_KEY} from './supabase-config.js?v=11440';
+import {setOwner,snapshot,restore,recover,hasBackup} from './save-store.js?v=11440';
 const $=id=>document.getElementById(id),form=$('auth-form'),logout=$('auth-logout'),panel=$('cloud-panel');
 let client,user,busy=false,revision=null,known=false;
 const msg=t=>$('auth-status').textContent=t, cloud=t=>$('cloud-status').textContent=t;
@@ -15,7 +15,7 @@ $('cloud-load').onclick=()=>run(async()=>{const row=await fetchSave();if(!row){c
 $('cloud-import').onclick=()=>run(async()=>{if(!confirm('ゲスト記録をこのアカウントの端末内記録にコピーします。現在のアカウント記録は置き換わります。ゲスト記録は残ります。'))return;restore(snapshot(true));location.reload();});
 form.onsubmit=e=>{e.preventDefault();if(!client)return;run(async()=>{const email=$('auth-email').value.trim(),password=$('auth-password').value;const r=e.submitter?.value==='signup'?await client.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}}):await client.auth.signInWithPassword({email,password});if(r.error)throw r.error;if(r.data.session)location.reload();else msg('確認メールを開いてからログインしてください。');});};
 logout.onclick=()=>run(async()=>{const {error}=await client.auth.signOut({scope:'local'});if(error)throw error;location.reload();});
-async function init(){try{if(!SUPABASE_URL||!SUPABASE_PUBLIC_KEY){msg('オンライン機能は未設定です。ゲストで遊べます。');return;}const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm');client=createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{storageKey:'ponpon-auth-v1'}});const {data,error}=await client.auth.getSession();if(error)throw error;user=data.session?.user;setOwner(user?.id);form.hidden=!!user;logout.hidden=panel.hidden=!user;msg(user?'ログイン中：'+user.email:'ゲストでプレイ中。');if(user){inspect().catch(()=>cloud('クラウドに接続できません。端末内で遊べます。'));}client.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'&&user)location.reload();});}catch(e){msg('接続できません。ゲストで遊べます。');}finally{initVotes(client,user);await import('./boot.js?v=11401');initVisits(client,user);initEvents(client);}}
+async function init(){try{if(!SUPABASE_URL||!SUPABASE_PUBLIC_KEY){msg('オンライン機能は未設定です。ゲストで遊べます。');return;}const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm');client=createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{storageKey:'ponpon-auth-v1'}});const {data,error}=await client.auth.getSession();if(error)throw error;user=data.session?.user;setOwner(user?.id);form.hidden=!!user;logout.hidden=panel.hidden=!user;msg(user?'ログイン中：'+user.email:'ゲストでプレイ中。');if(user){inspect().catch(()=>cloud('クラウドに接続できません。端末内で遊べます。'));}client.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'&&user)location.reload();});}catch(e){msg('接続できません。ゲストで遊べます。');}finally{initVotes(client,user);await import('./boot.js?v=11440');initVisits(client,user);initEvents(client);}}
 $('local-export').onclick=()=>{try{const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ponpon-save.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch{msg('記録を出力できませんでした。');}};
 $('local-import').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;if(f.size>1000000)throw Error('ファイルが大きすぎます。');const data=JSON.parse(await f.text());if(confirm('端末内の記録を置き換えますか？')){restore(data);location.reload();}}catch(err){msg('復元できません：'+err.message);}finally{e.target.value='';}};
 $('local-recover').onclick=()=>{try{if(!hasBackup())throw Error('バックアップがありません。');if(confirm('直前の記録に戻しますか？')){recover();location.reload();}}catch(e){msg(e.message);}};

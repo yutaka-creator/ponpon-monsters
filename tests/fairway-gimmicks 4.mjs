@@ -1,0 +1,2 @@
+import assert from 'node:assert/strict';import {applyGimmicks,gimmicksFor} from '../js/fairway-gimmicks.js?v=1139';
+const ground=()=>0;for(const id of [2,4,8,12]){const g=gimmicksFor(id)[0],b={x:g.x,z:g.z,y:.38,vx:1,vz:-2,vy:0};assert.equal(applyGimmicks(b,.01,[g],ground),g.type);assert.equal(applyGimmicks(b,.01,[g],ground),undefined);if(id===2)assert.equal(b.vy,15);if(id===4)assert.equal(b.vz,-3.2);if(id===8)assert.equal(b.z,g.tz);}

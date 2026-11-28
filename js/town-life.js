@@ -1,4 +1,4 @@
-import {walkable,treasures} from './town-data.js?v=11401';
+import {walkable,treasures} from './town-data.js?v=11440';
 export function townPeriod(h){return h<5||h>=19?{key:'night',label:'🌙 夜'}:h<10?{key:'morning',label:'☀ 朝'}:h<16?{key:'day',label:'☀ 昼'}:{key:'evening',label:'🌇 夕方'};}
 const lines={4:['福神漬けだけ買いに来たんや。','散歩の後のカレーは格別や。'],8:['ベンチで休むのも立派な予定じゃ。','今日は昔話を短めにするぞ。たぶん。'],9:['噴水の前は写真映えするもん！','今日は日焼け対策もばっちり！'],0:['喫茶ポンポンへようこそですわ。','紅茶のおかわりは心の中で無料ですわ。']};
 export function dialogue(r,n,period){const a=[r.id===0?'喫茶ポンポンを開店しましたわ！':r.line,...(lines[r.id]||[])];const pool=[...a,...(extra[r.id]||[]),...(periodLines[r.id]?.[period]||[])];return pool[n%pool.length];}

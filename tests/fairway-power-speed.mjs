@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {meterValue,POWER_SPEED} from '../js/fairway-assist.js?v=11401';
+import {meterValue,POWER_SPEED} from '../js/fairway-assist.js?v=11440';
 assert.equal(POWER_SPEED,1.25);
 for(const [d,m] of [['easy',.72],['normal',1],['hard',1.15]])for(const [lie,p,i] of [['fairway',50,55],['green',35,40],['rough',50,55]]){
  const duration=100000/(p*m*POWER_SPEED);

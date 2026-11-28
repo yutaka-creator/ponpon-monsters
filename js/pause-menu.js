@@ -1,4 +1,4 @@
-import {gameClock} from './pause-clock.js?v=11401';
+import {gameClock} from './pause-clock.js?v=11440';
 const games=new Set(['game','golf','race','tower','invader','adventure','climb','pinball','escape']);
 const button=document.getElementById('common-pause'), dialog=document.getElementById('pause-dialog');
 let paused=null;
