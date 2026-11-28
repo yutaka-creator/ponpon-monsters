@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {create,step,displayedFlippers} from '../js/pinball-physics.js?v=11440';
+import {create,step,displayedFlippers} from '../js/pinball-physics.js?v=11460';
 for(let table=0;table<10;table++){
  let s=create(table);Object.assign(s,{ready:false,x:100,y:402,vx:0,vy:900});step(s,{},.04);assert(s.vy<0,`flipper ${table}`);
  s=create(table);Object.assign(s,{ready:false,x:290,y:220,vx:-900,vy:0});step(s,{},.04);assert(s.x>=290||s.vx>0,`rail ${table}`);

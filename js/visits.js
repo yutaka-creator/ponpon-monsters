@@ -1,7 +1,7 @@
-import {walls,floors,cleanDecor,paint} from './furniture.js?v=11440';
-import {snapshot} from './save-store.js?v=11440';
-import {profiles} from './profiles.js?v=11440';
-import {secrets} from './secrets.js?v=11440';
+import {walls,floors,cleanDecor,paint} from './furniture.js?v=11460';
+import {snapshot} from './save-store.js?v=11460';
+import {profiles} from './profiles.js?v=11460';
+import {secrets} from './secrets.js?v=11460';
 const $=id=>document.getElementById(id);
 function clean(s){s=s&&typeof s==='object'?s:{};const out={};for(const [k,opts] of Object.entries({wall:[...walls.map(a=>a[0]),'festival'],floor:floors.map(a=>a[0]),furniture:['sofa','shelf','none','photo']}))out[k]=opts.includes(s[k])?s[k]:opts[0];out.actors=(Array.isArray(s.actors)?s.actors:[]).slice(0,22).filter(a=>a&&Number.isInteger(a.id)&&a.id>=0&&a.id<profiles.length&&Number.isFinite(a.x)&&Number.isFinite(a.y)).map(a=>({id:a.id,x:Math.max(8,Math.min(92,a.x)),y:Math.max(45,Math.min(88,a.y))}));out.decor=cleanDecor(s.decor);return out;}
 export function initVisits(client,user){let current=null,busy=false,liked=false;const status=t=>$('visit-status').textContent=t;const buttons=['visit-publish','visit-private','visit-random','visit-favorites','visit-heart'].map($);$('visit-owner').hidden=!user;function controls(){buttons.forEach(b=>b.disabled=busy||!client);$('visit-favorites').disabled=busy||!client||!user;$('visit-heart').disabled=busy||!client||!user||!current||current.user_id===user.id;}

@@ -1,13 +1,13 @@
-import {gameClock} from "./pause-clock.js?v=11440";
+import {gameClock} from "./pause-clock.js?v=11460";
 const {requestAnimationFrame}=gameClock("golf");
-import {lineFor} from "./line-library.js?v=11440";
-import {renderGolfRecords,unlockGolfMonster} from './golf-records.js?v=11440';
-import {finishGolf} from './golf-rewards.js?v=11440';
-import {abilities,launch} from './golf-abilities.js?v=11440';
-import {courses} from './golf-data.js?v=11440';
-import {step,R,W,H} from './golf-physics.js?v=11440';
-import {getCounts} from './collection.js?v=11440';
-import {profiles} from './profiles.js?v=11440';
+import {lineFor} from "./line-library.js?v=11460";
+import {renderGolfRecords,unlockGolfMonster} from './golf-records.js?v=11460';
+import {finishGolf} from './golf-rewards.js?v=11460';
+import {abilities,launch} from './golf-abilities.js?v=11460';
+import {courses} from './golf-data.js?v=11460';
+import {step,R,W,H} from './golf-physics.js?v=11460';
+import {getCounts} from './collection.js?v=11460';
+import {profiles} from './profiles.js?v=11460';
 export function initGolf(){
  const $=id=>document.getElementById(id),canvas=$('golf-canvas'),ctx=canvas.getContext('2d');let course,b,strokes,moving,done,drag=null,origin,img=new Image(),last=0,used=false;
  const ability=()=>abilities[+$ ('golf-monster').value]??abilities[3];

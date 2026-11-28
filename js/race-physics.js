@@ -1,10 +1,10 @@
-import {comeback} from './race-comeback.js?v=11440';
-import {slope} from './race-terrain.js?v=11440';
-import {raceDifficulty,cpuSteer} from './race-difficulty.js?v=11440';
-import {courseAt,trackPoint} from './race-courses.js?v=11440';
-import {powerFor} from './race-powers.js?v=11440';
-import {updateItems,useItem,checkTraps} from './race-items.js?v=11440';
-import {contact} from './race-contact.js?v=11440';
+import {comeback} from './race-comeback.js?v=11460';
+import {slope} from './race-terrain.js?v=11460';
+import {raceDifficulty,cpuSteer} from './race-difficulty.js?v=11460';
+import {courseAt,trackPoint} from './race-courses.js?v=11460';
+import {powerFor} from './race-powers.js?v=11460';
+import {updateItems,useItem,checkTraps} from './race-items.js?v=11460';
+import {contact} from './race-contact.js?v=11460';
 export const LENGTH=courseAt().length, LAPS=3;
 export function createRace(id=3,courseId=0,level="normal"){const course=courseAt(courseId);return {course,level:raceDifficulty(level),time:0,traps:[],done:false,cars:Array.from({length:8},(_,i)=>({power:powerFor(i?i-1:id),distance:-Math.floor(i/2)*4,lane:i%2?2:-2,speed:0,boost:0,drift:0,finish:null,bump:0,item:null,itemWait:0,shield:0,giant:0,slow:0,star:0,rocket:0,magnet:0,fxTime:0}))};}
 export function standings(s){return s.cars.map((c,i)=>({c,i})).sort((a,b)=>{if(a.c.finish!==null||b.c.finish!==null)return (a.c.finish??Infinity)-(b.c.finish??Infinity)||a.i-b.i;return b.c.distance-a.c.distance||a.i-b.i;}).map(o=>o.i);}

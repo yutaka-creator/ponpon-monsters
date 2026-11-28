@@ -1,2 +1,2 @@
-import assert from 'node:assert/strict';import {create,step} from '../js/adventure-physics.js?v=11440';import {gimmick,hazards,bossPattern} from '../js/adventure-gimmicks.js?v=11440';
+import assert from 'node:assert/strict';import {create,step} from '../js/adventure-physics.js?v=11460';import {gimmick,hazards,bossPattern} from '../js/adventure-gimmicks.js?v=11460';
 let s=create(3,26);step(s,.01,{right:true});assert(s.vx<185);s=create(3,16);step(s,.01,{jump:true});step(s,.01);step(s,.01,{jump:true});assert(s.airUsed);s=create(3,36);assert.equal(hazards(s).length,2);s=create(3,50);s.x=2000;s.boss.hp=5;s.boss.cool=0;step(s,.01);assert.equal(s.boss.shots.length,3);assert.equal(bossPattern(s.stage,1).count,1);assert(gimmick(s.stage).hazard);

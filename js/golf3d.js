@@ -1,14 +1,14 @@
-import {gameClock} from "./pause-clock.js?v=11440";
+import {gameClock} from "./pause-clock.js?v=11460";
 const {requestAnimationFrame}=gameClock("golf");
 import * as T from 'three';
-import {finishGolf} from './golf-rewards.js?v=11440';
-import {unlockGolfMonster,renderGolfRecords} from './golf-records.js?v=11440';
-import {step3d} from './golf3d-physics.js?v=11440';
-import {prize,monsters} from './monsters.js?v=11440';
-import {getCounts} from './collection.js?v=11440';
-import {step,W,H} from './golf-physics.js?v=11440';
-import {launch,abilities} from './golf-abilities.js?v=11440';
-import {courses3d, themes} from './golf3d-data.js?v=11440';
+import {finishGolf} from './golf-rewards.js?v=11460';
+import {unlockGolfMonster,renderGolfRecords} from './golf-records.js?v=11460';
+import {step3d} from './golf3d-physics.js?v=11460';
+import {prize,monsters} from './monsters.js?v=11460';
+import {getCounts} from './collection.js?v=11460';
+import {step,W,H} from './golf-physics.js?v=11460';
+import {launch,abilities} from './golf-abilities.js?v=11460';
+import {courses3d, themes} from './golf3d-data.js?v=11460';
 const $=id=>document.getElementById(id), S=40;
 export function initGolf3D(){
  const host=$('g3-view'), renderer=new T.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));host.append(renderer.domElement);

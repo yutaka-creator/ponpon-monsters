@@ -1,4 +1,4 @@
-import {secrets} from './secrets.js?v=11440';
+import {secrets} from './secrets.js?v=11460';
 // 内部IDは保存互換性のため維持。名前、紹介、口癖、性格、好きなもの、特技、ひみつの順。
 export const profiles = [
   [

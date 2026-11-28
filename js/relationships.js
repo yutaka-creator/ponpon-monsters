@@ -1,7 +1,7 @@
-import {pairs} from './pair-data.js?v=11440';
-import {profiles} from './profiles.js?v=11440';
-import {read,write} from './save-store.js?v=11440';
-import {getCounts} from './collection.js?v=11440';
+import {pairs} from './pair-data.js?v=11460';
+import {profiles} from './profiles.js?v=11460';
+import {read,write} from './save-store.js?v=11460';
+import {getCounts} from './collection.js?v=11460';
 const key='ponpon-catcher.pairs.v1';
 const id=p=>p.ids.join('-');
 function records(){try{return JSON.parse(read(key))||{}}catch{return {}}}

@@ -1,4 +1,4 @@
-import {voices} from './character-voices.js?v=11440';
+import {voices} from './character-voices.js?v=11460';
 export const gatherings=[
  {label:'一緒にごはん',icon:'🍚',kind:'eat',furniture:['f3','f11','s4'],intro:'一緒に食べよう。'},
  {label:'一緒にテレビ',icon:'📺',kind:'sway',furniture:['f10'],intro:'この番組を見よう。'},

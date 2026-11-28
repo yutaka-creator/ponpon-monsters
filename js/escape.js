@@ -1,7 +1,7 @@
-import {gameClock} from "./pause-clock.js?v=11440";
+import {gameClock} from "./pause-clock.js?v=11460";
 const {performance,setTimeout,clearTimeout}=gameClock("escape");
-import {MAX_STAGE,dirs,ready,makeStage} from './escape-model.js?v=11440';
-import {read,write} from './save-store.js?v=11440';
+import {MAX_STAGE,dirs,ready,makeStage} from './escape-model.js?v=11460';
+import {read,write} from './save-store.js?v=11460';
 const KEY='ponpon-catcher.escape.v1';
 export function initEscape(){const $=id=>document.getElementById(id),board=$('esc-board'),picker=$('esc-stage'),status=$('esc-status');let record={};try{record=JSON.parse(read(KEY)||'{}')||{};}catch{}let stage=1,size,shape,rocks=[],pieces=[],history=[],timer=0,busy=false,hint=-1,combo=0,lastEscape=0;let unlocked=Math.max(1,Math.min(MAX_STAGE,Number(record.unlocked)||1));function options(){picker.replaceChildren();for(let i=1;i<=unlocked;i++)picker.add(new Option('STAGE '+i,i));picker.value=stage;}
 function save(){try{write(KEY,JSON.stringify({unlocked,stage,completed:record.completed||[]}));}catch{status.textContent='記録を保存できませんでした。';}}
