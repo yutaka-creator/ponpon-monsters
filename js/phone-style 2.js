@@ -1,0 +1,6 @@
+import {themes,defaults,normalizeStyle} from './phone-style-model.js?v=114911';
+const $=id=>document.getElementById(id),key='ponpon.phone.style.v1';let state=defaults;try{state=normalizeStyle(JSON.parse(localStorage.getItem(key)))}catch{}
+const theme=$('style-theme'),photo=$('style-photo'),icon=$('style-icon');for(const [k,v] of Object.entries(themes))theme.add(new Option(v[0],k));photo.add(new Option('写真なし','none'));for(let i=0;i<10;i++)photo.add(new Option('ポンポン '+(i+1),String(i)));
+function apply(){const [,bg,accent,ink]=themes[state.theme];for(const el of [$('pon-phone'),$('style-preview')]){el.style.setProperty('--style-bg',bg);el.style.setProperty('--style-accent',accent);el.style.setProperty('--style-ink',ink);el.style.setProperty('--style-photo',state.photo==='none'?'none':`url("assets/images/${state.photo}-small.webp")`);el.dataset.iconStyle=state.icon;}theme.value=state.theme;photo.value=state.photo;icon.value=state.icon;}
+function save(){apply();try{localStorage.setItem(key,JSON.stringify(state));$('style-status').textContent='設定を保存しました'}catch{$('style-status').textContent='端末に保存できませんでした'}}
+for(const el of [theme,photo,icon])el.addEventListener('change',()=>{state=normalizeStyle({theme:theme.value,photo:photo.value,icon:icon.value});save()});$('style-reset').onclick=()=>{state={...defaults};save()};apply();

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {settings} from '../js/rhythm.js?v=114911';
+import {impactResult,meterValue} from '../js/fairway-assist.js?v=114911';
+import {balance} from '../js/tower-balance.js?v=114911';
+import {contact} from '../js/race-contact.js?v=114911';
+import {create,step} from '../js/invader-physics.js?v=114911';
+import {create as adventure,step as walk} from '../js/adventure-physics.js?v=114911';
+assert.equal(settings.perfect,145);assert.equal(settings.good,280);
+assert.equal(impactResult(68,'fairway',{},'easy').label,'PERFECT');assert.equal(impactResult(68,'fairway',{},'hard').label,'GOOD');assert(Math.abs(meterValue(1,1000,'fairway','easy')-45)<1e-9);
+assert.equal(balance(0).gravity,370);assert.equal(balance(5000).gravity,490);
+const a={finish:null,distance:0,lane:0,speed:100},b={...a};contact([a,b]);assert.equal(a.speed,86);
+const s=create();s.fire=0;step(s,.01,{},()=>0);assert(Math.abs(s.fire-1.45)<1e-9);
+const p=adventure();p.y=400;walk(p,.01);assert.equal(p.inv,2);
+console.log('balance 0947 OK');

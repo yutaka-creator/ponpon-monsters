@@ -1,0 +1,39 @@
+/* Navigation: legacy menu is an explicit drawer, never an automatic home panel. */
+#main-menu[data-collapsed="true"]{display:none!important}
+#main-menu[data-collapsed="false"]{display:grid!important;grid-template-columns:1fr!important;gap:12px!important;background:#f7fbfc;padding:12px;border:1px solid #d6e3e9;border-radius:16px}
+#main-menu .world-group>div,#main-menu .world-top{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+#main-menu button{min-width:0;white-space:normal;min-height:44px}
+#welcome .app-directory{display:none!important}
+#detective .dt-dialogue{grid-template-columns:48px minmax(0,1fr);align-items:start;overflow:auto;overscroll-behavior:contain;margin:0;padding:10px;background:#fff;border:1px solid #d6e3e9;min-height:90px}
+#detective #dt-portrait{width:48px;height:48px;grid-row:1/3}
+#detective #dt-speaker{grid-column:2;font-size:14px;font-weight:800;color:#246b70}
+#detective #dt-message{grid-column:2;font-size:16px;line-height:1.65;white-space:pre-wrap;color:#263f4e;overflow-wrap:anywhere;padding:0}
+#detective #dt-portrait[hidden]~#dt-speaker,#detective #dt-portrait[hidden]~#dt-message{grid-column:1/-1}
+#detective #dt-list[data-mode=talk]{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+#detective #dt-list[data-mode=talk] button{min-width:0;min-height:48px;font-size:13px;padding:5px;overflow-wrap:anywhere}
+#detective #dt-list[data-mode=talk] img{width:36px;height:36px;flex:none}
+#detective #dt-list button[aria-pressed=true]{background:#dceeed;border-color:#347f80}
+#detective #dt-list[data-mode=book] p{display:grid;gap:5px;border-left:3px solid #76b9b5;padding:10px;color:#263f4e;font-size:15px;white-space:pre-wrap}
+#detective #dt-list[data-mode=book] strong{color:#246b70;font-size:13px}
+@media(max-width:700px){
+body[data-screen=detective] :is(main>header,#main-menu,#mobile-menu-toggle,#bottom-nav,.release-footer){display:none!important}
+body[data-screen=detective] main{padding:0!important;margin:0 auto!important;width:100%;max-width:640px}
+body[data-screen=detective] #detective:not([hidden]){display:flex!important;flex-direction:column;gap:5px;height:100dvh;max-height:100dvh;box-sizing:border-box;overflow:hidden;padding: max(6px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom));margin:0 auto}
+#detective .dt-head,#detective .dt-case-picker,#detective .dt-brief,#detective #dt-progress,#detective #dt-tabs,#detective #dt-subtabs{flex:none;margin:0}
+#detective .dt-case-picker[open],#detective .dt-brief[open]{max-height:30dvh;overflow:auto;overscroll-behavior:contain}
+#detective .dt-case-picker,#detective .dt-brief{padding:7px 10px;font-size:13px}
+#detective #dt-tabs{position:static;padding:3px;gap:4px}
+#detective #dt-subtabs{flex-wrap:nowrap;overflow-x:auto;gap:4px}
+#detective #dt-subtabs button{flex:1 0 auto;padding:5px;font-size:12px}
+#detective .dt-dialogue{flex:0 1 auto;max-height:27dvh;min-height:90px}
+#detective #dt-work{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:2px 2px 8px}
+#detective #dt-list{margin:3px 0;gap:6px}
+#detective .dt-scene{height:auto;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:6px}
+#detective .dt-scene button{position:static;transform:none;width:100%;min-height:48px}
+#detective #dt-guess label{margin:5px 0;font-size:13px}
+body[data-screen=detective] #feedback-open{display:none!important}
+}
+@media(max-width:700px){
+#detective:has(.dt-case-picker[open]) .dt-brief,#detective:has(.dt-brief[open]) .dt-case-picker{display:none}
+#detective:has(.dt-case-picker[open]) .dt-dialogue,#detective:has(.dt-brief[open]) .dt-dialogue{min-height:60px}
+}
