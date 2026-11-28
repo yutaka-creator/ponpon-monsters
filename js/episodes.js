@@ -1,4 +1,5 @@
-import {extraEpisodes} from './episodes-extra.js?v=1112';
+import {season2} from "./episodes-season2.js?v=1139";
+import {extraEpisodes} from './episodes-extra.js?v=1139';
 // 4コマの仮台本。登場人物IDとセリフを編集できます。
 export const episodes=[
  {title:'時代のすれ違い',ids:[8,1],lines:['昔は電話がなぁ…。','未来では電話がないよ。','じゃあ昔に戻ったんか？','……話が一周した。']},
@@ -30,3 +31,5 @@ episodes.push({title:'相棒の記念写真',ids:[9,3],bond:5,lines:['相棒と�
 
 episodes.push({title:'ポンポンたちの休日',event:'catch',ids:[8,7],lines:['今日はみんなでお祝いじゃ。','じゃあ寝よう。','まだ乾杯もしておらんぞ。','夢の中で乾杯したよ。']});
 episodes.push(...extraEpisodes);
+
+episodes.push(...season2);

@@ -1,4 +1,4 @@
-import {exhibits,milestones} from './museum-data.js?v=1112';
+import {exhibits,milestones} from './museum-data.js?v=1139';
 // 家具名・アイコン・価格を編集できます。
 const groups=[['生活','ベッド🛏️,ソファ🛋️,椅子🪑,テーブル🪵,座布団🟫,こたつ🧣,ランプ💡,カーテン🪟,クッション🟠,ラグ🟩'],['家電・収納','テレビ📺,冷蔵庫🧊,本棚📚,タンス🗄️,ラジオ📻,扇風機🌀,掃除機🧹,洗濯機🫧,時計🕰️,スピーカー🔊'],['植物・装飾','サボテン🌵,観葉植物🪴,花瓶💐,水槽🐠,絵画🖼️,地球儀🌐,ぬいぐるみ🧸,花壇🌷,盆栽🌳,キャンドル🕯️'],['レトロ','ガチャガチャ🎰,ゲーム筐体🕹️,レコード💿,黒電話☎️,看板🪧,公衆電話📞,駄菓子棚🍬,ジュークボックス🎵,レトロカメラ📷,タイプライター⌨️'],['不思議','UFO🛸,タイムマシン🚀,巨大プリン🍮,謎の石像🗿,魔法の扉🚪,宝箱🧰,巨大きのこ🍄,月🌙,ロボット🤖,恐竜🦕']];
 export const items=groups.flatMap(([group,str],g)=>str.split(',').map((s,i)=>({id:'f'+(g*10+i),group,name:s.slice(0,s.search(/\p{Extended_Pictographic}|[🟫🟠🟩]/u)),icon:s.slice(s.search(/\p{Extended_Pictographic}|[🟫🟠🟩]/u)),price:[50,80,100,150,200,300,400,500,800,1500][i]})));
@@ -32,6 +32,6 @@ for(const d of ['easy','normal','hard'])items.push({id:'golf_complete_'+d,name:d
 
 for(const [id,name,icon,n] of [['climb0','冒険のカレー鍋','🍲',5],['climb1','ミニタワー','🗼',25],['climb2','天空のトロフィー','🏆',50]])items.push({id,name,icon,adventure:`タワー大作戦 ${n}面クリア`,group:'冒険',price:0});
 
-import {rewards as pbRewards} from './pinball-rewards.js?v=1112';
+import {rewards as pbRewards} from './pinball-rewards.js?v=1139';
 for(const [id,name,pinball] of pbRewards)items.push({id,name,pinball,group:'ピンボール',price:0,icon:'🏆'});
 walls.push(['pinball','ピンボール専用壁紙','#e8bd73']);

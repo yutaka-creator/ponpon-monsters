@@ -1,0 +1,2 @@
+import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+const h=readFileSync('index.html','utf8'),j=readFileSync('js/pinball.js','utf8'),r=readFileSync('js/pinball-3d.js','utf8');for(const id of ['pb-board','pb-view','pb-3d','pb-mode'])assert(h.includes(`id="${id}"`));assert(j.includes('webglcontextlost'));assert(j.includes('step(s,controls(),1/240)'));assert(r.includes('displayedFlippers(s,input)'));assert(r.includes('table.rails'));assert(r.includes('s.extra'));console.log('3D integration static checks passed');

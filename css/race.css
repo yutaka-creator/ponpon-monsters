@@ -6,3 +6,7 @@
 .race-controls{grid-template-columns:repeat(4,minmax(0,1fr))}#race-cue.item-cue{font-size:clamp(20px,6vw,42px);align-items:start;padding-top:20px}#race[data-item-fx]:not([data-item-fx=""]) .race-stage{box-shadow:inset 0 0 0 5px #f7d45c,0 0 12px #f7d45c}#race[data-item-fx="shield"] .race-stage{box-shadow:0 0 16px #75eaff}#race[data-item-fx="sleep"] .race-stage{box-shadow:0 0 16px #b995ef}
 
 @media(max-width:600px){.race-controls{grid-template-columns:repeat(4,minmax(0,1fr))}}
+#race[data-item-fx="rocket"] #race-view,#race[data-item-fx="turbo"] #race-view{box-shadow:inset 0 0 24px #ff9b45;}
+#race[data-item-fx="star"] #race-cue{color:#ffe477;text-shadow:0 0 12px #ffb000;}
+#race[data-item-fx="ice"] #race-cue{color:#a8efff;}
+#race[data-item-fx="sleep"] #race-cue{color:#d3a4ff;}

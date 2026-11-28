@@ -1,2 +1,2 @@
-# Ver.1.1.12 QA
-89 Node test scripts passed; adventure.js syntax checked. Browser/device playthrough not performed. No SQL changes. Existing save keys retained.
+# Ver.1.1.39 QA
+116/116 Node test scripts passed, including election data coverage. votes.js syntax checked. Browser/device and live Supabase not tested. Apply sql/ponpon_votes_50.sql before publishing; existing votes and RLS preserved. Applause is local and does not change vote totals. Candidate speeches combine individual pledges with existing character settings. All candidates visible, including hidden characters.

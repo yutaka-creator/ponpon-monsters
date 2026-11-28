@@ -1,4 +1,4 @@
-import {bossPattern} from './adventure-gimmicks.js?v=1112';
+import {bossPattern} from './adventure-gimmicks.js?v=1139';
 export const STAGES=[
 ['はじまりの草原','#bce6f5','#9bc994','#67994e'],['こもれびの森','#c5e1d0','#467b59','#38764b'],['カレー砂漠','#ffe2a6','#e5b66c','#c48b39','巨大カレー大王',3,4],['お菓子の国','#f8d9ed','#e9a9ce','#d37fae'],['昭和の商店街','#e6d7bf','#b8a58c','#98734d'],['氷の洞窟','#c7e7fa','#8cbad9','#8fd8ed','氷のかずじぃ',4,8],['未来都市','#c6c9ed','#8b92c4','#737fc2'],['天空の島','#d8efff','#ffffff','#89bda5'],['宇宙への入り口','#282b52','#535b91','#8e83c6','暴走resource',5,6],['ポンポン王国','#f7dfac','#d8b77c','#9eb66b','巨大こぺ',6,9]].map(([name,sky,hill,grass,boss,hp,photo],i)=>({id:i+1,name,sky,hill,grass,boss,hp,photo}));
 // Keep original stage IDs and layouts for saved progress.

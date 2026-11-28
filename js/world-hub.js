@@ -1,6 +1,6 @@
-import {keys,read} from './save-store.js?v=1112';
-import {profiles} from './profiles.js?v=1112';
-import {summarize,badges} from './world-records.js?v=1112';
+import {keys,read} from './save-store.js?v=1139';
+import {profiles} from './profiles.js?v=1139';
+import {summarize,badges} from './world-records.js?v=1139';
 const $=id=>document.getElementById(id);
 function el(tag,text){const n=document.createElement(tag);n.textContent=text;return n;}
 function render(){const data={};for(const k of keys){try{data[k]=JSON.parse(read(k)||'null');}catch{data[k]=null;}}const s=summarize(data,profiles.length),b=badges(s);$('world-summary').textContent=`仲間 ${s.owned}/${s.total}種類 ・ 実績 ${b.filter(x=>x[2]).length}/${b.length}`;const rows=[['クレーン・図鑑',`${s.owned}/${s.total}種類`],['本格3Dゴルフ',`${s.golf}/36ホール`],['従来ゴルフ',`${s.classic}/30ホール`],['ピンポンタワー',`${s.tower}m`],['3Dレーシング',`${s.race}/10完走・${s.wins}/10優勝`],['インベーダーズ',`最高 ${s.invader}点`],['アドベンチャー',`${s.adventure}/10クリア・秘密 ${s.secrets}/10`],['お出かけ',`お土産 ${s.gifts}種類`]];$('world-record-list').replaceChildren(...rows.map(([n,v])=>{const d=el('div','');d.append(el('strong',n),el('span',v));return d;}));$('world-badges').replaceChildren(...b.map(([n,d,ok])=>{const a=el('article','');a.dataset.earned=String(!!ok);a.append(el('strong',(ok?'★ ':'☆ ')+n),el('small',d),el('span',ok?'達成済み':'未達成'));return a;}));}

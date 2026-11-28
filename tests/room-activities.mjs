@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {chooseActivity,activities} from '../js/room-activities.js?v=1112';
+import {chooseActivity,activities} from '../js/room-activities.js?v=1139';
 const a={id:0,x:50,y:70}, b={id:1,x:60,y:70};
 const s={actors:[a],decor:[]};
 assert.equal(chooseActivity(s,a,8,()=>0).label,'散歩');

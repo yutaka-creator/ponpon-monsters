@@ -55,3 +55,9 @@
 
 .decor-scene[data-wall=galaxy]{background:radial-gradient(circle at 20% 12%,white 0 1px,transparent 2px),radial-gradient(circle at 70% 25%,#c7b8ff 0 2px,transparent 3px),linear-gradient(150deg,#171b45,#644681 55%,var(--floor) 55%)!important;}
 .decor-scene[data-wall=adventureSky]{background:radial-gradient(ellipse at 20% 20%,white 0 8%,transparent 9%),radial-gradient(ellipse at 75% 35%,white 0 10%,transparent 11%),linear-gradient(#a5d9f7 55%,var(--floor) 55%)!important;}
+
+.grip-help{display:block;font-size:11px;line-height:1.3}.grip-meter{display:flex;align-items:center;gap:8px;font-size:12px}.grip-meter meter{flex:1;width:100%;height:12px}.gold-grip .grip-meter{color:#d9ad40;font-weight:bold}.catch-celebrate{animation:catch-pop .45s ease-out}@keyframes catch-pop{50%{transform:scale(1.06);color:#d9ad40}}@media(prefers-reduced-motion:reduce){.catch-celebrate{animation:none}}
+
+#common-pause{position:fixed;top:max(8px,env(safe-area-inset-top));right:8px;z-index:90;min-height:44px;background:#fffaf0;color:#365b48;border:1px solid #365b48;border-radius:10px}#common-pause[hidden],#pause-restart[hidden]{display:none!important}#pause-dialog{max-width:min(320px,90vw);border:1px solid #d9cbb4;border-radius:16px;padding:20px;background:#fffaf0;color:#403b32}#pause-dialog button{display:block;width:100%;min-height:44px;margin:8px 0}#pause-dialog::backdrop{background:#0008}
+
+#vote-grid article{border:2px solid #d9cbb4;background:#fffaf0;color:#403b32;border-radius:12px;text-align:center}#vote-grid article>small{background:#365b48;color:white;padding:5px 10px;border-radius:6px}#vote-grid article button{width:100%;min-height:44px}#vote-reaction{position:sticky;top:0;z-index:2;background:#fffaf0;color:#365b48;padding:8px;border-radius:8px}#vote-reaction:empty{display:none}
